@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Access</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/access.css">
+    </head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+            <div class="content" >
+                <div class="wrapper" id="wrapper" >
+                    <div class="form-wrapper sign-up-wrapper">
+                        <form action="#">
+                            <h1>Create Account</h1>
+                            <input type="text" placeholder="Name" />
+                            <input type="email" placeholder="Email" />
+                            <input type="password" placeholder="Password" />
+                            <button>Sign Up</button>
+                        </form>
+                    </div>
+                    <div class="form-wrapper sign-in-wrapper">
+                        <form action="#">
+                            <h1>Sign in</h1>
+                            <input type="email" placeholder="Email" />
+                            <input type="password" placeholder="Password" />
+                            <a href="#" class="access-a"></a>
+                            <button>Sign In</button>
+                        </form>
+                    </div>
+                    <div class="overlay-wrapper">
+                        <div class="overlay">
+                            <div class="overlay-panel overlay-left">
+                                <h1>Welcome Back!</h1>
+                                <p class="access-pa">To keep connected with us please login with your personal info</p>
+                                <button class="ghost" id="signIn">Sign In</button>
+                            </div>
+                            <div class="overlay-panel overlay-right">
+                                <h1>Hello, Friend!</h1>
+                                <p class="access-p">Enter your personal details and start your therapy</p>
+                                <button class="ghost" id="signUp">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    const signUpButton = document.getElementById('signUp');
+                    const signInButton = document.getElementById('signIn');
+                    const container = document.getElementById('wrapper');
+
+                    signUpButton.addEventListener('click', () => {
+                        container.classList.add("right-panel-active");
+                    });
+
+                    signInButton.addEventListener('click', () => {
+                        container.classList.remove("right-panel-active");
+                    });
+                </script>
+            </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+
+    </body>
+</html>
