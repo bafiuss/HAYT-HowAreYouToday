@@ -5,14 +5,114 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/index.css">
     </head>
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
-        <div class="container mt-5">
-            <h1 style="text-align: center">Benvenuto nella mia applicazione Spring Boot!</h1>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="mb-4">Welcome to HAYT!</h1>
+                <p class="lead">How Are You Today?</p>
+                <div class="mt-4">
+                    <a href="/login" class="btn btn-primary btn-lg" >Let's get started</a>
+                </div>
+            </div>
         </div>
+
+        <div class="container mt-5 fade-in-section">
+            <h2 class="text-center mb-4">What's that?</h2>
+            <p class="text-center">HAYT is an innovative app designed to improve access to care and quality of life through personalized monitoring and support tools.</p>
+        </div>
+
+        <div class="container mt-5 fade-in-section" style="background-color: #CFD8DC;">
+            <h2 class="text-center mb-4">Some Features</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card card-hover p-3">
+                        <h4>📊 Monitoring</h4>
+                        <p>Record and analyze your health data quickly and easily.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-hover p-3">
+                        <h4>🩺 Customized Support</h4>
+                        <p>Get suggestions and treatment plans tailored to you.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-hover p-3">
+                        <h4>🔔 Smart Reminders</h4>
+                        <p>Never forget medications or important appointments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5 fade-in-section">
+            <h2 class="text-center mb-4">Mental Health Conditions</h2>
+            <div class="mental-health-icons">
+                <div class="icon">
+                    <div class="mental-health-icon">
+                        <img src="/images/index/depression-icon.jpg" alt="Depression">
+                    </div>
+                    <div class="mental-healt-text">
+                        <p style="text-align: center">Depression</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="mental-health-icon">
+                        <img src="/images/index/anxiety-icon.png" alt="Anxiety">
+                    </div>
+                    <div class="mental-healt-text">
+                        <p style="text-align: center">Anxiety</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="mental-health-icon">
+                        <img src="/images/index/stress-icon.jpg" alt="Stress">
+                    </div>
+                    <div class="mental-healt-text">
+                        <p style="text-align: center">Stress</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="mental-health-icon">
+                        <img src="/images/index/bipolar-icon.jpg" alt="Bipolar Disorder">
+                    </div>
+                    <div class="mental-healt-text">
+                        <p style="text-align: center">Bipolarism</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="mental-health-icon">
+                        <img src="/images/index/eating-disorders-icon.jpg" alt="Eating Disorders">
+                    </div>
+                    <div class="mental-healt-text">
+                        <p style="text-align: center">Eating Disorders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div th:insert="~{fragments/footer :: footer}"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const sections = document.querySelectorAll(".fade-in-section");
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            });
+        </script>
     </body>
 </html>
