@@ -12,17 +12,20 @@
             <div class="content" >
                 <div class="wrapper" id="wrapper" >
                     <div class="form-wrapper sign-up-wrapper">
-                        <form action="#">
-                            <h1>Create Account</h1>
-                            <input type="text" placeholder="Name" />
+                        <form action="#" style="padding: 12%;">
+                            <h1 style="padding: 20px 0;">Create Account</h1>
+                            <input type="text" placeholder="First Name" />
+                            <input type="text" placeholder="Last Name" />
                             <input type="email" placeholder="Email" />
                             <input type="password" placeholder="Password" />
-                            <button>Sign Up</button>
+                            <input type="password" placeholder="Confirm Password" />
+                            <input type="date" placeholder="Date of Birth" />
+                            <button style="margin: 20px 0;">Sign Up</button>
                         </form>
                     </div>
                     <div class="form-wrapper sign-in-wrapper">
                         <form action="#">
-                            <h1>Sign in</h1>
+                            <h1 style="padding: 20px 0;">Sign in</h1>
                             <input type="email" placeholder="Email" />
                             <input type="password" placeholder="Password" />
                             <a href="#" class="access-a"></a>
@@ -40,6 +43,8 @@
                                 <h1>Hello, Friend!</h1>
                                 <p class="access-p">Enter your personal details and start your therapy</p>
                                 <button class="ghost" id="signUp">Sign Up</button>
+                                <p class="access-p" style="margin: 7px 0;">or</p>
+                                <button onclick="location.href='/psychologist-signup'" class="ghost" id="psychologist-signup" style="background-color: #FFA726; border-color: #FF9800">Register as psychologist</button>
                             </div>
                         </div>
                     </div>
