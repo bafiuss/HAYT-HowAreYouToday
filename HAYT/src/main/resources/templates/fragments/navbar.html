@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto" th:if="${currentUrl != '/authentication'} and ${currentUrl != '/psychologist-signup'}">
                 <li class="nav-item" style="padding-right: 20px;">
                     <a class="nav-link" href="/about">About</a>
                 </li>
