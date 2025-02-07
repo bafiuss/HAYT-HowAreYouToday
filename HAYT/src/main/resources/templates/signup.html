@@ -22,27 +22,27 @@
         <form action="/patient-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${patientSignupDTO}">
             <div class="input-group">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                <div class="prova">
+                <div class="input-content">
                     <label>First Name</label>
                     <input type="text" id="firstName" name="firstName" th:field="*{firstName}" onChange="return validateFirstName()">
                     <span id="errorFirstName" style="font-size: 15px;"></span>
                 </div>
-                <div class="prova">
+                <div class="input-content">
                     <label>Last Name</label>
                     <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
                     <span id="errorLastName" style="font-size: 15px;"></span>
                 </div>
-                <div class="prova">
+                <div class="input-content">
                     <label>Email</label>
                     <input type="email" id="email" name="email" th:field="*{email}" onChange="return validateEmail()">
                     <span id="errorEmail" style="font-size: 15px;"></span>
                 </div>
-                <div class="prova">
+                <div class="input-content">
                     <label>Password</label>
                     <input type="password" id="patient-password" name="patient-password" th:field="*{password}" onChange="return validatePassword()">
                     <span id="errorPassword" style="font-size: 15px;"></span>
                 </div>
-                <div class="prova">
+                <div class="input-content">
                     <label>Confirm Password</label>
                     <input type="password" id="patient-confirmPassword" name="patient-confirmPassword" th:field="*{confirmPassword}" onChange="return passwordMatching()">
                     <span id="matchError" style="font-size: 15px;"></span>
