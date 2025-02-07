@@ -19,21 +19,19 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/index",
-                                "/authentication",
+                                "/signup",
+                                "/login",
                                 "/patient-signup",
                                 "/psychologist-signup",
                                 "/styles/**",
                                 "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(form ->
-                        form.loginPage("/authentication").permitAll()
-                )
                 .build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
