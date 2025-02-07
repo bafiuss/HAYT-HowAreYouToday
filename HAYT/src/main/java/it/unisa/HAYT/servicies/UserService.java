@@ -1,35 +1,42 @@
 package it.unisa.HAYT.servicies;
 
+import it.unisa.HAYT.dto.PatientSignupDTO;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService{
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByEmail(email);
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-        if(user != null){
-            var springUser = User.withUsername(user.getEmail())
-                    .password(user.getPassword())
-                    .roles(user.getRole())
-                    .build();
+    public boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
 
-            return springUser;
+    public void saveUser(PatientSignupDTO patientSignupDTO) {
+        if (emailExists(patientSignupDTO.getEmail())) {
+            return;
         }
 
+        UserEntity user = new UserEntity();
 
-        return null;
+        user.setFirstName(patientSignupDTO.getFirstName());
+        user.setLastName(patientSignupDTO.getLastName());
+        user.setEmail(patientSignupDTO.getEmail());
+        user.setRole("PATIENT");
+        user.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
+
+        userRepository.save(user);
     }
+
+
 }
 

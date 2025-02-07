@@ -3,6 +3,9 @@ package it.unisa.HAYT.repositories;
 import it.unisa.HAYT.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    UserEntity findByEmail(String email);
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    Optional<UserEntity> findByEmail(String email);
 }
+
