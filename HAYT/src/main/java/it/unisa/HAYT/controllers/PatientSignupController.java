@@ -26,25 +26,15 @@ public class PatientSignupController {
         model.addAttribute("hideNavLinks", true);
         model.addAttribute("patientSignupDTO", new PatientSignupDTO());
         model.addAttribute("success_signup", false);
+        model.addAttribute("failed_signup", false);
         return "signup";
     }
 
     @PostMapping("/patient-signup")
-    public String patientSignup(@Valid @ModelAttribute PatientSignupDTO patientSignupDTO, BindingResult result, Model model) {
-
-        if(!patientSignupDTO.getPassword().equals(patientSignupDTO.getConfirmPassword())){
-            result.addError(
-                    new FieldError("patientSignupDTO", "confirmPassword", "Password and Confirm password do not match")
-            );
-        }
+    public String patientSignup(@Valid @ModelAttribute PatientSignupDTO patientSignupDTO, Model model) {
 
         if(userService.emailExists(patientSignupDTO.getEmail())) {
-            result.addError(
-                    new FieldError("patientSignupDTO", "email", "Email address is already used")
-            );
-        }
-
-        if(result.hasErrors()) {
+            model.addAttribute("failed_signup", true);
             return "signup";
         }
 
@@ -55,6 +45,5 @@ public class PatientSignupController {
 
         return "signup";
     }
-
 
 }
