@@ -68,14 +68,14 @@
 
 .input-group label {
     display: block;
-    margin-bottom: 0.5rem;
     color: #555;
     font-weight: 500;
+    margin-top: 0.70rem;
 }
 
 .input-group input {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.25rem;
     border: 2px solid #eee;
     border-radius: 5px;
     font-size: 1rem;
@@ -121,4 +121,19 @@
 
 .form-footer a:hover {
     text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+
+
+.prova{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
 }

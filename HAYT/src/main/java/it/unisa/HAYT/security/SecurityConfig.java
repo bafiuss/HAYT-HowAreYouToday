@@ -23,6 +23,7 @@ public class SecurityConfig {
                                 "/login",
                                 "/patient-signup",
                                 "/psychologist-signup",
+                                "/scripts/**",
                                 "/styles/**",
                                 "/images/**").permitAll()
                         .anyRequest().authenticated()
