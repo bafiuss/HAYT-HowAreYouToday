@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto" th:if="${currentUrl != '/authentication'} and ${currentUrl != '/psychologist-signup'}">
+            <ul class="navbar-nav ms-auto" th:if="${hideNavLinks != true}">
                 <li class="nav-item" style="padding-right: 20px;">
                     <a class="nav-link" href="/about">About</a>
                 </li>
@@ -21,7 +21,7 @@
                     <a class="nav-link" href="/about">Mental Health</a>
                 </li>
                 <li class="nav-item" style="padding-right: 20px;">
-                    <a href="/authentication" class="button-24" role="button">
+                    <a href="/login" class="button-24" role="button">
                         <i class="fa-regular fa-user"></i>
                     </a></li>
             </ul>

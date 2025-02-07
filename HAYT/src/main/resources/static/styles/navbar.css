@@ -44,12 +44,15 @@ body {
     padding-top: 70px;
 }
 
-/* Aggiungere questo al CSS esistente */
 .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Rende la pagina alta quanto la finestra del browser */
+    min-height: 100vh;
     width: 100%;
+}
+
+p {
+    margin: 16px 0;
 }
