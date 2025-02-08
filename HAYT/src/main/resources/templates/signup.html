@@ -24,7 +24,6 @@
         </div>
         <form action="/patient-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${patientSignupDTO}">
             <div class="input-group">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <div class="input-content">
                     <label>First Name</label>
                     <input type="text" id="firstName" name="firstName" th:field="*{firstName}" onChange="return validateFirstName()">
