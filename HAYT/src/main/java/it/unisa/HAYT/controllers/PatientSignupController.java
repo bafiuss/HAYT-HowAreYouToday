@@ -32,6 +32,7 @@ public class PatientSignupController {
 
         if(userService.emailExists(patientSignupDTO.getEmail())) {
             model.addAttribute("failed_signup", true);
+            model.addAttribute("hideNavLinks", true);
             return "signup";
         }
 

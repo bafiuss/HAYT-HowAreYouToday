@@ -30,6 +30,7 @@ public class PatientLoginController {
 
         if(!userService.userExists(patientLoginDTO.getEmail(),patientLoginDTO.getPassword())) {
             model.addAttribute("failed_login", true);
+            model.addAttribute("hideNavLinks", true);
             return "login";
         }
 
