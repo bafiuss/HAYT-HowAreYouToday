@@ -11,7 +11,7 @@
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
         <div class="content">
-            <div th:if="${failed_login}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 3%;">
+            <div th:if="${failedLogin}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 3%;">
                 <b> Wrong username or password. </b>
             </div>
             <div class="signup-container">
