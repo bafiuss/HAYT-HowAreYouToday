@@ -19,16 +19,16 @@
                     <h1>Welcome Back!</h1>
                     <p>To keep connected with us please login with your personal info or <a href="/signup">signup here</a></p>
                 </div>
-                <form action="/patient-login" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${patientLoginDTO}">
+                <form action="/login" method="post" id="signupForm" onsubmit="return checkSignUp(this)">
                     <div class="input-group">
                         <div class="input-content">
                             <label>Email</label>
-                            <input type="text" id="email" name="email" th:field="*{email}" onChange="return validateEmail()">
+                            <input type="text" id="email" name="username"  onChange="return validateEmail()">
                             <span id="errorEmail" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
                             <label>Password</label>
-                            <input type="password" id="password" name="password" th:field="*{password}">
+                            <input type="password" id="password" name="password">
                         </div>
                     </div>
                     <div class="signup-footer">

@@ -5,6 +5,9 @@ import it.unisa.HAYT.servicies.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +23,19 @@ public class PatientSignupController {
 
     @GetMapping("/signup")
     public String patientSignupPage(Model model) {
-        model.addAttribute("hideNavLinks", true);
-        model.addAttribute("patientSignupDTO", new PatientSignupDTO());
-        model.addAttribute("successSignup", false);
-        model.addAttribute("failedSignup", false);
-        
-        return "signup";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
+            model.addAttribute("hideNavLinks", true);
+            model.addAttribute("patientSignupDTO", new PatientSignupDTO());
+            model.addAttribute("successSignup", false);
+            model.addAttribute("failedSignup", false);
+
+            return "signup";
+        }
+
+        model.addAttribute("hideNavLinks", false);
+
+        return "index";
     }
 
     @PostMapping("/patient-signup")
