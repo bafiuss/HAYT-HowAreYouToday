@@ -11,10 +11,10 @@
 <body>
 <div th:insert="~{fragments/navbar :: navbar}"></div>
 <div class="content">
-    <div th:if="${failed_signup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 3%;">
+    <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 3%;">
         <b> Email address is already used</b>
     </div>
-    <div th:if="${success_signup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 3%;">
+    <div th:if="${successSignup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 3%;">
         <b> Account created successfully! </b>
     </div>
     <div class="signup-container">
