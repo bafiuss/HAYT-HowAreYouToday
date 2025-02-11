@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,12 +16,11 @@ import java.time.LocalDate;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String firstName;
     private String lastName;
-    private LocalDate dateOfBirth;
 
     @Column(unique = true, nullable = false)
     private String email;

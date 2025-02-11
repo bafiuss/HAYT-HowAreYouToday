@@ -6,11 +6,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <div class="container-fluid">
         <a class="navbar-brand" href="/" style="font-family: 'Angkor',serif; font-size: xx-large; padding-left: 30px;">HAYT</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" th:if="${hideNavLinks == false}">
+            <span class="navbar-toggler-icon" ></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto" th:if="${currentUrl != '/authentication'} and ${currentUrl != '/psychologist-signup'}">
+            <ul class="navbar-nav ms-auto" th:if="${hideNavLinks == false}">
                 <li class="nav-item" style="padding-right: 20px;">
                     <a class="nav-link" href="/about">About</a>
                 </li>
@@ -20,10 +20,16 @@
                 <li class="nav-item" style="padding-right: 20px;">
                     <a class="nav-link" href="/about">Mental Health</a>
                 </li>
-                <li class="nav-item" style="padding-right: 20px;">
-                    <a href="/authentication" class="button-24" role="button">
+                <li class="nav-item" style="padding-right: 20px;" th:if="${session.user == null}">
+                    <a href="/login" class="button-24" role="button">
                         <i class="fa-regular fa-user"></i>
-                    </a></li>
+                    </a>
+                </li>
+                <li class="nav-item" style="padding-right: 20px;" th:if="${session.user != null}">
+                    <a href="/logout" class="button-24" role="button" style="background:#bf4b4b; color:#fff; border-color: #c23636; ">
+                        <i class="fas fa-light fa-door-open icon-finder"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

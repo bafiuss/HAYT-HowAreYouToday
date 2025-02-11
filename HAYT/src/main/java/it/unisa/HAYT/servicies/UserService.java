@@ -1,35 +1,52 @@
 package it.unisa.HAYT.servicies;
 
+import it.unisa.HAYT.dto.PatientSignupDTO;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class UserService implements UserDetailsService {
+public class UserService{
 
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByEmail(email);
+    public boolean emailAlreadyExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
 
-        if(user != null){
-            var springUser = User.withUsername(user.getEmail())
-                    .password(user.getPassword())
-                    .roles(user.getRole())
-                    .build();
+    public boolean userExists(String email, String password){
+        return userRepository.findByEmailAndPassword(email,password).isPresent();
+    }
 
-            return springUser;
+    public String getUserRole(String email) {
+        return userRepository.findRoleByEmail(email).orElse("null");
+    }
+
+    public UserEntity getUser(String email){
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
+    public void savePatient(PatientSignupDTO patientSignupDTO) {
+        if (emailAlreadyExists(patientSignupDTO.getEmail())) {
+            return;
         }
 
+        UserEntity user = new UserEntity();
 
-        return null;
+        user.setFirstName(patientSignupDTO.getFirstName());
+        user.setLastName(patientSignupDTO.getLastName());
+        user.setEmail(patientSignupDTO.getEmail());
+        user.setPassword(patientSignupDTO.getPassword());
+        user.setRole("PATIENT");
+
+        userRepository.save(user);
     }
+
+
 }
 
