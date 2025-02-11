@@ -19,27 +19,29 @@ public class PatientSignupController {
     private UserService userService;
 
     @GetMapping("/signup")
-    public String patientSignupPage(HttpServletRequest request, Model model) {
+    public String patientSignupPage(Model model) {
         model.addAttribute("hideNavLinks", true);
         model.addAttribute("patientSignupDTO", new PatientSignupDTO());
-        model.addAttribute("success_signup", false);
-        model.addAttribute("failed_signup", false);
+        model.addAttribute("successSignup", false);
+        model.addAttribute("failedSignup", false);
+        
         return "signup";
     }
 
     @PostMapping("/patient-signup")
-    public String patientSignup(@Valid @ModelAttribute PatientSignupDTO patientSignupDTO, Model model) {
+    public String patientSignup(@Valid @ModelAttribute("patientSignupDTO") PatientSignupDTO patientSignupDTO,
+                                Model model)
+    {
 
-        if(userService.emailExists(patientSignupDTO.getEmail())) {
-            model.addAttribute("failed_signup", true);
-            model.addAttribute("hideNavLinks", true);
+        if(userService.emailAlreadyExists(patientSignupDTO.getEmail())) {
+            model.addAttribute("failedSignup", true);
             return "signup";
         }
 
-        userService.saveUser(patientSignupDTO);
+        userService.savePatient(patientSignupDTO);
         model.addAttribute("hideNavLinks", true);
         model.addAttribute("patientSignupDTO", new PatientSignupDTO());
-        model.addAttribute("success_signup", true);
+        model.addAttribute("successSignup", true);
 
         return "signup";
     }
