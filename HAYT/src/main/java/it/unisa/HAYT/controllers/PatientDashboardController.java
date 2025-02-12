@@ -10,6 +10,7 @@ public class PatientDashboardController {
 
     @GetMapping("/patient-dashboard")
     public String showPatientHome(Model model) {
+        model.addAttribute("hideNavLinks", false);
         return "patient-dashboard";
     }
 
