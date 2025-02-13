@@ -39,6 +39,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).isPresent();
     }
 
+    public Optional<UserEntity> getUser(String email){
+        return userRepository.findByEmail(email);
+    }
+
     public void savePatient(PatientSignupDTO patientSignupDTO) {
         if (emailAlreadyExists(patientSignupDTO.getEmail())) {
             return;
