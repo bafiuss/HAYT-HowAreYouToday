@@ -55,7 +55,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
-    padding: 3%;
+    padding-top: 3%;
 }
 .mental-health-icon {
     width: 150px;
@@ -80,4 +80,28 @@
 }
 .icon:hover {
     transform: scale(1.1);
+}
+
+.show-more {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    transition: color 0.3s ease-in-out;
+}
+
+.show-more:hover {
+    color: #0056b3;
+}
+
+.show-more::after {
+    content: '\2192';
+    margin-left: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.show-more:hover::after {
+    transform: translateX(4px);
 }
