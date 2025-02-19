@@ -30,6 +30,7 @@
     transform: translateY(0);
     padding: 3% 2%;
     margin: 5%;
+    width: auto;
 }
 .card-hover:hover {
     transform: scale(1.05);
@@ -104,4 +105,14 @@
 
 .show-more:hover::after {
     transform: translateX(4px);
+}
+
+.card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 12px;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }

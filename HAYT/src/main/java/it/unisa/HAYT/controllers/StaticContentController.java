@@ -16,12 +16,14 @@ public class StaticContentController {
     @GetMapping("/features")
     public String showFeaturesPage(Model model) {
         model.addAttribute("hideNavLinks",false);
+        model.addAttribute("currentPage","features");
         return "features";
     }
 
     @GetMapping("/mental-health")
     public String showMentalHealthPage(Model model) {
         model.addAttribute("hideNavLinks",false);
+        model.addAttribute("currentPage","mental-health");
         return "mental-health";
     }
 }
