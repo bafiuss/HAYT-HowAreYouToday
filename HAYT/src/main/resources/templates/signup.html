@@ -1,64 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Signup</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/signup.css">
-    <script type="text/javascript" src="/scripts/validate.js"></script>
-</head>
-<body>
-<div th:insert="~{fragments/navbar :: navbar}"></div>
-<div class="content">
-    <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 3%;">
-        <b> Email address is already used</b>
-    </div>
-    <div th:if="${successSignup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 3%;">
-        <b> Account created successfully! </b>
-    </div>
-    <div class="signup-container">
-        <div class="signup-header">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start your therapy or <a href="/login">login here</a></p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Signup</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/access.css">
+        <script type="text/javascript" src="/scripts/validate.js"></script>
+    </head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+        <div class="content">
+            <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 6%;">
+                <b> Email address is already used</b>
+            </div>
+            <div th:if="${successSignup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 6%;">
+                <b> Account created successfully! </b>
+            </div>
+            <div class="signup-container">
+                <div class="signup-header">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start your therapy or <a href="/login">login here</a></p>
+                </div>
+                <form action="/patient-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${patientSignupDTO}">
+                    <div class="input-group">
+                        <div class="input-content">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" onChange="return validateFirstName()">
+                            <span id="errorFirstName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
+                            <span id="errorLastName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Email</label>
+                            <input type="email" id="email" name="email" th:field="*{email}" onChange="return validateEmail()">
+                            <span id="errorEmail" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Password</label>
+                            <input type="password" id="patient-password" name="patient-password" th:field="*{password}" onChange="return validatePassword()">
+                            <span id="errorPassword" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Confirm Password</label>
+                            <input type="password" id="patient-confirmPassword" name="patient-confirmPassword" th:field="*{confirmPassword}" onChange="return passwordMatching()">
+                            <span id="matchError" style="font-size: 15px;"></span>
+                        </div>
+                    </div>
+                    <div class="signup-footer">
+                        <button type="submit" class="signup-button" id="submitButton">Signup</button>
+                        <hr>
+                        <button onclick="location.href='/psychotherapist-signup'" id="psychologist-signup" class="signup-button" style="background-color: #FFA726; border-color: #FF9800">Signup as psychologist</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <form action="/patient-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${patientSignupDTO}">
-            <div class="input-group">
-                <div class="input-content">
-                    <label>First Name</label>
-                    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" onChange="return validateFirstName()">
-                    <span id="errorFirstName" style="font-size: 15px;"></span>
-                </div>
-                <div class="input-content">
-                    <label>Last Name</label>
-                    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
-                    <span id="errorLastName" style="font-size: 15px;"></span>
-                </div>
-                <div class="input-content">
-                    <label>Email</label>
-                    <input type="email" id="email" name="email" th:field="*{email}" onChange="return validateEmail()">
-                    <span id="errorEmail" style="font-size: 15px;"></span>
-                </div>
-                <div class="input-content">
-                    <label>Password</label>
-                    <input type="password" id="patient-password" name="patient-password" th:field="*{password}" onChange="return validatePassword()">
-                    <span id="errorPassword" style="font-size: 15px;"></span>
-                </div>
-                <div class="input-content">
-                    <label>Confirm Password</label>
-                    <input type="password" id="patient-confirmPassword" name="patient-confirmPassword" th:field="*{confirmPassword}" onChange="return passwordMatching()">
-                    <span id="matchError" style="font-size: 15px;"></span>
-                </div>
-            </div>
-            <div class="signup-footer">
-                <button type="submit" class="signup-button" id="submitButton">Signup</button>
-                <hr>
-                <button id="psychologist-signup" class="signup-button" style="background-color: #FFA726; border-color: #FF9800">Signup as psychologist</button>
-            </div>
-        </form>
-    </div>
-</div>
-<div th:insert="~{fragments/footer :: footer}"></div>
-
-</body>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const content = document.querySelector(".content");
+                if (window.location.pathname.includes("psychotherapist-signup")) {
+                    content.style.backgroundImage = "url('/images/authentication/psychologist-signup-background.jpg')";
+                } else {
+                    content.style.backgroundImage = "url('/images/authentication/authentication-background.jpg')";
+                }
+            });
+        </script>
+    </body>
 </html>
