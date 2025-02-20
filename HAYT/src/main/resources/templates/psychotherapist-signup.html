@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Psychotherapist Signup</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/access.css">
+    </head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+        <div class="content">
+            <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 6%;">
+                <b> Email address is already used</b>
+            </div>
+            <div th:if="${successSignup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 6%;">
+                <b> Account created successfully! </b>
+            </div>
+            <div class="signup-container">
+                <div class="signup-header">
+                    <h1>Hello, Friend!</h1>
+                    <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
+                </div>
+                <form action="/psychotherapist-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${psychotherapistSignupDTO}">
+                    <div class="input-group">
+                        <div class="input-content">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" onChange="return validateFirstName()">
+                            <span id="errorFirstName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
+                            <span id="errorLastName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Location</label>
+                            <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{location}">
+                            <span id="errorPracticeLocation" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Email</label>
+                            <input type="email" id="email" name="email" th:field="*{email}" onChange="return validateEmail()">
+                            <span id="errorEmail" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Password</label>
+                            <input type="password" id="patient-password" name="patient-password" th:field="*{password}" onChange="return validatePassword()">
+                            <span id="errorPassword" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Confirm Password</label>
+                            <input type="password" id="patient-confirmPassword" name="patient-confirmPassword" th:field="*{confirmPassword}" onChange="return passwordMatching()">
+                            <span id="matchError" style="font-size: 15px;"></span>
+                        </div>
+                    </div>
+                    <div class="signup-footer">
+                        <button type="submit" class="signup-button" id="submitButton">Signup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const content = document.querySelector(".content");
+                if (window.location.pathname.includes("psychotherapist-signup")) {
+                    content.style.backgroundImage = "url('/images/authentication/psychologist-signup-background.jpg')";
+                } else {
+                    content.style.backgroundImage = "url('/images/authentication/authentication-background.jpg')";
+                }
+            });
+        </script>
+    </body>
+</html>
