@@ -9,7 +9,7 @@
         <script type="text/javascript" src="/scripts/validate.js"></script>
     </head>
     <body>
-        <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
         <div class="content">
             <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 6%;">
                 <b> Email address is already used</b>
@@ -63,9 +63,9 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const content = document.querySelector(".content");
                 if (window.location.pathname.includes("psychotherapist-signup")) {
-                    content.style.backgroundImage = "url('/images/authentication/psychologist-signup-background.jpg')";
+                    content.style.backgroundImage = "url('/images/authentication/psychotherapist-signup-background.jpg')";
                 } else {
-                    content.style.backgroundImage = "url('/images/authentication/authentication-background.jpg')";
+                    content.style.backgroundImage = "url('/images/authentication/access-background.jpg')";
                 }
             });
         </script>
