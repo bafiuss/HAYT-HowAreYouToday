@@ -14,18 +14,16 @@
     z-index: 2;
 }
 
-.content {
+.content{
     position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/images/authentication/authentication-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 2rem;
 }
 
 .content::before {
@@ -38,6 +36,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
+
 
 .signup-header {
     text-align: center;
