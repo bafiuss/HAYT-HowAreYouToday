@@ -6,6 +6,7 @@
         <title>Psychotherapist Signup</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/styles/access.css">
+        <script type="text/javascript" src="/scripts/validate.js"></script>
     </head>
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
@@ -21,7 +22,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
                 </div>
-                <form action="/psychotherapist-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${psychotherapistSignupDTO}">
+                <form action="/psychotherapist-signup" method="post" id="signupForm" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}">
                     <div class="input-group">
                         <div class="input-content">
                             <label>First Name</label>
@@ -35,8 +36,8 @@
                         </div>
                         <div class="input-content">
                             <label>Location</label>
-                            <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{location}">
-                            <span id="errorPracticeLocation" style="font-size: 15px;"></span>
+                            <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{location}" onChange="return validateLocation()">
+                            <span id="errorLocation" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
                             <label>Email</label>

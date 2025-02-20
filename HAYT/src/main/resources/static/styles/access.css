@@ -3,14 +3,14 @@
     padding: clamp(1rem, 2vw, 2rem);
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    width: 70%;
     max-width: 400px;
     min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5% auto;
+    margin: min(15vh, 15%) auto;
     z-index: 2;
 }
 
@@ -24,6 +24,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .content::before {
@@ -125,7 +126,7 @@
 .error-message {
     color: red;
     font-size: 0.9em;
-    margin-top: 5px;
+    margin-top: 20px;
     display: block;
 }
 

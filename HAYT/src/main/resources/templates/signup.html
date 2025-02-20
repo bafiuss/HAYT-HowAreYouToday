@@ -22,7 +22,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Enter your personal details and start your therapy or <a href="/login">login here</a></p>
                 </div>
-                <form action="/patient-signup" method="post" id="signupForm" onsubmit="return checkSignUp(this)" th:object="${patientSignupDTO}">
+                <form action="/patient-signup" method="post" id="signupForm" onsubmit="return checkPatientSignUp(this)" th:object="${patientSignupDTO}">
                     <div class="input-group">
                         <div class="input-content">
                             <label>First Name</label>
@@ -53,7 +53,7 @@
                     <div class="signup-footer">
                         <button type="submit" class="signup-button" id="submitButton">Signup</button>
                         <hr>
-                        <button onclick="location.href='/psychotherapist-signup'" id="psychologist-signup" class="signup-button" style="background-color: #FFA726; border-color: #FF9800">Signup as psychologist</button>
+                        <button type="button" onclick="location.href='/psychotherapist-signup'" id="psychotherapist-button" class="signup-button" style="background-color: #FFA726; border-color: #FF9800">Signup as psychologist</button>
                     </div>
                 </form>
             </div>

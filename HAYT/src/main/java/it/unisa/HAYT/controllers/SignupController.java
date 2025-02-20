@@ -56,24 +56,6 @@ public class SignupController {
         return "signup";
     }
 
-    @PostMapping("/psychotherapist-signup")
-    public String psychotherapistSignup(@Valid @ModelAttribute("psychotherapistSignupDTO") PsychotherapistSignupDTO psychotherapistSignupDTO,
-                                Model model)
-    {
-
-        if(userService.emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
-            model.addAttribute("failedSignup", true);
-            return "psychotherapist-signup";
-        }
-
-        userService.savePsychotherapist(psychotherapistSignupDTO);
-        model.addAttribute("hideNavLinks", true);
-        model.addAttribute("patientSignupDTO", new PatientSignupDTO());
-        model.addAttribute("successSignup", true);
-
-        return "psychotherapist-signup";
-    }
-
     @GetMapping("/psychotherapist-signup")
     public String showPsychotherapistSignupPage(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -89,6 +71,24 @@ public class SignupController {
         model.addAttribute("hideNavLinks", false);
 
         return "psychotherapist-dashboard";
+    }
+
+    @PostMapping("/psychotherapist-signup")
+    public String psychotherapistSignup(@Valid @ModelAttribute("psychotherapistSignupDTO") PsychotherapistSignupDTO psychotherapistSignupDTO,
+                                        Model model)
+    {
+
+        if(userService.emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
+            model.addAttribute("failedSignup", true);
+            return "psychotherapist-signup";
+        }
+
+        userService.savePsychotherapist(psychotherapistSignupDTO);
+        model.addAttribute("hideNavLinks", true);
+        model.addAttribute("psychotherapistSignupDTO", new PsychotherapistSignupDTO());
+        model.addAttribute("successSignup", true);
+
+        return "psychotherapist-signup";
     }
 
 }
