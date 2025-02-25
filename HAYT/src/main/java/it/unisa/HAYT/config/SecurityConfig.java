@@ -20,7 +20,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/index","/login", "/signup","/patient-signup").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/index",
+                                "/login",
+                                "/signup",
+                                "/patient-signup",
+                                "/features",
+                                "/mental-health",
+                                "/psychotherapist-signup").permitAll()
                         .requestMatchers("/images/**","/scripts/**","/styles/**").permitAll()
                         .anyRequest().authenticated()
                 )

@@ -1,8 +1,8 @@
 package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.dto.PatientSignupDTO;
+import it.unisa.HAYT.dto.PsychotherapistSignupDTO;
 import it.unisa.HAYT.servicies.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class PatientSignupController {
+public class SignupController {
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/signup")
-    public String patientSignupPage(Model model) {
+    public String showPatientSignupPage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
             model.addAttribute("hideNavLinks", true);
@@ -54,6 +54,41 @@ public class PatientSignupController {
         model.addAttribute("successSignup", true);
 
         return "signup";
+    }
+
+    @GetMapping("/psychotherapist-signup")
+    public String showPsychotherapistSignupPage(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
+              model.addAttribute("hideNavLinks", true);
+              model.addAttribute("psychotherapistSignupDTO", new PsychotherapistSignupDTO());
+              model.addAttribute("successSignup", false);
+              model.addAttribute("failedSignup", false);
+
+              return "psychotherapist-signup";
+        }
+
+        model.addAttribute("hideNavLinks", false);
+
+        return "psychotherapist-dashboard";
+    }
+
+    @PostMapping("/psychotherapist-signup")
+    public String psychotherapistSignup(@Valid @ModelAttribute("psychotherapistSignupDTO") PsychotherapistSignupDTO psychotherapistSignupDTO,
+                                        Model model)
+    {
+
+        if(userService.emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
+            model.addAttribute("failedSignup", true);
+            return "psychotherapist-signup";
+        }
+
+        userService.savePsychotherapist(psychotherapistSignupDTO);
+        model.addAttribute("hideNavLinks", true);
+        model.addAttribute("psychotherapistSignupDTO", new PsychotherapistSignupDTO());
+        model.addAttribute("successSignup", true);
+
+        return "psychotherapist-signup";
     }
 
 }

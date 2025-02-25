@@ -3,29 +3,28 @@
     padding: clamp(1rem, 2vw, 2rem);
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    width: 70%;
     max-width: 400px;
     min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5% auto;
+    margin: min(15vh, 15%) auto;
     z-index: 2;
 }
 
-.content {
+.content{
     position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/images/authentication/authentication-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 2rem;
+    background-attachment: fixed;
 }
 
 .content::before {
@@ -38,6 +37,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
+
 
 .signup-header {
     text-align: center;
@@ -126,7 +126,7 @@
 .error-message {
     color: red;
     font-size: 0.9em;
-    margin-top: 5px;
+    margin-top: 20px;
     display: block;
 }
 

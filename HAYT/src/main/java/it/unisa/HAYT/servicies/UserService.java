@@ -1,6 +1,8 @@
 package it.unisa.HAYT.servicies;
 
 import it.unisa.HAYT.dto.PatientSignupDTO;
+import it.unisa.HAYT.dto.PsychotherapistSignupDTO;
+import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,23 @@ public class UserService implements UserDetailsService {
         user.setEmail(patientSignupDTO.getEmail());
         user.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
         user.setRole("PATIENT");
+
+        userRepository.save(user);
+    }
+
+    public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
+        if (emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
+            return;
+        }
+
+        PsychotherapistEntity user = new PsychotherapistEntity();
+
+        user.setFirstName(psychotherapistSignupDTO.getFirstName());
+        user.setLastName(psychotherapistSignupDTO.getLastName());
+        user.setEmail(psychotherapistSignupDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
+        user.setRole("PSYCHOTHERAPIST");
+        user.setLocation(psychotherapistSignupDTO.getLocation());
 
         userRepository.save(user);
     }

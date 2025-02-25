@@ -26,6 +26,7 @@ public class PatientDashboardController {
             userOptional.ifPresent(userEntity -> model.addAttribute("user", userEntity));
         }
         model.addAttribute("hideNavLinks", false);
+        model.addAttribute("currentPage","patient-dashboard");
 
         return "patient-dashboard";
     }

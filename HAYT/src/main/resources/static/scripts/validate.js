@@ -8,6 +8,8 @@ const emailError = "Email entered not in correct format ";
 const passwordError = "Password must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters";
 const confirmPasswordError = "Passwords do not match";
 
+const locationError = "Location must contain only letters";
+
 function validateFormElem(formElem, pattern, span, message) {
     if (formElem.value.match(pattern)) {
         formElem.classList.remove("error");
@@ -38,6 +40,17 @@ function validateLastName() {
     let spanName = document.getElementById("errorLastName");
 
     if (!validateFormElem(form.lastName, onlyLettersPattern, spanName, lastNameError))
+        valid = false;
+
+    return valid;
+}
+
+function validateLocation() {
+    let valid = true;
+    let form = document.getElementById("signupForm");
+    let spanName = document.getElementById("errorLocation");
+
+    if (!validateFormElem(form.location, onlyLettersPattern, spanName, locationError))
         valid = false;
 
     return valid;
@@ -88,7 +101,11 @@ function passwordMatching() {
 
 }
 
-function checkSignUp(obj) {
+function checkPatientSignUp(event) {
+    let submitButton = document.activeElement;
+
+    if (submitButton && submitButton.id === "psychotherapist-button") return true;
+
     let check = true;
 
     if (!validateFirstName()) check = false;
@@ -97,6 +114,28 @@ function checkSignUp(obj) {
     if (!validatePassword()) check = false;
     if (!passwordMatching()) check = false;
 
+
+    return check;
+}
+
+function checkPsychotherapistSignUp(obj) {
+    let check = true;
+
+    if (!validateFirstName()) check = false;
+    if (!validateLastName()) check = false;
+    if (!validateEmail()) check = false;
+    if (!validatePassword()) check = false;
+    if (!passwordMatching()) check = false;
+    if(!validateLocation()) check = false;
+
+
+    return check;
+}
+
+function checkLogin(obj){
+    let check = true;
+
+    if(!validateEmail()) check = false;
 
     return check;
 }
