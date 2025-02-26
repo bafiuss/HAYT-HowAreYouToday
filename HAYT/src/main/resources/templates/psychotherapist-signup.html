@@ -22,7 +22,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
                 </div>
-                <form action="/psychotherapist-signup" method="post" id="signupForm" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}">
+                <form action="/psychotherapist-signup" method="post" id="form" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}">
                     <div class="input-group">
                         <div class="input-content">
                             <label>First Name</label>
@@ -33,6 +33,15 @@
                             <label>Last Name</label>
                             <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
                             <span id="errorLastName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Gender</label>
+                            <select name="gender" id="gender" th:field="*{gender}">
+                                <option value="none"> </option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span id="errorGender" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
                             <label>Location</label>
