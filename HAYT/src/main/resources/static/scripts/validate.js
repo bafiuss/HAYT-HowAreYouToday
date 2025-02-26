@@ -9,6 +9,7 @@ const passwordError = "Password must contain at least one number, one uppercase 
 const confirmPasswordError = "Passwords do not match";
 
 const locationError = "Location must contain only letters";
+const genderError = "No genre selected";
 
 function validateFormElem(formElem, pattern, span, message) {
     if (formElem.value.match(pattern)) {
@@ -25,7 +26,7 @@ function validateFormElem(formElem, pattern, span, message) {
 
 function validateFirstName() {
     let valid = true;
-    let form = document.getElementById("signupForm");
+    let form = document.getElementById("form");
     let spanName = document.getElementById("errorFirstName");
 
     if (!validateFormElem(form.firstName, onlyLettersPattern, spanName, firstNameError))
@@ -34,9 +35,27 @@ function validateFirstName() {
     return valid;
 }
 
+function validateGender() {
+    let valid = true;
+    let form = document.getElementById("form");
+    let selectElem = form.gender;
+    let spanError = document.getElementById("errorGender");
+
+    if (selectElem.value === "none") {
+        spanError.textContent = "No genre selected";
+        valid = false;
+    } else {
+        spanError.textContent = "";
+    }
+
+    return valid;
+}
+
+
+
 function validateLastName() {
     let valid = true;
-    let form = document.getElementById("signupForm");
+    let form = document.getElementById("form");
     let spanName = document.getElementById("errorLastName");
 
     if (!validateFormElem(form.lastName, onlyLettersPattern, spanName, lastNameError))
@@ -47,7 +66,7 @@ function validateLastName() {
 
 function validateLocation() {
     let valid = true;
-    let form = document.getElementById("signupForm");
+    let form = document.getElementById("form");
     let spanName = document.getElementById("errorLocation");
 
     if (!validateFormElem(form.location, onlyLettersPattern, spanName, locationError))
@@ -58,7 +77,7 @@ function validateLocation() {
 
 function validateEmail() {
     let valid = true;
-    let form = document.getElementById("signupForm");
+    let form = document.getElementById("form");
     let spanName = document.getElementById("errorEmail");
 
     if (!validateFormElem(form.email, emailPattern, spanName, emailError))
@@ -69,7 +88,7 @@ function validateEmail() {
 
 function validatePassword() {
     let valid = true;
-    let form = document.getElementById("signupForm");
+    let form = document.getElementById("form");
     let spanName = document.getElementById("errorPassword");
 
     if (!validateFormElem(form.password, passwordPattern, spanName, passwordError))
@@ -80,7 +99,7 @@ function validatePassword() {
 
 function passwordMatching() {
 
-    let form = document.getElementById("signupForm");
+    let form = document.getElementById("form");
     let spanPassword = document.getElementById("matchError");
 
     let psw1 = form.password.value;
@@ -101,7 +120,7 @@ function passwordMatching() {
 
 }
 
-function checkPatientSignUp(event) {
+function checkPatientSignUp(obj) {
     let submitButton = document.activeElement;
 
     if (submitButton && submitButton.id === "psychotherapist-button") return true;
@@ -127,6 +146,7 @@ function checkPsychotherapistSignUp(obj) {
     if (!validatePassword()) check = false;
     if (!passwordMatching()) check = false;
     if(!validateLocation()) check = false;
+    if(!validateGender()) check = false;
 
 
     return check;
