@@ -42,6 +42,13 @@
     display: flex;
     align-items: center;
     text-align: left;
+    cursor: pointer;
+}
+
+.psychotherapist-card:hover {
+    transform: scale(1.05);
+    background-color: rgba(79, 70, 229, 0.68);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .psychotherapist-card:hover {
@@ -54,14 +61,32 @@
     object-fit: cover;
     margin-right: 15px;
 }
-.badge {
-    display: inline-block;
-    background: #4F46E5;
+
+.info-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.click-message {
+    margin-left: 15px;
+    background: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border-radius: 5px;
-    margin-top: 10px;
-    font-size: 0.9em;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+.psychotherapist-card:hover .click-message {
+    opacity: 1;
+}
+
+.info{
+    width: 100%;
+    text-align: center;
 }
 
 h2{
