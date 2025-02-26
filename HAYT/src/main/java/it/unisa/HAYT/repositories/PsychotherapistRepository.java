@@ -1,0 +1,10 @@
+package it.unisa.HAYT.repositories;
+
+import it.unisa.HAYT.entities.PsychotherapistEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface PsychotherapistRepository extends JpaRepository<PsychotherapistEntity, Long> {
+    List<PsychotherapistEntity> findAll();
+}
