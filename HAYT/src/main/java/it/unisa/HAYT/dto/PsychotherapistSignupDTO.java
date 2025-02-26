@@ -34,5 +34,7 @@ public class PsychotherapistSignupDTO {
     @NotBlank(message = "Location is required")
     private String location;
 
+    @NotBlank(message = "Gender is required")
+    private String gender;
 
 }
