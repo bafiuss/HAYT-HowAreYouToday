@@ -27,7 +27,17 @@ public class UserEntity {
     private String email;
 
     private String password;
-    private String role;
 
+    public enum Role{PATIENT, PSYCHOTHERAPIST}
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public UserEntity(String email, String firstName, String lastName , String password, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 }
 
