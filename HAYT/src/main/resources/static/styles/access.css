@@ -73,7 +73,7 @@
     margin-top: 0.70rem;
 }
 
-.input-group input {
+.input-group input, .input-group select{
     width: 100%;
     padding: 0.25rem;
     border: 2px solid #eee;
@@ -83,7 +83,7 @@
     margin: 0.15rem;
 }
 
-.input-group input:focus {
+.input-group input:focus, .input-group select:focus{
     outline: none;
     border-color: #4b9b6e;
 }
