@@ -4,6 +4,7 @@ import it.unisa.HAYT.dto.PatientSignupDTO;
 import it.unisa.HAYT.dto.PsychotherapistSignupDTO;
 import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
+import it.unisa.HAYT.repositories.PsychotherapistRepository;
 import it.unisa.HAYT.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +22,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PsychotherapistRepository psychotherapistRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -56,7 +60,7 @@ public class UserService implements UserDetailsService {
         user.setLastName(patientSignupDTO.getLastName());
         user.setEmail(patientSignupDTO.getEmail());
         user.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
-        user.setRole("PATIENT");
+        user.setRole(UserEntity.Role.PATIENT);
 
         userRepository.save(user);
     }
@@ -72,10 +76,15 @@ public class UserService implements UserDetailsService {
         user.setLastName(psychotherapistSignupDTO.getLastName());
         user.setEmail(psychotherapistSignupDTO.getEmail());
         user.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
-        user.setRole("PSYCHOTHERAPIST");
+        user.setRole(UserEntity.Role.PSYCHOTHERAPIST);
+        user.setGender(psychotherapistSignupDTO.getGender());
         user.setLocation(psychotherapistSignupDTO.getLocation());
 
         userRepository.save(user);
+    }
+
+    public List<PsychotherapistEntity> getAllPsychotherapists() {
+        return psychotherapistRepository.findAll();
     }
 
 
