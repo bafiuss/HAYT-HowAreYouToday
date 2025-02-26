@@ -28,21 +28,15 @@ public class DatabasePopulator {
     public void populate() {
         if (userRepository.count() == 0) {
             List<UserEntity> psychotherapists = List.of(
-                    new PsychotherapistEntity("alice.johnson@example.com", "Alice", "Johnson", passwordEncoder.encode("SecurePass1"), "PSYCHOTHERAPIST", "New York"),
-                    new PsychotherapistEntity("bob.smith@example.com", "Bob", "Smith", passwordEncoder.encode("StrongPass2"), "PSYCHOTHERAPIST", "Los Angeles"),
-                    new PsychotherapistEntity("carol.davis@example.com", "Carol", "Davis", passwordEncoder.encode("Passw0rd3"), "PSYCHOTHERAPIST", "Chicago"),
-                    new PsychotherapistEntity("david.white@example.com", "David", "White", passwordEncoder.encode("SafePass4"), "PSYCHOTHERAPIST", "Houston"),
-                    new PsychotherapistEntity("emma.brown@example.com", "Emma", "Brown", passwordEncoder.encode("Password5!"), "PSYCHOTHERAPIST", "Miami"),
-                    new PsychotherapistEntity("frank.miller@example.com", "Frank", "Miller", passwordEncoder.encode("SecurePass6@"), "PSYCHOTHERAPIST", "San Francisco"),
-                    new PsychotherapistEntity("grace.wilson@example.com", "Grace", "Wilson", passwordEncoder.encode("StrongPass7$"), "PSYCHOTHERAPIST", "Boston"),
-                    new PsychotherapistEntity("henry.moore@example.com", "Henry", "Moore", passwordEncoder.encode("Passw0rd8#"), "PSYCHOTHERAPIST", "Seattle"),
-                    new PsychotherapistEntity("isabella.taylor@example.com", "Isabella", "Taylor", passwordEncoder.encode("SecurePass9%"), "PSYCHOTHERAPIST", "Denver"),
-                    new PsychotherapistEntity("jackson.anderson@example.com", "Jackson", "Anderson", passwordEncoder.encode("StrongPass10^"), "PSYCHOTHERAPIST", "Philadelphia"),
-                    new PsychotherapistEntity("kate.thomas@example.com", "Kate", "Thomas", passwordEncoder.encode("SafePass11&"), "PSYCHOTHERAPIST", "Washington D.C."),
-                    new PsychotherapistEntity("liam.jackson@example.com", "Liam", "Jackson", passwordEncoder.encode("Password12*"), "PSYCHOTHERAPIST", "Atlanta"),
-                    new PsychotherapistEntity("mia.harris@example.com", "Mia", "Harris", passwordEncoder.encode("SecurePass13("), "PSYCHOTHERAPIST", "Dallas"),
-                    new PsychotherapistEntity("nathan.martin@example.com", "Nathan", "Martin", passwordEncoder.encode("StrongPass14)"), "PSYCHOTHERAPIST", "Phoenix"),
-                    new PsychotherapistEntity("olivia.thompson@example.com", "Olivia", "Thompson", passwordEncoder.encode("Passw0rd15_"), "PSYCHOTHERAPIST", "San Diego")
+                    new PsychotherapistEntity("mariorossi@gmail.com", "Mario", "Rossi", passwordEncoder.encode("SecurePass1"), UserEntity.Role.PSYCHOTHERAPIST, "Male", "Roma"),
+                    new PsychotherapistEntity("lucaverdi@gmail.com", "Luca", "Verdi", passwordEncoder.encode("Passw0rd3"), UserEntity.Role.PSYCHOTHERAPIST, "Male", "Napoli"),
+                    new PsychotherapistEntity("marcoconti@gmail.com", "Marco", "Conti", passwordEncoder.encode("StrongPass7"), UserEntity.Role.PSYCHOTHERAPIST, "Male", "Bologna"),
+                    new PsychotherapistEntity("annabianchi@gmail.com", "Anna", "Bianchi", passwordEncoder.encode("StrongPass"), UserEntity.Role.PSYCHOTHERAPIST, "Female", "Milano"),
+                    new PsychotherapistEntity("giorgiagallo@gmail.com", "Giorgia", "Gallo", passwordEncoder.encode("SafePass"), UserEntity.Role.PSYCHOTHERAPIST, "Female", "Torino"),
+                    new PsychotherapistEntity("francescotesta@gmail.com", "Francesco", "Testa", passwordEncoder.encode("Password5"), UserEntity.Role.PSYCHOTHERAPIST, "Male", "Palermo"),
+                    new PsychotherapistEntity("elisaferretti@gmail.com", "Elisa", "Ferretti", passwordEncoder.encode("SecurePass6"), UserEntity.Role.PSYCHOTHERAPIST, "Female", "Firenze"),
+                    new PsychotherapistEntity("saramoretti@gmail.com", "Sara", "Moretti", passwordEncoder.encode("Passw0rd8"), UserEntity.Role.PSYCHOTHERAPIST, "Female", "Genova"),
+                    new PsychotherapistEntity("valentinabarone@gmail.com", "Valentina", "Barone", passwordEncoder.encode("SecurePass9"), UserEntity.Role.PSYCHOTHERAPIST, "Female", "Venezia")
             );
 
             userRepository.saveAll(psychotherapists);
