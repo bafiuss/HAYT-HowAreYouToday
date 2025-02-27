@@ -22,7 +22,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
                 </div>
-                <form action="/psychotherapist-signup" method="post" id="signupForm" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}">
+                <form action="/psychotherapist-signup" method="post" id="form" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}">
                     <div class="input-group">
                         <div class="input-content">
                             <label>First Name</label>
@@ -35,9 +35,41 @@
                             <span id="errorLastName" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
-                            <label>Location</label>
-                            <input type="text" id="registrationNumber" name="registrationNumber" th:field="*{location}" onChange="return validateLocation()">
-                            <span id="errorLocation" style="font-size: 15px;"></span>
+                            <label>Gender</label>
+                            <select name="gender" id="gender" th:field="*{gender}">
+                                <option value="none"> </option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span id="errorGender" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Albo Region</label>
+                            <select name="alboRegion" id="alboRegion" th:field="*{alboRegion}">
+                                <option value="none"> </option>
+                                <option value="Abruzzo - 130">Abruzzo - 130</option>
+                                <option value="Basilicata - 170">Basilicata - 170</option>
+                                <option value="Bolzano - P.A. - 041">Bolzano - P.A. - 041</option>
+                                <option value="Calabria - 180">Calabria - 180</option>
+                                <option value="Campania - 150">Campania - 150</option>
+                                <option value="Emilia-Romagna - 080">Emilia-Romagna - 080</option>
+                                <option value="Friuli Venezia Giulia - 060">Friuli Venezia Giulia - 060</option>
+                                <option value="Lazio - 120">Lazio - 120</option>
+                                <option value="Liguria - 070">Liguria - 070</option>
+                                <option value="Lombardia - 030">Lombardia - 030</option>
+                                <option value="Marche - 110">Marche - 110</option>
+                                <option value="Molise - 140">Molise - 140</option>
+                                <option value="Piemonte - 010">Piemonte - 010</option>
+                                <option value="Puglia - 160">Puglia - 160</option>
+                                <option value="Sardegna - 200">Sardegna - 200</option>
+                                <option value="Sicilia - 190">Sicilia - 190</option>
+                                <option value="Toscana - 090">Toscana - 090</option>
+                                <option value="Trento - P.A. - 042">Trento - P.A. - 042</option>
+                                <option value="Umbria - 100">Umbria - 100</option>
+                                <option value="Valle d'Aosta - 020">Valle d'Aosta - 020</option>
+                                <option value="Veneto - 050">Veneto - 050</option>
+                            </select>
+                            <span id="errorAlboRegion" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
                             <label>Email</label>
