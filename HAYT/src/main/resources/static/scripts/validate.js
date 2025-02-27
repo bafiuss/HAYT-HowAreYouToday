@@ -39,18 +39,18 @@ function validateGender() {
     let valid = true;
     let form = document.getElementById("form");
     let selectElem = form.gender;
-    let spanError = document.getElementById("errorGender");
+    let spanName = document.getElementById("errorGender");
 
     if (selectElem.value === "none") {
-        spanError.textContent = "No genre selected";
+        spanName.textContent = "No genre selected";
+        spanName.style.color = "red";
         valid = false;
     } else {
-        spanError.textContent = "";
+        spanName.textContent = "";
     }
 
     return valid;
 }
-
 
 
 function validateLastName() {
