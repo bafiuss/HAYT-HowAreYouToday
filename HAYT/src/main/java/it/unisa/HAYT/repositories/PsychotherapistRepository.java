@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PsychotherapistRepository extends JpaRepository<PsychotherapistEntity, Long> {
-    List<PsychotherapistEntity> findAll();
-}
+public interface PsychotherapistRepository extends JpaRepository<PsychotherapistEntity, Long> {}
