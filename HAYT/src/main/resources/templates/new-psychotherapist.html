@@ -15,13 +15,16 @@
                         <h1 class="title">Choose your psychotherapist</h1>
                     </div>
                     <div class="psychotherapists-grid">
-                        <div class="psychotherapist-card" th:each="psychotherapist: ${psychotherapists}">
+                        <div class="psychotherapist-card" th:each="psychotherapist: ${psychotherapists}" th:data-id="${psychotherapist.id}" onclick="selectPsychotherapist(this)">
                             <img th:if="${psychotherapist.gender == 'Male'}" th:src="@{/images/avatar/male.jpg}" alt="Male Image" class="icon">
                             <img th:if="${psychotherapist.gender == 'Female'}" th:src="@{/images/avatar/female.jpg}" alt="Female Image" class="icon">
                             <div class="info">
                                 <h2 th:text="${psychotherapist.firstName} + ' ' + ${psychotherapist.lastName}"></h2>
                                 <p th:text="${psychotherapist.email}"></p>
-                                <div class="click-message">Click to confirm</div>
+                                <form action="/selected-psychotherapist" method="post">
+                                    <input type="hidden" name="psychotherapistId" th:value="${psychotherapist.getId()}">
+                                    <button type="submit" class="click-message">Click to confirm</button>
+                                </form>
                             </div>
                         </div>
                     </div>
