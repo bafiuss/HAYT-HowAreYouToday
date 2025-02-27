@@ -78,7 +78,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
         user.setRole(UserEntity.Role.PSYCHOTHERAPIST);
         user.setGender(psychotherapistSignupDTO.getGender());
-        user.setLocation(psychotherapistSignupDTO.getLocation());
+        user.setAlboRegion(psychotherapistSignupDTO.getAlboRegion());
 
         userRepository.save(user);
     }

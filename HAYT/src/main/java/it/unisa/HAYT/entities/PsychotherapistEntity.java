@@ -15,12 +15,12 @@ import lombok.Setter;
 @PrimaryKeyJoinColumn(name = "user_id")
 public class PsychotherapistEntity extends UserEntity{
 
-    private String location;
+    private String alboRegion;
     private String gender;
 
-    public PsychotherapistEntity(String email, String firstName, String lastName, String password, Role role, String gender, String location) {
+    public PsychotherapistEntity(String email, String firstName, String lastName, String password, Role role, String gender, String alboRegion) {
         super(email, firstName, lastName, password, role);
         this.gender = gender;
-        this.location = location;
+        this.alboRegion = alboRegion;
     }
 }

@@ -2,6 +2,7 @@ package it.unisa.HAYT.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,14 +26,14 @@ public class PsychotherapistSignupDTO {
     private String email;
 
     @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d).{8,}$", message = "Minimum 8 characters, at least one number and one uppercase letter")
     private String password;
 
     @NotBlank(message = "Confirm Password is required")
     private String confirmPassword;
 
-    @NotBlank(message = "Location is required")
-    private String location;
+    @NotBlank(message = "Albo region is required")
+    private String alboRegion;
 
     @NotBlank(message = "Gender is required")
     private String gender;
