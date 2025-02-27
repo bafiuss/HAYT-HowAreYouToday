@@ -2,6 +2,7 @@ package it.unisa.HAYT.servicies;
 
 import it.unisa.HAYT.dto.PatientSignupDTO;
 import it.unisa.HAYT.dto.PsychotherapistSignupDTO;
+import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.PsychotherapistRepository;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,10 +36,10 @@ public class UserService implements UserDetailsService {
         UserEntity user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return new org.springframework.security.core.userdetails.User(
+        return new User(
                 user.getEmail(),
                 user.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()) )
+                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
         );
     }
 
@@ -54,15 +56,14 @@ public class UserService implements UserDetailsService {
             return;
         }
 
-        UserEntity user = new UserEntity();
+        PatientEntity patient = new PatientEntity();
 
-        user.setFirstName(patientSignupDTO.getFirstName());
-        user.setLastName(patientSignupDTO.getLastName());
-        user.setEmail(patientSignupDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
-        user.setRole(UserEntity.Role.PATIENT);
+        patient.setFirstName(patientSignupDTO.getFirstName());
+        patient.setLastName(patientSignupDTO.getLastName());
+        patient.setEmail(patientSignupDTO.getEmail());
+        patient.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
 
-        userRepository.save(user);
+        userRepository.save(patient);
     }
 
     public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
@@ -70,17 +71,16 @@ public class UserService implements UserDetailsService {
             return;
         }
 
-        PsychotherapistEntity user = new PsychotherapistEntity();
+        PsychotherapistEntity psychotherapist = new PsychotherapistEntity();
 
-        user.setFirstName(psychotherapistSignupDTO.getFirstName());
-        user.setLastName(psychotherapistSignupDTO.getLastName());
-        user.setEmail(psychotherapistSignupDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
-        user.setRole(UserEntity.Role.PSYCHOTHERAPIST);
-        user.setGender(psychotherapistSignupDTO.getGender());
-        user.setAlboRegion(psychotherapistSignupDTO.getAlboRegion());
+        psychotherapist.setFirstName(psychotherapistSignupDTO.getFirstName());
+        psychotherapist.setLastName(psychotherapistSignupDTO.getLastName());
+        psychotherapist.setEmail(psychotherapistSignupDTO.getEmail());
+        psychotherapist.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
+        psychotherapist.setGender(psychotherapistSignupDTO.getGender());
+        psychotherapist.setAlboRegion(psychotherapistSignupDTO.getAlboRegion());
 
-        userRepository.save(user);
+        userRepository.save(psychotherapist);
     }
 
     public List<PsychotherapistEntity> getAllPsychotherapists() {
