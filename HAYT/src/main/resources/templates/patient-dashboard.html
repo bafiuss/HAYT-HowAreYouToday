@@ -10,9 +10,9 @@
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
             <div class="content">
-               <div class="alert alert-info" style="width: 50%; font-size: 30px; text-align: center" role="alert" th:if="${patient != null}">
+               <div class="alert alert-info" style="width: 50%; font-size: 30px; text-align: center" role="alert" th:if="${session.user != null}">
                     <span>
-                        Hey <span th:text="${patient.firstName}"></span>, how are you feeling today?
+                        Hey <span th:text="${session.user.getFirstName()}"></span>, how are you feeling today?
                     </span>
                 </div>
                 <div class="ag-format-container">
