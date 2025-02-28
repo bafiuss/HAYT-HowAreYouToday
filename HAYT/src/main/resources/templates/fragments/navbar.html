@@ -16,7 +16,7 @@
                     <a class="nav-link" href="/features" th:classappend="${currentPage == 'features' ? 'active' : ''}">Features</a>
                 </li>
                 <li class="nav-item" style="padding-right: 20px;">
-                    <a class="nav-link" href="/mental-health" th:classappend="${currentPage == 'mental-health' ? 'active' : ''}">Mental Health</a>
+                    <a class="nav-link" href="/mental-health-disorders" th:classappend="${currentPage == 'mental-health-disorders' ? 'active' : ''}">Mental Health</a>
                 </li>
                 <li class="nav-item" style="padding-right: 20px;" sec:authorize="!isAuthenticated()">
                     <a href="/login" class="button-24" role="button">

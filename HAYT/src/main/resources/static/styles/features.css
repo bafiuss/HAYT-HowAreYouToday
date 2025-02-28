@@ -15,12 +15,6 @@
     text-align: center;
 }
 
-
-
-.container {
-    max-width: 900px;
-    text-align: center;
-}
 .title {
     font-size: 2.5em;
     font-weight: bold;
@@ -34,6 +28,7 @@
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
     padding: 5% 12%;
+    max-width: 100%;
 }
 .feature-card {
     background: #fff;
@@ -43,17 +38,18 @@
     transition: transform 0.3s ease-in-out;
     display: flex;
     align-items: center;
-    text-align: left;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
 }
+
 .icon {
     font-size: 50px;
     color: #6366F1;
     margin-right: 15px;
 }
+
 .badge {
     display: inline-block;
     background: #4F46E5;
@@ -67,3 +63,94 @@
 h2{
     align-self: flex-start;
 }
+
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding: 5% 8%;
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .features-grid {
+        padding: 5% 5%;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2em;
+    }
+
+    .feature-card {
+        padding: 15px;
+    }
+
+    .badge {
+        font-size: 0.8em;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8em;
+    }
+
+    .features-grid {
+        padding: 5% 3%;
+    }
+
+    .feature-card {
+        padding: 12px;
+    }
+
+    .icon {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .badge {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 360px) {
+    .title {
+        font-size: 1.5em;
+    }
+
+    .icon {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    .badge {
+        font-size: 0.7em;
+        padding: 4px 8px;
+    }
+}
+
+
