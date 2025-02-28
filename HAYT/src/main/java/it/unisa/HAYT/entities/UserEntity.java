@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-public class UserEntity {
+public abstract class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,16 +28,14 @@ public class UserEntity {
 
     private String password;
 
-    public enum Role{PATIENT, PSYCHOTHERAPIST}
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
-    public UserEntity(String email, String firstName, String lastName , String password, Role role) {
+    public UserEntity(String email, String firstName, String lastName , String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = role;
     }
+
+    public abstract String getRole();
 }
 

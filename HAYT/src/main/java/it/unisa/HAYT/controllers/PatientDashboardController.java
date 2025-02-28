@@ -1,7 +1,7 @@
 package it.unisa.HAYT.controllers;
 
-//import it.unisa.HAYT.dto.PatientLoginDTO;
-import it.unisa.HAYT.entities.UserEntity;
+import it.unisa.HAYT.entities.PatientEntity;
+import jakarta.servlet.http.HttpSession;
 import it.unisa.HAYT.servicies.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,16 +19,25 @@ public class PatientDashboardController {
     private UserService userService;
 
     @GetMapping("/patient-dashboard")
-    public String showPatientDashboard(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+    public String showPatientDashboard(@AuthenticationPrincipal UserDetails userDetails, Model model, HttpSession session) {
         if (userDetails != null) {
             String username = userDetails.getUsername();
-            Optional<UserEntity> userOptional = userService.getUser(username);
-            userOptional.ifPresent(userEntity -> model.addAttribute("user", userEntity));
+            Optional<PatientEntity> patientOptional = userService.getPatient(username);
+
+            if (patientOptional.isPresent()) {
+                PatientEntity patient = patientOptional.get();
+                model.addAttribute("patient", patient);
+
+                boolean hasTherapist = patient.getPsychotherapist() != null;
+                session.setAttribute("hasTherapist", hasTherapist);
+            }
         }
+
         model.addAttribute("hideNavLinks", false);
-        model.addAttribute("currentPage","patient-dashboard");
+        model.addAttribute("currentPage", "patient-dashboard");
 
         return "patient-dashboard";
     }
+
 
 }
