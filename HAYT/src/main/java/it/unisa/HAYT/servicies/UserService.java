@@ -5,6 +5,7 @@ import it.unisa.HAYT.dto.PsychotherapistSignupDTO;
 import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
+import it.unisa.HAYT.repositories.PatientRepository;
 import it.unisa.HAYT.repositories.PsychotherapistRepository;
 import it.unisa.HAYT.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +29,10 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PsychotherapistRepository psychotherapistRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -66,6 +72,10 @@ public class UserService implements UserDetailsService {
         userRepository.save(patient);
     }
 
+    public Optional<PatientEntity> getPatient(String email){
+        return patientRepository.findByEmail(email);
+    }
+
     public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
         if (emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
             return;
@@ -86,6 +96,17 @@ public class UserService implements UserDetailsService {
     public List<PsychotherapistEntity> getAllPsychotherapists() {
         return psychotherapistRepository.findAll();
     }
+
+    @Transactional
+    public void psychotherapistAssociation(Long patientId, Long psychotherapistId){
+        int updatePsychotherapistAssociation = patientRepository.updatePsychotherapist(patientId, psychotherapistId);
+
+        if (updatePsychotherapistAssociation == 0) {
+            throw new RuntimeException("Patient not found");
+        }
+    }
+
+
 
 
 }
