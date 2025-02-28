@@ -76,6 +76,10 @@ public class UserService implements UserDetailsService {
         return patientRepository.findByEmail(email);
     }
 
+    public Optional<PsychotherapistEntity> getPsychotherapist(String email){
+        return psychotherapistRepository.findByEmail(email);
+    }
+
     public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
         if (emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
             return;
@@ -106,8 +110,13 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public Optional<PsychotherapistEntity> getAssociatedPsychotherapist(Long patientId){
+        return patientRepository.getAssociatedPsychotherapist(patientId);
+    }
 
-
+    public List<PsychotherapistEntity> findPsychotherapistsExcludingPatient(Long patientId){
+        return patientRepository.findPsychotherapistsExcludingPatient(patientId);
+    }
 
 }
 
