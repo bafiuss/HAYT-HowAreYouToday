@@ -27,7 +27,7 @@ public class SecurityConfig {
                                 "/signup",
                                 "/patient-signup",
                                 "/features",
-                                "/mental-health",
+                                "/mental-health-disorders",
                                 "/psychotherapist-signup").permitAll()
                         .requestMatchers("/images/**","/scripts/**","/styles/**").permitAll()
                         .anyRequest().authenticated()
