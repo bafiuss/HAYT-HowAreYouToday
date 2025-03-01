@@ -101,7 +101,7 @@
     transition: background-color 0.3s ease;
 }
 
-#psychologist-signup:hover{
+#psychotherapist-signup-signup:hover{
     background-color: #FF9800;
 }
 
@@ -149,6 +149,15 @@
     z-index: 2;
     margin-top: 6%;
     margin-bottom: 0;
+}
+
+#psychotherapist-button{
+    background-color: #FFA726 !important;
+    border-color: #E48800 !important;
+}
+
+#psychotherapist-button:hover{
+    background-color: #E48800 !important;
 }
 
 @media (max-width: 1024px) {
