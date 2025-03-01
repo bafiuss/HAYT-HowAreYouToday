@@ -1,4 +1,4 @@
-.signup-container {
+.access-container {
     background-color: white;
     padding: clamp(1rem, 2vw, 2rem);
     border-radius: 10px;
@@ -39,26 +39,26 @@
 }
 
 
-.signup-header {
+.access-header {
     text-align: center;
     margin-bottom: 1rem;
 }
 
-.signup-footer {
+.access-footer {
     text-align: center;
 }
 
-.signup-footer p {
+.access-footer p {
     color: #666;
 }
 
-.signup-header h1 {
+.access-header h1 {
     color: #333;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
-.signup-header p {
+.access-header p {
     color: #666;
 }
 
@@ -88,7 +88,7 @@
     border-color: #4b9b6e;
 }
 
-.signup-button {
+.access-button {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #4b9b6e;
@@ -105,7 +105,7 @@
     background-color: #FF9800;
 }
 
-.signup-button:hover {
+.access-button:hover {
     background: #4b9b6e;
 }
 
@@ -136,4 +136,92 @@
     flex-direction: column;
     margin-bottom: 10px;
     width: 100%;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 20px;
+    display: block;
+}
+
+.alert{
+    z-index: 2;
+    margin-top: 6%;
+    margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+    .access-container {
+        width: 60%;
+    }
+    .alert{
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    .access-container {
+        width: 80%;
+        margin: 20%;
+    }
+    .alert{
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 600px) {
+    .access-container {
+        width: 72%;
+        padding: 1rem;
+    }
+    .access-header h1 {
+        font-size: 1.75rem;
+    }
+    .access-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+    .alert{
+        font-size: 0.9rem;
+        margin-top: 12%;
+    }
+}
+
+@media (max-width: 480px) {
+    .access-container {
+        width: 70%;
+    }
+    .access-header h1 {
+        font-size: 1.5rem;
+    }
+    .access-header p {
+        font-size: 0.9rem;
+    }
+    .input-group input {
+        font-size: 0.9rem;
+    }
+    .alert{
+        margin-top: 14%;
+    }
+
+}
+
+@media (max-width: 360px) {
+    .access-header h1 {
+        font-size: 1.25rem;
+    }
+    .access-header p {
+        font-size: 0.85rem;
+    }
+    .input-group input {
+        font-size: 0.85rem;
+    }
+    .access-button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+    .alert .alert-danger{
+        width: 70%;
+    }
 }

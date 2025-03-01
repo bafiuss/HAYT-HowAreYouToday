@@ -11,14 +11,14 @@
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
         <div class="content">
-            <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 6%;">
+            <div th:if="${failedSignup}" class="alert alert-danger" role="alert">
                 <b> Email address is already used</b>
             </div>
-            <div th:if="${successSignup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 6%;">
+            <div th:if="${successSignup}" class="alert alert-success" role="alert">
                 <b> Account created successfully! </b>
             </div>
-            <div class="signup-container">
-                <div class="signup-header">
+            <div class="access-container">
+                <div class="access-header">
                     <h1>Hello, Friend!</h1>
                     <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
                 </div>
@@ -87,8 +87,8 @@
                             <span id="matchError" style="font-size: 15px;"></span>
                         </div>
                     </div>
-                    <div class="signup-footer">
-                        <button type="submit" class="signup-button" id="submitButton">Signup</button>
+                    <div class="access-footer">
+                        <button type="submit" class="access-button" id="submitButton">Signup</button>
                     </div>
                 </form>
             </div>
