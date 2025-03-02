@@ -100,6 +100,9 @@
     .info, .click-message{
         font-size: 14px;
     }
+    .psychotherapists-grid{
+        margin-bottom: 6rem;
+    }
 }
 
 
@@ -120,6 +123,9 @@
     h2{
         font-size: 1.2rem;
     }
+    .psychotherapists-grid{
+        margin-bottom: 5rem;
+    }
 }
 
 @media (max-width: 385px) {
@@ -131,6 +137,13 @@
     }
     h2{
         font-size: 1.0rem;
+    }
+    .icon {
+        width: 100px;
+        height: 100px;
+    }
+    .psychotherapists-grid{
+        margin-bottom: 4rem;
     }
 }
 
