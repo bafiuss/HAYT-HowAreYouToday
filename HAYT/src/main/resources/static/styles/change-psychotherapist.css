@@ -48,12 +48,12 @@
     margin-right: 15px;
 }
 
-.current-psychotherapist, .psychotherapist-list {
+.current-psychotherapist{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 5% 12%;
+    padding: 2% 12%;
 }
 
 
@@ -62,7 +62,7 @@
     justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 20px;
-    padding: 5% 12%;
+    padding: 2% 12% 5%;
 }
 .click-message {
     margin-left: 15px;
@@ -88,4 +88,70 @@
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .psychotherapists-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    .title {
+        font-size: 2em;
+    }
+    .info, .click-message{
+        font-size: 14px;
+    }
+    .psychotherapists-grid{
+        padding-bottom: 3rem;
+    }
+    .icon {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 1.6em;
+    }
+}
+
+
+@media (max-width: 442px) {
+    .psychotherapist-card {
+        padding: 15px;
+    }
+    .icon {
+        width: 95px;
+        height: 95px;
+    }
+    .title {
+        font-size: 1.5em;
+    }
+    .info, .click-message{
+        font-size: 13px ;
+    }
+    h2{
+        font-size: 1.2rem;
+    }
+    .psychotherapists-grid{
+        padding-bottom: 4rem;
+    }
+}
+
+@media (max-width: 385px) {
+    .title {
+        font-size: 1.3em;
+    }
+    .info, .click-message{
+        font-size: 12px ;
+    }
+    h2{
+        font-size: 1.0rem;
+    }
+    .icon {
+        width: 85px;
+        height: 85px;
+    }
+    .psychotherapists-grid{
+        padding-bottom: 5rem;
+    }
+}
 

@@ -21,18 +21,15 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
+    min-width: 75px;
 }
 
-.button-24:hover,
-.button-24:active {
+.button-24:hover{
     background-color: #4b9b6e;
     background-position: 0 0;
     color: rgba(255, 255, 255, 0.68);
 }
 
-.button-24:active {
-    opacity: .5;
-}
 
 .navbar {
     position: fixed;
@@ -59,4 +56,25 @@ p {
 
 .active {
     font-weight: bold;
+}
+
+#logout-button{
+    background:#bf4b4b;
+    color:#fff;
+    border-color: #bf4b4b;
+}
+
+#logout-button:hover{
+    background-color: #A54141 !important;
+    border-color: #A54141 !important;
+}
+
+.nav-item{
+    padding-right: 20px;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
