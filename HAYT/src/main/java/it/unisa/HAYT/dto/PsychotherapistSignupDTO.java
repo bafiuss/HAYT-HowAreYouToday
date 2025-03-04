@@ -35,7 +35,4 @@ public class PsychotherapistSignupDTO {
     @NotBlank(message = "Albo region is required")
     private String alboRegion;
 
-    @NotBlank(message = "Gender is required")
-    private String gender;
-
 }

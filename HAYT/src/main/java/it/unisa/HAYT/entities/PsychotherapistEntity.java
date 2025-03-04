@@ -17,14 +17,12 @@ import java.util.List;
 public class PsychotherapistEntity extends UserEntity{
 
     private String alboRegion;
-    private String gender;
 
     @OneToMany(mappedBy = "psychotherapist")
     private List<PatientEntity> patients;
 
-    public PsychotherapistEntity(String email, String firstName, String lastName, String password, String gender, String alboRegion) {
+    public PsychotherapistEntity(String email, String firstName, String lastName, String password, String alboRegion) {
         super(email, firstName, lastName, password);
-        this.gender = gender;
         this.alboRegion = alboRegion;
     }
 

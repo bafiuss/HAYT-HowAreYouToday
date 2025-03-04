@@ -1,5 +1,6 @@
 package it.unisa.HAYT.config;
 
+import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.PsychotherapistRepository;
@@ -27,19 +28,23 @@ public class DatabasePopulator {
     @PostConstruct
     public void populate() {
         if (userRepository.count() == 0) {
-            List<UserEntity> psychotherapists = List.of(
-                    new PsychotherapistEntity("mariorossi@gmail.com", "Mario", "Rossi", passwordEncoder.encode("SecurePass1"), "Male", "Lazio - 120"),
-                    new PsychotherapistEntity("lucaverdi@gmail.com", "Luca", "Verdi", passwordEncoder.encode("Passw0rd3"), "Male", "Campania - 150"),
-                    new PsychotherapistEntity("marcoconti@gmail.com", "Marco", "Conti", passwordEncoder.encode("StrongPass7"), "Male", "Emilia-Romagna - 080"),
-                    new PsychotherapistEntity("annabianchi@gmail.com", "Anna", "Bianchi", passwordEncoder.encode("StrongPass"), "Female", "Lombardia - 030"),
-                    new PsychotherapistEntity("giorgiagallo@gmail.com", "Giorgia", "Gallo", passwordEncoder.encode("SafePass"), "Female", "Piemonte - 010"),
-                    new PsychotherapistEntity("francescotesta@gmail.com", "Francesco", "Testa", passwordEncoder.encode("Password5"), "Male", "Sicilia - 190"),
-                    new PsychotherapistEntity("elisaferretti@gmail.com", "Elisa", "Ferretti", passwordEncoder.encode("SecurePass6"), "Female", "Toscana - 090"),
-                    new PsychotherapistEntity("saramoretti@gmail.com", "Sara", "Moretti", passwordEncoder.encode("Passw0rd8"), "Female", "Liguria - 070"),
-                    new PsychotherapistEntity("valentinabarone@gmail.com", "Valentina", "Barone", passwordEncoder.encode("SecurePass9"), "Female", "Veneto - 050")
+
+            PsychotherapistEntity psychotherapist = new PsychotherapistEntity("fsessa02@gmail.com","Fabio","Sessa", passwordEncoder.encode("Prova123"),"Campania - 150");
+
+            List<UserEntity> patients = List.of(
+                    new PatientEntity("mariorossi@gmail.com", "Mario", "Rossi", passwordEncoder.encode("SecurePass1"), psychotherapist),
+                    new PatientEntity("lucaverdi@gmail.com", "Luca", "Verdi", passwordEncoder.encode("Passw0rd3"), psychotherapist),
+                    new PatientEntity("marcoconti@gmail.com", "Marco", "Conti", passwordEncoder.encode("StrongPass7"), psychotherapist),
+                    new PatientEntity("annabianchi@gmail.com", "Anna", "Bianchi", passwordEncoder.encode("StrongPass"), psychotherapist),
+                    new PatientEntity("giorgiagallo@gmail.com", "Giorgia", "Gallo", passwordEncoder.encode("SafePass"), psychotherapist),
+                    new PatientEntity("francescotesta@gmail.com", "Francesco", "Testa", passwordEncoder.encode("Password5"), psychotherapist),
+                    new PatientEntity("elisaferretti@gmail.com", "Elisa", "Ferretti", passwordEncoder.encode("SecurePass6"), psychotherapist),
+                    new PatientEntity("saramoretti@gmail.com", "Sara", "Moretti", passwordEncoder.encode("Passw0rd8"), psychotherapist),
+                    new PatientEntity("valentinabarone@gmail.com", "Valentina", "Barone", passwordEncoder.encode("SecurePass9"), psychotherapist)
             );
 
-            userRepository.saveAll(psychotherapists);
+            userRepository.save(psychotherapist);
+            userRepository.saveAll(patients);
 
         }
     }

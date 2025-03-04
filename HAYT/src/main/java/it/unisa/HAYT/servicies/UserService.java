@@ -72,14 +72,6 @@ public class UserService implements UserDetailsService {
         userRepository.save(patient);
     }
 
-    public Optional<PatientEntity> getPatient(String email){
-        return patientRepository.findByEmail(email);
-    }
-
-    public Optional<PsychotherapistEntity> getPsychotherapist(String email){
-        return psychotherapistRepository.findByEmail(email);
-    }
-
     public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
         if (emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
             return;
@@ -91,10 +83,13 @@ public class UserService implements UserDetailsService {
         psychotherapist.setLastName(psychotherapistSignupDTO.getLastName());
         psychotherapist.setEmail(psychotherapistSignupDTO.getEmail());
         psychotherapist.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
-        psychotherapist.setGender(psychotherapistSignupDTO.getGender());
         psychotherapist.setAlboRegion(psychotherapistSignupDTO.getAlboRegion());
 
         userRepository.save(psychotherapist);
+    }
+
+    public Optional<PatientEntity> getPatient(String email){
+        return patientRepository.findByEmail(email);
     }
 
     public List<PsychotherapistEntity> getAllPsychotherapists() {
