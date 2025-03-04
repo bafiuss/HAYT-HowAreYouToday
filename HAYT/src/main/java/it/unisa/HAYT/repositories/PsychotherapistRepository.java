@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface PsychotherapistRepository extends JpaRepository<PsychotherapistEntity, Long> {
 
-    Optional<PsychotherapistEntity> findByEmail(String email);
+    PsychotherapistEntity findByEmail(String email);
 
 
 }

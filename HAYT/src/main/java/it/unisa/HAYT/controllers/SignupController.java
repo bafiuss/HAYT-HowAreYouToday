@@ -70,7 +70,7 @@ public class SignupController {
 
         model.addAttribute("hideNavLinks", false);
 
-        return "psychotherapist-dashboard";
+        return "psychotherapist-signup";
     }
 
     @PostMapping("/psychotherapist-signup")

@@ -63,11 +63,14 @@ public class UserService implements UserDetailsService {
         }
 
         PatientEntity patient = new PatientEntity();
+        PsychotherapistEntity psychotherapist = psychotherapistRepository.findByEmail("fsessa02@gmail.com");
+
 
         patient.setFirstName(patientSignupDTO.getFirstName());
         patient.setLastName(patientSignupDTO.getLastName());
         patient.setEmail(patientSignupDTO.getEmail());
         patient.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
+        patient.setPsychotherapist(psychotherapist);
 
         userRepository.save(patient);
     }

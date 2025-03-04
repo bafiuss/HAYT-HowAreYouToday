@@ -2,9 +2,9 @@ const onlyLettersPattern = /^[A-Za-z]+$/;
 const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
-const firstNameError = "First name must contain only letters";
-const lastNameError = "Last name must contain only letters";
-const emailError = "Email entered not in correct format ";
+const firstNameError = "First name is required";
+const lastNameError = "Last name is required";
+const emailError = "Invalid email format";
 const passwordError = "Password must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters";
 const confirmPasswordError = "Passwords do not match";
 
@@ -33,31 +33,15 @@ function validateFirstName() {
     return valid;
 }
 
-function validateGender() {
-    let valid = true;
-    let form = document.getElementById("form");
-    let selectElem = form.gender;
-    let spanName = document.getElementById("errorGender");
-
-    if (selectElem.value === "none") {
-        spanName.textContent = "No genre selected";
-        spanName.style.color = "red";
-        valid = false;
-    } else {
-        spanName.textContent = "";
-    }
-
-    return valid;
-}
 
 function validateAlboRegion() {
     let valid = true;
     let form = document.getElementById("form");
-    let selectElem = form.gender;
+    let selectElem = form.alboRegion;
     let spanName = document.getElementById("errorAlboRegion");
 
     if (selectElem.value === "none") {
-        spanName.textContent = "No albo region selected";
+        spanName.textContent = "Albo region is required";
         spanName.style.color = "red";
         valid = false;
     } else {
@@ -149,9 +133,7 @@ function checkPsychotherapistSignUp(obj) {
     if (!validateEmail()) check = false;
     if (!validatePassword()) check = false;
     if (!passwordMatching()) check = false;
-    if(!validateAlboRegion()) check = false;
-    if(!validateGender()) check = false;
-
+    if (!validateAlboRegion()) check = false;
 
     return check;
 }
