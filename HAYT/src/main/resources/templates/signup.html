@@ -11,14 +11,14 @@
     <body>
     <div th:insert="~{fragments/navbar :: navbar}"></div>
         <div class="content">
-            <div th:if="${failedSignup}" class="alert alert-danger" role="alert" style="z-index: 2; margin-top: 6%;">
+            <div th:if="${failedSignup}" class="alert alert-danger" role="alert">
                 <b> Email address is already used</b>
             </div>
-            <div th:if="${successSignup}" class="alert alert-success" role="alert" style="z-index: 2; margin-top: 6%;">
+            <div th:if="${successSignup}" class="alert alert-success" role="alert">
                 <b> Account created successfully! </b>
             </div>
-            <div class="signup-container">
-                <div class="signup-header">
+            <div class="access-container">
+                <div class="access-header">
                     <h1>Hello, Friend!</h1>
                     <p>Enter your personal details and start your therapy or <a href="/login">login here</a></p>
                 </div>
@@ -51,9 +51,9 @@
                         </div>
                     </div>
                     <div class="signup-footer">
-                        <button type="submit" class="signup-button" id="submitButton">Signup</button>
+                        <button type="submit" class="access-button" id="submitButton">Signup</button>
                         <hr>
-                        <button type="button" onclick="location.href='/psychotherapist-signup'" id="psychotherapist-button" class="signup-button" style="background-color: #FFA726; border-color: #FF9800">Signup as psychologist</button>
+                        <button type="button" onclick="location.href='/psychotherapist-signup'" id="psychotherapist-button" class="access-button">Signup as psychologist</button>
                     </div>
                 </form>
             </div>

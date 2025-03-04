@@ -28,7 +28,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
         HttpSession session = request.getSession();
         String email = ((UserDetails) authentication.getPrincipal()).getUsername();
         Optional<UserEntity> user = userRepository.findByEmail(email);
-        user.ifPresent(userEntity -> session.setAttribute("userId", userEntity.getId()));
+        user.ifPresent(userEntity -> session.setAttribute("user", userEntity));
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         String redirectUrl = "/";

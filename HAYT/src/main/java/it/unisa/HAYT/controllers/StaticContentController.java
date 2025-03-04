@@ -20,10 +20,10 @@ public class StaticContentController {
         return "features";
     }
 
-    @GetMapping("/mental-health")
-    public String showMentalHealthPage(Model model) {
+    @GetMapping("/mental-health-disorders")
+    public String showMentalHealthDisordersPage(Model model) {
         model.addAttribute("hideNavLinks",false);
-        model.addAttribute("currentPage","mental-health");
-        return "mental-health";
+        model.addAttribute("currentPage","mental-health-disorders");
+        return "mental-health-disorders";
     }
 }

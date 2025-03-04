@@ -26,7 +26,6 @@ public class PatientDashboardController {
 
             if (patientOptional.isPresent()) {
                 PatientEntity patient = patientOptional.get();
-                model.addAttribute("patient", patient);
 
                 boolean hasTherapist = patient.getPsychotherapist() != null;
                 session.setAttribute("hasTherapist", hasTherapist);

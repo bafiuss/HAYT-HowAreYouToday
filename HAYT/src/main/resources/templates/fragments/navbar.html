@@ -12,23 +12,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto" th:if="${hideNavLinks == false}">
-                <li class="nav-item" style="padding-right: 20px;">
+                <li class="nav-item">
                     <a class="nav-link" href="/features" th:classappend="${currentPage == 'features' ? 'active' : ''}">Features</a>
                 </li>
-                <li class="nav-item" style="padding-right: 20px;">
-                    <a class="nav-link" href="/mental-health" th:classappend="${currentPage == 'mental-health' ? 'active' : ''}">Mental Health</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mental-health-disorders" th:classappend="${currentPage == 'mental-health-disorders' ? 'active' : ''}">Mental Health</a>
                 </li>
-                <li class="nav-item" style="padding-right: 20px;" sec:authorize="!isAuthenticated()">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a href="/login" class="button-24" role="button">
                         <i class="fa-solid fa-right-to-bracket"></i>
                     </a>
                 </li>
-                <li class="nav-item" style="padding-right: 20px;" sec:authorize="isAuthenticated()">
-                    <a href="/logout" class="button-24" role="button" style="background:#bf4b4b; color:#fff; border-color: #c23636; ">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a href="/logout" class="button-24" id="logout-button" role="button">
                         <i class="fas fa-light fa-door-open icon-finder"></i>
                     </a>
                 </li>
-                <li id="patientNavItem" class="nav-item" style="padding-right: 20px;" th:if="${currentPage != 'patient-dashboard'}" sec:authorize="isAuthenticated() and hasRole('PATIENT')">
+                <li class="nav-item" th:if="${currentPage != 'patient-dashboard'}" sec:authorize="isAuthenticated() and hasRole('PATIENT')">
                     <a href="/patient-dashboard" class="button-24" role="button">
                         <i class="fa-regular fa-user"></i>
                     </a>
