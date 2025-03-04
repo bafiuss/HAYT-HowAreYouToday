@@ -24,20 +24,6 @@
                                 <p class="ag-courses-item_description">Add a new thought about how you feel today.</p>
                             </a>
                         </div>
-                        <div class="ag-courses_item" th:if="${!session.hasTherapist}">
-                            <a href="/patient-dashboard/new-psychotherapist" class="ag-courses-item_link">
-                                <div class="ag-courses-item_bg"></div>
-                                <div class="ag-courses-item_title">Psychotherapist 🧑‍⚕️</div>
-                                <p class="ag-courses-item_description">Select a new psychotherapist to continue your therapy with the right specialist for your needs.</p>
-                            </a>
-                        </div>
-                        <div class="ag-courses_item" th:if="${session.hasTherapist}">
-                            <a href="/patient-dashboard/change-psychotherapist" class="ag-courses-item_link">
-                                <div class="ag-courses-item_bg"></div>
-                                <div class="ag-courses-item_title">Change 🔄</div>
-                                <p class="ag-courses-item_description">Replace your current psychotherapist with a new one that better fits your needs and preferences.</p>
-                            </a>
-                        </div>
                         <div class="ag-courses_item" th:if="${session.hasTherapist}">
                             <a href="/chat" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
