@@ -38,8 +38,8 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
             if ("ROLE_PATIENT".equals(role)) {
                 redirectUrl = "/patient-dashboard";
                 break;
-            } else if ("ROLE_PSYCHOLOGIST".equals(role)) {
-                redirectUrl = "/psychologist-dashboard";
+            } else if ("ROLE_PSYCHOTHERAPIST".equals(role)) {
+                redirectUrl = "/psychotherapist-dashboard";
                 break;
             }
         }
