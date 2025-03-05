@@ -47,14 +47,12 @@ public class UserService implements UserDetailsService {
                 user.getPassword(),
                 List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
         );
+
+
     }
 
     public boolean emailAlreadyExists(String email) {
         return userRepository.findByEmail(email).isPresent();
-    }
-
-    public Optional<UserEntity> getUser(String email){
-        return userRepository.findByEmail(email);
     }
 
     public void savePatient(PatientSignupDTO patientSignupDTO) {
@@ -63,21 +61,16 @@ public class UserService implements UserDetailsService {
         }
 
         PatientEntity patient = new PatientEntity();
+        PsychotherapistEntity psychotherapist = psychotherapistRepository.findByEmail("fsessa02@gmail.com");
+
 
         patient.setFirstName(patientSignupDTO.getFirstName());
         patient.setLastName(patientSignupDTO.getLastName());
         patient.setEmail(patientSignupDTO.getEmail());
         patient.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
+        patient.setPsychotherapist(psychotherapist);
 
         userRepository.save(patient);
-    }
-
-    public Optional<PatientEntity> getPatient(String email){
-        return patientRepository.findByEmail(email);
-    }
-
-    public Optional<PsychotherapistEntity> getPsychotherapist(String email){
-        return psychotherapistRepository.findByEmail(email);
     }
 
     public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
@@ -91,32 +84,11 @@ public class UserService implements UserDetailsService {
         psychotherapist.setLastName(psychotherapistSignupDTO.getLastName());
         psychotherapist.setEmail(psychotherapistSignupDTO.getEmail());
         psychotherapist.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
-        psychotherapist.setGender(psychotherapistSignupDTO.getGender());
         psychotherapist.setAlboRegion(psychotherapistSignupDTO.getAlboRegion());
 
         userRepository.save(psychotherapist);
     }
 
-    public List<PsychotherapistEntity> getAllPsychotherapists() {
-        return psychotherapistRepository.findAll();
-    }
-
-    @Transactional
-    public void psychotherapistAssociation(Long patientId, Long psychotherapistId){
-        int updatePsychotherapistAssociation = patientRepository.updatePsychotherapist(patientId, psychotherapistId);
-
-        if (updatePsychotherapistAssociation == 0) {
-            throw new RuntimeException("Patient not found");
-        }
-    }
-
-    public Optional<PsychotherapistEntity> getAssociatedPsychotherapist(Long patientId){
-        return patientRepository.getAssociatedPsychotherapist(patientId);
-    }
-
-    public List<PsychotherapistEntity> findPsychotherapistsExcludingPatient(Long patientId){
-        return patientRepository.findPsychotherapistsExcludingPatient(patientId);
-    }
 
 }
 

@@ -35,17 +35,8 @@
                             <span id="errorLastName" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
-                            <label>Gender</label>
-                            <select name="gender" id="gender" th:field="*{gender}">
-                                <option value="none"> </option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                            <span id="errorGender" style="font-size: 15px;"></span>
-                        </div>
-                        <div class="input-content">
                             <label>Albo Region</label>
-                            <select name="alboRegion" id="alboRegion" th:field="*{alboRegion}">
+                            <select name="alboRegion" id="alboRegion" th:field="*{alboRegion}" onChange="return validateAlboRegion()">
                                 <option value="none"> </option>
                                 <option value="Abruzzo - 130">Abruzzo - 130</option>
                                 <option value="Basilicata - 170">Basilicata - 170</option>

@@ -5,13 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PatientDashboardController {
+public class PsychotherapistDashboardController {
 
-    @GetMapping("/patient-dashboard")
-    public String showPatientDashboardPage(Model model) {
+    @GetMapping("/psychotherapist-dashboard")
+    public String showPsychotherapistDashboardPage(Model model) {
         model.addAttribute("hideNavLinks", false);
 
-        return "patient-dashboard";
+        return "psychotherapist-dashboard";
     }
 
 
