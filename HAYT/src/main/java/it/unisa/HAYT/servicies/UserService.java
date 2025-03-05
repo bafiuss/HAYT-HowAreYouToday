@@ -47,14 +47,12 @@ public class UserService implements UserDetailsService {
                 user.getPassword(),
                 List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
         );
+
+
     }
 
     public boolean emailAlreadyExists(String email) {
         return userRepository.findByEmail(email).isPresent();
-    }
-
-    public Optional<UserEntity> getUser(String email){
-        return userRepository.findByEmail(email);
     }
 
     public void savePatient(PatientSignupDTO patientSignupDTO) {
@@ -91,30 +89,6 @@ public class UserService implements UserDetailsService {
         userRepository.save(psychotherapist);
     }
 
-    public Optional<PatientEntity> getPatient(String email){
-        return patientRepository.findByEmail(email);
-    }
-
-    public List<PsychotherapistEntity> getAllPsychotherapists() {
-        return psychotherapistRepository.findAll();
-    }
-
-    @Transactional
-    public void psychotherapistAssociation(Long patientId, Long psychotherapistId){
-        int updatePsychotherapistAssociation = patientRepository.updatePsychotherapist(patientId, psychotherapistId);
-
-        if (updatePsychotherapistAssociation == 0) {
-            throw new RuntimeException("Patient not found");
-        }
-    }
-
-    public Optional<PsychotherapistEntity> getAssociatedPsychotherapist(Long patientId){
-        return patientRepository.getAssociatedPsychotherapist(patientId);
-    }
-
-    public List<PsychotherapistEntity> findPsychotherapistsExcludingPatient(Long patientId){
-        return patientRepository.findPsychotherapistsExcludingPatient(patientId);
-    }
 
 }
 
