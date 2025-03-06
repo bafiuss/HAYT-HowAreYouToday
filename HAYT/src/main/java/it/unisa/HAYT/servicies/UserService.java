@@ -89,6 +89,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(psychotherapist);
     }
 
+    public int getNumberOfPatientsAssociated(Long psychotherapistId){
+        return patientRepository.numberOfPatientsAssociated(psychotherapistId);
+    }
 
 }
 
