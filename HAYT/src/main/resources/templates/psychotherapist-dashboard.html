@@ -50,11 +50,41 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- Elenco pazienti -->
+                        <!-- Patient List -->
                         <div class="col-lg-6 d-flex">
                             <div class="card equal-height w-100">
                                 <div class="card-header bg-primary text-white">
                                     <h5><i class="fas fa-user"></i> Patient List</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody th:each="firstTwoPatients: ${firstTwoPatients}">
+                                            <tr>
+                                                <td th:text="${firstTwoPatients.firstName}"></td>
+                                                <td th:text="${firstTwoPatients.lastName}"></td>
+                                                <td th:text="${firstTwoPatients.email}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-end">
+                                        <a href="/patients" class="btn btn-link">See more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Appointments -->
+                        <div class="col-lg-6 d-flex">
+                            <div class="card equal-height w-100">
+                                <div class="card-header bg-success text-white">
+                                    <h5><i class="fas fa-calendar-check"></i> Upcoming Appointments</h5>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-hover">
@@ -78,22 +108,9 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Prossimi appuntamenti -->
-                        <div class="col-lg-6 d-flex">
-                            <div class="card equal-height w-100">
-                                <div class="card-header bg-success text-white">
-                                    <h5><i class="fas fa-calendar-check"></i> Upcoming Appointments</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">#</li>
-                                        <li class="list-group-item">#</li>
-                                        <li class="list-group-item">#</li>
-                                    </ul>
+                                    <div class="text-end">
+                                        <a href="#" class="btn btn-link">See more</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
