@@ -16,10 +16,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -91,6 +92,14 @@ public class UserService implements UserDetailsService {
 
     public int getNumberOfPatientsAssociated(Long psychotherapistId){
         return patientRepository.numberOfPatientsAssociated(psychotherapistId);
+    }
+
+    public List<PatientEntity> getFirstTwoUsers(){
+        return patientRepository.findFirstTwoPatients(PageRequest.of(0, 2));
+    }
+
+    public List<PatientEntity> getPatientsAssociated(Long psychotherapistId){
+        return patientRepository.patientList(psychotherapistId);
     }
 
 }
