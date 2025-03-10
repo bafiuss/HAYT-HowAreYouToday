@@ -7,6 +7,7 @@ const lastNameError = "Last name is required";
 const emailError = "Invalid email format";
 const passwordError = "Password must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters";
 const confirmPasswordError = "Passwords do not match";
+const profileImageError = "Profile image is required";
 
 
 function validateFormElem(formElem, pattern, span, message) {
@@ -42,6 +43,23 @@ function validateAlboRegion() {
 
     if (selectElem.value === "none") {
         spanName.textContent = "Albo region is required";
+        spanName.style.color = "red";
+        valid = false;
+    } else {
+        spanName.textContent = "";
+    }
+
+    return valid;
+}
+
+function validateProfileImage() {
+    let valid = true;
+    let form = document.getElementById("form");
+    let selectElem = form.profileImage;
+    let spanName = document.getElementById("errorProfileImage");
+
+    if (selectElem.value === "") {
+        spanName.textContent = "Profile image is required";
         spanName.style.color = "red";
         valid = false;
     } else {
@@ -120,6 +138,7 @@ function checkPatientSignUp(obj) {
     if (!validateEmail()) check = false;
     if (!validatePassword()) check = false;
     if (!passwordMatching()) check = false;
+    if (!validateProfileImage()) check = false;
 
 
     return check;
