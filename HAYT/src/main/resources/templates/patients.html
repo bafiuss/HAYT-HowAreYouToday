@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Patients</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/styles/patients.css">
-    </head>
-    <body>
-        <div th:insert="~{fragments/navbar :: navbar}"></div>
-            <div class="content">
-                <div class="patients" style="width: 100%;">
-                    <div class="patients-header">
-                        <h1 class="title">Your Patient List</h1>
-                    </div>
-                    <div class="patients-grid">
-                        <div class="patient-card" th:each="patient: ${patientList}">
-                            <!--<img th:if="${psychotherapist.gender == 'Male'}" th:src="@{/images/avatar/male.jpg}" alt="Male Image" class="icon">-->
-                            <img th:src="@{/images/avatar/female.jpg}" alt="Female Image" class="icon">
-                            <div class="info">
-                                <h2 th:text="${patient.firstName} + ' ' + ${patient.lastName}"></h2>
-                                <p th:text="${patient.email}"></p>
-                                <form action="/selected-psychotherapist" method="post">
-                                    <input type="hidden" name="psychotherapistId" th:value="${patient.getId()}">
-                                    <button type="submit" class="click-message">Click to confirm</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Patients</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/patients.css">
+</head>
+<body>
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+<div class="content">
+    <div class="patients" style="width: 100%;">
+        <div class="patients-header">
+            <h1 class="title">Your Patient List</h1>
+        </div>
+        <div class="patients-grid">
+            <div class="patient-card" th:each="patient: ${patientList}">
+                <img class="icon" th:if="${patient.profileImageBase64 != null}" th:src="'data:image/jpeg;base64,' + ${patient.profileImageBase64}" alt="Profile Image" />
+                <div class="info">
+                    <h2 th:text="${patient.firstName} + ' ' + ${patient.lastName}"></h2>
+                    <p th:text="${patient.email}"></p>
+                    <form action="/selected-psychotherapist" method="post">
+                        <input type="hidden" name="psychotherapistId" th:value="${patient.getId()}">
+                        <button type="submit" class="click-message">Click to confirm</button>
+                    </form>
                 </div>
             </div>
-        <div th:insert="~{fragments/footer :: footer}"></div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+        </div>
+    </div>
+</div>
+<div th:insert="~{fragments/footer :: footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
