@@ -153,6 +153,7 @@ function checkPsychotherapistSignUp(obj) {
     if (!validatePassword()) check = false;
     if (!passwordMatching()) check = false;
     if (!validateAlboRegion()) check = false;
+    if (!validateProfileImage()) check = false;
 
     return check;
 }

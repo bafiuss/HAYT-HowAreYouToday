@@ -18,8 +18,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -56,25 +58,30 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).isPresent();
     }
 
-    public void savePatient(PatientSignupDTO patientSignupDTO) {
+    public void savePatient(PatientSignupDTO patientSignupDTO, MultipartFile profileImage) {
         if (emailAlreadyExists(patientSignupDTO.getEmail())) {
             return;
         }
 
-        PatientEntity patient = new PatientEntity();
         PsychotherapistEntity psychotherapist = psychotherapistRepository.findByEmail("fsessa02@gmail.com");
 
-
+        PatientEntity patient = new PatientEntity();
         patient.setFirstName(patientSignupDTO.getFirstName());
         patient.setLastName(patientSignupDTO.getLastName());
         patient.setEmail(patientSignupDTO.getEmail());
         patient.setPassword(passwordEncoder.encode(patientSignupDTO.getPassword()));
         patient.setPsychotherapist(psychotherapist);
 
+        try {
+            patient.setProfileImage(profileImage.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         userRepository.save(patient);
     }
 
-    public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO) {
+    public void savePsychotherapist(PsychotherapistSignupDTO psychotherapistSignupDTO, MultipartFile profileImage) {
         if (emailAlreadyExists(psychotherapistSignupDTO.getEmail())) {
             return;
         }
@@ -86,6 +93,12 @@ public class UserService implements UserDetailsService {
         psychotherapist.setEmail(psychotherapistSignupDTO.getEmail());
         psychotherapist.setPassword(passwordEncoder.encode(psychotherapistSignupDTO.getPassword()));
         psychotherapist.setAlboRegion(psychotherapistSignupDTO.getAlboRegion());
+
+        try {
+            psychotherapist.setProfileImage(profileImage.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         userRepository.save(psychotherapist);
     }
@@ -103,4 +116,3 @@ public class UserService implements UserDetailsService {
     }
 
 }
-
