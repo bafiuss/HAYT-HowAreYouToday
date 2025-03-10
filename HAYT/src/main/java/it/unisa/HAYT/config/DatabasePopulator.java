@@ -6,11 +6,13 @@ import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.PsychotherapistRepository;
 import it.unisa.HAYT.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -26,26 +28,32 @@ public class DatabasePopulator {
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
-    public void populate() {
+    public void populate() throws IOException {
         if (userRepository.count() == 0) {
 
-            PsychotherapistEntity psychotherapist = new PsychotherapistEntity("fsessa02@gmail.com","Fabio","Sessa", passwordEncoder.encode("Prova123"),"Campania - 150");
+            byte[] psychotherapistImage = loadImage("psychotherapist.jpg");
+
+            byte[] imagePatient1 = loadImage("patient-1.jpg");
+            byte[] imagePatient2 = loadImage("patient-2.jpg");
+            byte[] imagePatient3 = loadImage("patient-3.jpg");
+
+            PsychotherapistEntity psychotherapist = new PsychotherapistEntity("fsessa02@gmail.com", "Fabio", "Sessa", passwordEncoder.encode("Prova123"), "Campania - 150", psychotherapistImage);
 
             List<UserEntity> patients = List.of(
-                    new PatientEntity("mariorossi@gmail.com", "Mario", "Rossi", passwordEncoder.encode("SecurePass1"), psychotherapist),
-                    new PatientEntity("lucaverdi@gmail.com", "Luca", "Verdi", passwordEncoder.encode("Passw0rd3"), psychotherapist),
-                    new PatientEntity("marcoconti@gmail.com", "Marco", "Conti", passwordEncoder.encode("StrongPass7"), psychotherapist),
-                    new PatientEntity("annabianchi@gmail.com", "Anna", "Bianchi", passwordEncoder.encode("StrongPass2"), psychotherapist),
-                    new PatientEntity("giorgiagallo@gmail.com", "Giorgia", "Gallo", passwordEncoder.encode("SafePass5"), psychotherapist),
-                    new PatientEntity("francescotesta@gmail.com", "Francesco", "Testa", passwordEncoder.encode("Password5"), psychotherapist),
-                    new PatientEntity("elisaferretti@gmail.com", "Elisa", "Ferretti", passwordEncoder.encode("SecurePass6"), psychotherapist),
-                    new PatientEntity("saramoretti@gmail.com", "Sara", "Moretti", passwordEncoder.encode("Passw0rd8"), psychotherapist),
-                    new PatientEntity("valentinabarone@gmail.com", "Valentina", "Barone", passwordEncoder.encode("SecurePass9"), psychotherapist)
+                    new PatientEntity("lucaverdi@gmail.com", "Luca", "Verdi", passwordEncoder.encode("Passw0rd3"), psychotherapist, imagePatient1),
+                    new PatientEntity("mariorossi@gmail.com", "Mario", "Rossi", passwordEncoder.encode("SecurePass1"), psychotherapist,imagePatient2),
+                    new PatientEntity("giorgiagallo@gmail.com", "Giorgia", "Gallo", passwordEncoder.encode("SafePass5"), psychotherapist, imagePatient3)
             );
 
             userRepository.save(psychotherapist);
             userRepository.saveAll(patients);
-
         }
     }
+
+    private byte[] loadImage(String imagePath) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/images/profile-images/" + imagePath);
+        return FileCopyUtils.copyToByteArray(resource.getInputStream());
+    }
+
+
 }
