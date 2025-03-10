@@ -22,7 +22,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Enter your personal details and start your therapy or <a href="/login">login here</a></p>
                 </div>
-                <form action="/patient-signup" method="post" id="form" onsubmit="return checkPatientSignUp(this)" th:object="${patientSignupDTO}">
+                <form action="/patient-signup" method="post" id="form" onsubmit="return checkPatientSignUp(this)" th:object="${patientSignupDTO}" enctype="multipart/form-data">
                     <div class="input-group">
                         <div class="input-content">
                             <label>First Name</label>
@@ -33,6 +33,11 @@
                             <label>Last Name</label>
                             <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
                             <span id="errorLastName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Profile Image</label>
+                            <input type="file" id="profileImage" name="profileImage" accept="image/*" th:field="*{profileImage}"  onChange="return validateProfileImage()">
+                            <span id="errorProfileImage" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
                             <label>Email</label>
