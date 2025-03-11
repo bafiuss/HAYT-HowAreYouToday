@@ -22,7 +22,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
                 </div>
-                <form action="/psychotherapist-signup" method="post" id="form" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}">
+                <form action="/psychotherapist-signup" method="post" id="form" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}" enctype="multipart/form-data">
                     <div class="input-group">
                         <div class="input-content">
                             <label>First Name</label>
@@ -61,6 +61,11 @@
                                 <option value="Veneto - 050">Veneto - 050</option>
                             </select>
                             <span id="errorAlboRegion" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Profile Image</label>
+                            <input type="file" id="profileImage" name="profileImage" accept="image/*" th:field="*{profileImage}"  onChange="return validateProfileImage()">
+                            <span id="errorProfileImage" style="font-size: 15px;"></span>
                         </div>
                         <div class="input-content">
                             <label>Email</label>

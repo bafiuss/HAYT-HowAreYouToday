@@ -10,6 +10,7 @@ public class PatientDashboardController {
     @GetMapping("/patient-dashboard")
     public String showPatientDashboardPage(Model model) {
         model.addAttribute("hideNavLinks", false);
+        model.addAttribute("currentPage", "patient-dashboard");
 
         return "patient-dashboard";
     }

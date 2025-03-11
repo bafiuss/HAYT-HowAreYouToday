@@ -21,8 +21,8 @@ public class PsychotherapistEntity extends UserEntity{
     @OneToMany(mappedBy = "psychotherapist")
     private List<PatientEntity> patients;
 
-    public PsychotherapistEntity(String email, String firstName, String lastName, String password, String alboRegion) {
-        super(email, firstName, lastName, password);
+    public PsychotherapistEntity(String email, String firstName, String lastName, String password, String alboRegion, byte[] profileImage) {
+        super(email, firstName, lastName, password, profileImage);
         this.alboRegion = alboRegion;
     }
 

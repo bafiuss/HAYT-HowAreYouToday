@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -31,5 +32,7 @@ public class PatientSignupDTO {
 
     @NotBlank(message = "Confirm Password is required")
     private String confirmPassword;
+
+    private MultipartFile profileImage;
 
 }

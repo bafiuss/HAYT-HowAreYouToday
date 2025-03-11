@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,15 +17,13 @@ import java.util.Optional;
 public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
     Optional<PatientEntity> findByEmail(String email);
 
-    @Modifying
-    @Transactional
-    @Query("UPDATE PatientEntity p SET p.psychotherapist.id = :psychotherapistId WHERE p.id = :patientId")
-    int updatePsychotherapist(@Param("patientId") Long patientId, @Param("psychotherapistId") Long psychotherapistId);
+    @Query("SELECT Count(*) FROM PatientEntity p WHERE p.psychotherapist.id = :psychotherapistId")
+    int numberOfPatientsAssociated(@Param("psychotherapistId") Long psychotherapistId);
 
-    @Query("SELECT p.psychotherapist FROM PatientEntity p WHERE p.id = :patientId")
-    Optional<PsychotherapistEntity> getAssociatedPsychotherapist(@Param("patientId") Long patientId);
+    @Query("SELECT p FROM PatientEntity p")
+    List<PatientEntity> findFirstTwoPatients(Pageable pageable);
 
-    @Query("SELECT p FROM PsychotherapistEntity p WHERE p.id <> (SELECT p.psychotherapist.id FROM PatientEntity p WHERE p.id = :patientId)")
-    List<PsychotherapistEntity> findPsychotherapistsExcludingPatient(@Param("patientId") Long patientId);
+    @Query("SELECT p FROM PatientEntity p WHERE p.psychotherapist.id = :psychotherapistId")
+    List<PatientEntity> patientList(@Param("psychotherapistId") Long psychotherapistId);
 
 }

@@ -9,7 +9,7 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 20 20'%3E%3Cg %3E%3Cpolygon fill='%23F2F2F2' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23F2F2F2' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.new-psychotherapist-header{
+.patients-header{
     text-align: center;
 }
 
@@ -24,7 +24,7 @@
     margin-top: 50px;
 }
 
-.psychotherapists-grid {
+.patients-grid {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -33,7 +33,7 @@
 }
 
 
-.psychotherapist-card {
+.patient-card {
     background: #fff;
     padding: 20px;
     border-radius: 12px;
@@ -44,13 +44,13 @@
     text-align: left;
 }
 
-.psychotherapist-card:hover {
+.patient-card:hover {
     transform: scale(1.05);
     background-color: rgba(79, 70, 229, 0.68);
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.psychotherapist-card:hover {
+.patient-card:hover {
     transform: translateY(-5px);
 }
 .icon {
@@ -72,17 +72,13 @@
     padding: 8px 12px;
     border-radius: 5px;
     font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
     white-space: nowrap;
     cursor: pointer;
     text-decoration: none;
     width: 75%;
 }
 
-.psychotherapist-card:hover .click-message {
-    opacity: 1;
-}
+
 
 .info{
     width: 100%;
@@ -91,7 +87,7 @@
 
 
 @media (max-width: 768px) {
-    .psychotherapists-grid {
+    .patients-grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
     .title {
@@ -100,7 +96,7 @@
     .info, .click-message{
         font-size: 14px;
     }
-    .psychotherapists-grid{
+    .patients-grid{
         margin-bottom: 6rem;
     }
     .icon {
@@ -117,7 +113,7 @@
 
 
 @media (max-width: 480px) {
-    .psychotherapist-card {
+    .patient-card {
         padding: 15px;
     }
     .icon {
@@ -133,7 +129,7 @@
     h2{
         font-size: 1.2rem;
     }
-    .psychotherapists-grid{
+    .patients-grid{
         margin-bottom: 5rem;
     }
 }
@@ -152,7 +148,7 @@
         width: 85px;
         height: 85px;
     }
-    .psychotherapists-grid{
+    .patients-grid{
         margin-bottom: 4rem;
     }
 }

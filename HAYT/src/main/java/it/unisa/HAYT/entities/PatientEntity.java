@@ -19,8 +19,8 @@ public class PatientEntity extends UserEntity{
     @JoinColumn(name = "psychotherapist_id")
     private PsychotherapistEntity psychotherapist;
 
-    public PatientEntity(String firstName, String lastName, String email, String password, PsychotherapistEntity psychotherapist) {
-        super(firstName, lastName, email, password);
+    public PatientEntity(String email, String firstName, String lastName, String password, PsychotherapistEntity psychotherapist, byte[] profileImage) {
+        super(email, firstName, lastName, password, profileImage);
         this.psychotherapist = psychotherapist;
     }
 
