@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Psychologist Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/patient-chat.css">
+</head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+            <div class="content">
+                <div class="patient-chat-header">
+                    <h1 class="title">Chat & Appointments</h1>
+                </div>
+                <div class="container-fluid py-4">
+                    <div class="row mt-4">
+                        <div class="col-lg-12">
+                            <div class="card h-100 p-3" style="background-color: #595d7b;">
+                                <div class="calendar-header">
+                                    <button class="btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2" id="monthYear">Appointment</h5>
+                                    <button class="btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-container">
+                                    <div class="calendar-grid" id="calendar"></div>
+                                </div>
+                                <a class="text-white text-center text-sm font-weight-bold mb-0 icon-move-right mt-auto" style="text-decoration: none;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                                    Appointments
+                                    <i class="fas fa-plus text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="newAppointmentModalLabel">New Appointment</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="appointmentTitle" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="appointmentTitle">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="appointmentDate" class="form-label">Date and Time</label>
+                                        <input type="datetime-local" class="form-control" id="appointmentDate">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="appointmentDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="appointmentDescription" rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            let currentDate = new Date();
+
+            function renderCalendar() {
+                const calendar = document.getElementById("calendar");
+                const monthYear = document.getElementById("monthYear");
+                calendar.innerHTML = "";
+
+                let year = currentDate.getFullYear();
+                let month = currentDate.getMonth();
+                monthYear.textContent = `Appointments - ${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
+
+                const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+                daysOfWeek.forEach(day => {
+                    let dayNameCell = document.createElement("div");
+                    dayNameCell.classList.add("day-name");
+                    dayNameCell.textContent = day;
+                    calendar.appendChild(dayNameCell);
+                });
+
+                let firstDay = new Date(year, month, 1).getDay();
+                firstDay = (firstDay === 0) ? 6 : firstDay - 1;
+                let daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDay; i++) {
+                    let emptyCell = document.createElement("div");
+                    emptyCell.classList.add("day");
+                    emptyCell.style.visibility = "hidden";
+                    calendar.appendChild(emptyCell);
+                }
+
+                for (let i = 1; i <= daysInMonth; i++) {
+                    let dayCell = document.createElement("div");
+                    dayCell.classList.add("day");
+                    dayCell.textContent = i;
+                    calendar.appendChild(dayCell);
+                }
+            }
+
+            function prevMonth() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            }
+
+            function nextMonth() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            }
+
+            renderCalendar();
+        </script>
+    </body>
+</html>
