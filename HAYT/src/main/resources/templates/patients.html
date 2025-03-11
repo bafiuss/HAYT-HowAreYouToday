@@ -22,7 +22,7 @@
                     <p th:text="${patient.email}"></p>
                     <form action="/selected-psychotherapist" method="post">
                         <input type="hidden" name="psychotherapistId" th:value="${patient.getId()}">
-                        <button type="submit" class="click-message">Click to confirm</button>
+                        <button type="submit" class="click-message">Details</button>
                     </form>
                 </div>
             </div>

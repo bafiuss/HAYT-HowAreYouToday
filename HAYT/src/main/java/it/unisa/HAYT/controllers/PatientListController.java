@@ -18,7 +18,7 @@ public class PatientListController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/patients")
+    @GetMapping("/psychotherapist-dashboard/patients")
     public String showPatientListPage(Model model, HttpSession session){
         UserEntity psychotherapist = (UserEntity) session.getAttribute("user");
         List<PatientEntity> patients = userService.getPatientsAssociated(psychotherapist.getId());
