@@ -41,9 +41,9 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="d-flex align-items-center">
-                                                <img class="icon" alt="Image" src="/images/profile-images/psychotherapist.jpg">
+                                                <img class="icon" th:src="'data:image/jpeg;base64,' + ${psychotherapist.getProfileImageBase64}" alt="Profile Image" />
                                                 <div class="ms-3">
-                                                    <h6 class="mb-0 d-block">Mary Rossi</h6>
+                                                    <h4 class="mb-0 d-block" th:text="${psychotherapist.firstName + ' ' + psychotherapist.lastName}"></h4>
                                                 </div>
                                             </div>
                                         </div>
