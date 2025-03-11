@@ -81,13 +81,19 @@
 .btn-primary {
     background-color: #6bbf8a !important;
     color: white !important;
-
 }
 
 .btn-secondary {
     background-color: #6c757d !important;
     color: white !important;
 }
+
+input:focus, textarea:focus {
+    outline: none !important;
+    border-color: #4b9b6e !important;
+    box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
+}
+
 
 
 @media (max-width: 900px) {
