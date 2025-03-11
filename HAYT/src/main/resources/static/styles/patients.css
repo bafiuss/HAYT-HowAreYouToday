@@ -72,17 +72,13 @@
     padding: 8px 12px;
     border-radius: 5px;
     font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
     white-space: nowrap;
     cursor: pointer;
     text-decoration: none;
     width: 75%;
 }
 
-.patient-card:hover .click-message {
-    opacity: 1;
-}
+
 
 .info{
     width: 100%;
