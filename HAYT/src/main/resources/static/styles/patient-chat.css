@@ -20,10 +20,13 @@
     color: #4F46E5;
     margin-top: 30px;
 }
-
+.icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 20%;
+    object-fit: cover;
+}
 .card {
-    background: #333;
-    padding: 20px;
     border-radius: 10px;
     max-width: 100%;
     overflow: hidden;
@@ -34,6 +37,12 @@
     align-items: center;
     margin-bottom: 10px;
 }
+.card-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -93,6 +102,24 @@ input:focus, textarea:focus {
     border-color: #4b9b6e !important;
     box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
 }
+
+#sendButton{
+    background-color: #4F46E5;
+}
+
+#sendButton i {
+    color: white !important;
+    transition: color 0s;
+}
+
+#sendButton:active i {
+    color: white !important;
+}
+
+#sendButton:hover i{
+    color: rgba(255, 255, 255, 0.66) !important;
+}
+
 
 
 
