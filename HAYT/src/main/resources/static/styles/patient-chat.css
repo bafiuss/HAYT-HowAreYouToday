@@ -103,24 +103,40 @@ input:focus, textarea:focus {
     box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
 }
 
-#sendButton{
+#sendMessageButton{
     background-color: #4F46E5;
 }
 
-#sendButton i {
+#sendMessageButton i {
     color: white !important;
     transition: color 0s;
 }
 
-#sendButton:active i {
+#sendMessageButton:active i {
     color: white !important;
 }
 
-#sendButton:hover i{
+#sendMessageButton:hover i{
     color: rgba(255, 255, 255, 0.66) !important;
 }
 
+#saveAppointmentButton{
+    background-color: #6bbf8a;
+    border-color: #4b9b6e;
+}
 
+#saveAppointmentButton:hover{
+    background-color: #4b9b6e !important;
+}
+
+#saveAppointmentButton, #closeAppointmentButton {
+    font-size: 16px;
+}
+
+
+#closeAppointmentButton:hover{
+    background-color: #5a6268 !important;
+}
 
 
 @media (max-width: 900px) {
