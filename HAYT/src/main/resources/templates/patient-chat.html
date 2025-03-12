@@ -6,6 +6,7 @@
         <title>Chat & Appointments</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/styles/patient-chat.css">
+
     </head>
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
@@ -235,56 +236,6 @@
             </div>
         <div th:insert="~{fragments/footer :: footer}"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            let currentDate = new Date();
-
-            function renderCalendar() {
-                const calendar = document.getElementById("calendar");
-                const monthYear = document.getElementById("monthYear");
-                calendar.innerHTML = "";
-
-                let year = currentDate.getFullYear();
-                let month = currentDate.getMonth();
-                monthYear.textContent = `Appointments - ${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
-
-                const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-                daysOfWeek.forEach(day => {
-                    let dayNameCell = document.createElement("div");
-                    dayNameCell.classList.add("day-name");
-                    dayNameCell.textContent = day;
-                    calendar.appendChild(dayNameCell);
-                });
-
-                let firstDay = new Date(year, month, 1).getDay();
-                firstDay = (firstDay === 0) ? 6 : firstDay - 1;
-                let daysInMonth = new Date(year, month + 1, 0).getDate();
-
-                for (let i = 0; i < firstDay; i++) {
-                    let emptyCell = document.createElement("div");
-                    emptyCell.classList.add("day");
-                    emptyCell.style.visibility = "hidden";
-                    calendar.appendChild(emptyCell);
-                }
-
-                for (let i = 1; i <= daysInMonth; i++) {
-                    let dayCell = document.createElement("div");
-                    dayCell.classList.add("day");
-                    dayCell.textContent = i;
-                    calendar.appendChild(dayCell);
-                }
-            }
-
-            function prevMonth() {
-                currentDate.setMonth(currentDate.getMonth() - 1);
-                renderCalendar();
-            }
-
-            function nextMonth() {
-                currentDate.setMonth(currentDate.getMonth() + 1);
-                renderCalendar();
-            }
-
-            renderCalendar();
-        </script>
+        <script src="/scripts/calendar.js"></script>
     </body>
 </html>
