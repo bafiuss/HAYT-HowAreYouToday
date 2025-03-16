@@ -6,7 +6,8 @@
         <title>Chat & Appointments</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/styles/patient-chat.css">
-
+        <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
     </head>
     <body>
         <div th:insert="~{fragments/navbar :: navbar}"></div>
@@ -53,156 +54,56 @@
                                                 <i class="ni ni-camera-compact"></i>
                                             </button>
                                         </div>
-                                        <div class="col-1 my-auto ps-0">
-                                            <div class="dropdown">
-                                                <button class="btn btn-icon-only shadow-none text-dark mb-0" type="button" data-bs-toggle="dropdown">
-                                                    <i class="ni ni-settings"></i>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-end me-sm-n2 p-2" aria-labelledby="chatmsg">
-                                                    <li>
-                                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                                            Profile
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                                            Mute conversation
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                                            Block
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                                            Clear chat
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <hr class="dropdown-divider">
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item border-radius-md text-danger" href="javascript:;">
-                                                            Delete chat
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-body overflow-auto overflow-x-hidden">
-                                    <div class="row mt-4">
-                                        <div class="col-md-12 text-center">
-                                            <span class="badge text-dark">Wed, 3:27pm</span>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-start mb-4" >
-                                        <div class="col-auto">
-                                            <div class="card ">
-                                                <div class="card-body py-2 px-3">
-                                                    <p class="mb-1">
-                                                        Hi Tom are u ok today?
-                                                    </p>
-                                                    <div class="d-flex align-items-center text-sm opacity-6">
-                                                        <i class="ni ni-check-bold text-sm me-1"></i>
-                                                        <small style="color: #67748E">3:14am</small>
+                                <div  id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
+                                    <div th:each="msg : ${messages}">
+
+                                        <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
+                                            <div class="col-auto">
+                                                <div class="card">
+                                                    <div class="card-body py-2 px-3">
+                                                        <p class="mb-1"  th:text="${msg.content}"></p>
+                                                        <div class="d-flex align-items-center text-sm opacity-6">
+                                                            <i class="ni ni-check-bold text-sm me-1"></i>
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'HH:mm')}"></small>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row justify-content-end text-right mb-4" >
-                                        <div class="col-auto">
-                                            <div class="card" style="background-color: #e9ecef">
-                                                <div class="card-body py-2 px-3">
-                                                    <p class="mb-1">
-                                                        Not great, honestly. Been feeling overwhelmed<br>
-                                                    </p>
-                                                    <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
-                                                        <i class="ni ni-check-bold text-sm me-1"></i>
-                                                        <small style="color: #67748E">4:42pm</small>
+
+                                        <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
+                                            <div class="col-auto">
+                                                <div class="card" style="background-color: #e9ecef">
+                                                    <div class="card-body py-2 px-3">
+                                                        <p class="mb-1"  th:text="${msg.content}"></p>
+                                                        <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
+                                                            <small style="color: #67748E"  th:text="${#temporals.format(msg.timestamp, 'HH:mm')}"></small>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-start mb-4" >
-                                        <div class="col-auto">
-                                            <div class="card ">
-                                                <div class="card-body py-2 px-3">
-                                                    <p class="mb-1">
-                                                        I see. Can you tell me what's been causing that feeling?
-                                                    </p>
-                                                    <div class="d-flex align-items-center text-sm opacity-6">
-                                                        <i class="ni ni-check-bold text-sm me-1"></i>
-                                                        <small style="color: #67748E">4:31pm</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-end text-right mb-4" >
-                                        <div class="col-auto">
-                                            <div class="card" style="background-color: #e9ecef">
-                                                <div class="card-body py-2 px-3">
-                                                    <p class="mb-1" >
-                                                        It's mostly work. I feel like I can't keep up with everything.
-                                                    </p>
-                                                    <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
-                                                        <i class="ni ni-check-bold text-sm me-1"></i>
-                                                        <small style="color: #67748E">4:42pm</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-start mb-4" >
-                                        <div class="col-auto">
-                                            <div class="card ">
-                                                <div class="card-body py-2 px-3">
-                                                    <p class="mb-1">
-                                                        That sounds tough. Have you tried any strategies to manage the workload, or is it more about how you're feeling?
-                                                    </p>
-                                                    <div class="d-flex align-items-center text-sm opacity-6">
-                                                        <i class="ni ni-check-bold text-sm me-1"></i>
-                                                        <small style="color: #67748E">4:42pm</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-start">
-                                        <div class="col-auto">
-                                            <div class="card ">
-                                                <div class="card-body py-2 px-3">
-                                                    <p class="mb-0" style="color: #67748E">
-                                                        Charlie is Typing...
-                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer d-block" >
-                                    <form class="align-items-center">
-                                        <div class="d-flex">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Type here" aria-label="Message example input" onfocus="focused(this)" onfocusout="defocused(this)">
-                                            </div>
-                                            <button class="btn mb-0 ms-2" id="sendMessageButton">
-                                                <i class="fa-solid fa-paper-plane"></i>
-                                            </button>
+
+                                <div class="card-footer d-block">
+                                    <div class="d-flex">
+                                        <div class="input-group">
+                                            <input type="text" id="messageInput" class="form-control" placeholder="Type here" onfocus="focused(this)" onfocusout="defocused(this)">
                                         </div>
-                                    </form>
+                                        <button onclick="sendMessage()" class="btn mb-0 ms-2" id="sendMessageButton">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <div class="fixed-plugin">
+            <div class="fixed-plugin">
                 <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -237,5 +138,10 @@
         <div th:insert="~{fragments/footer :: footer}"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/scripts/calendar.js"></script>
+        <script>
+            var senderId = [[${patientId}]];
+            var receiverId = [[${psychotherapistId}]];
+        </script>
+        <script src="/scripts/chat.js"></script>
     </body>
 </html>
