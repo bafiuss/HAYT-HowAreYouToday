@@ -119,4 +119,8 @@ public class UserService implements UserDetailsService {
     public PsychotherapistEntity getPsychotherapistAssociated(Long patientId){
         return patientRepository.findPsychotherapistAssociated(patientId);
     }
+
+    public PatientEntity getPatientAssociated(Long patientId){
+        return patientRepository.findPatientAssociated(patientId);
+    }
 }
