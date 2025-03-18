@@ -7,6 +7,8 @@ function renderCalendar() {
 
     let year = currentDate.getFullYear();
     let month = currentDate.getMonth();
+    let today = new Date();
+
     monthYear.textContent = `Appointments - ${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
 
     const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -32,6 +34,15 @@ function renderCalendar() {
         let dayCell = document.createElement("div");
         dayCell.classList.add("day");
         dayCell.textContent = i;
+
+        let cellDate = new Date(year, month, i);
+
+        if (cellDate.toDateString() === today.toDateString()) {
+            dayCell.classList.add("current-day");
+        } else if (cellDate < today) {
+            dayCell.classList.add("past-day");
+        }
+
         calendar.appendChild(dayCell);
     }
 }
