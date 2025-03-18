@@ -54,7 +54,7 @@
 
                                         <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
                                             <div class="col-auto">
-                                                <div class="card" style="border: none;">
+                                                <div class="card shadow" style="border: none;">
                                                     <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
                                                         <p class="m-1" th:text="${msg.content}"></p>
                                                         <div class="d-flex align-items-center text-sm opacity-6">
@@ -68,7 +68,7 @@
 
                                         <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
                                             <div class="col-auto">
-                                                <div class="card" style="background-color: #e9ecef; border: none;">
+                                                <div class="card shadow" style="background-color: #e9ecef; border: none;">
                                                     <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
                                                         <p class="m-1" th:text="${msg.content}"></p>
                                                         <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
