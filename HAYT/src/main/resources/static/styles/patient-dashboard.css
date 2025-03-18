@@ -138,6 +138,32 @@
     background-color: #C5A3FF ;
 }
 
+
+.modal-header{
+    background-color: #607D8B;
+    color: white;
+}
+
+select:focus{
+    outline: none !important;
+    border-color: #4b9b6e !important;
+    box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
+}
+
+.mt-4{
+    color: #4F46E5;
+}
+
+.btn-primary{
+    background-color: #6bbf8a;
+    border-color: #4b9b6e;
+}
+
+.btn-primary:hover{
+    background-color: #4b9b6e;
+    border-color: #4b9b6e;
+}
+
 @media only screen and (max-width: 1220px) {
     .ag-format-container {
         width: 90%;

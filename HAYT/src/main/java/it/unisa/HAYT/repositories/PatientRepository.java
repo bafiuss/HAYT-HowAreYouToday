@@ -26,4 +26,8 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
     @Query("SELECT p FROM PatientEntity p WHERE p.psychotherapist.id = :psychotherapistId")
     List<PatientEntity> patientList(@Param("psychotherapistId") Long psychotherapistId);
 
+    @Query("SELECT p.psychotherapist FROM PatientEntity p WHERE p.id = :patientId")
+    PsychotherapistEntity findPsychotherapistAssociated(@Param("patientId") Long patientId);
+
+
 }

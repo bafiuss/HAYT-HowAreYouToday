@@ -7,10 +7,9 @@
     align-items: center;
     padding: 2rem;
     background-color: #F5F5F5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23E0E0E0' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23cccccc' fill-opacity='0.04'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.04'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
 }
-
-.new-psychotherapist-header{
+.patient-diary-header{
     text-align: center;
 }
 
@@ -21,143 +20,33 @@
     margin-top: 30px;
 }
 
-.col-md-3{
-    margin: 1% 0;
-}
-
-.transparent-grid {
-    padding: 20px;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 10px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-
-.add-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s;
-    height: 100%;
-}
-
-.add-card .card-body {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.add-card:hover {
-    background: rgba(200, 200, 200, 0.5);
-}
-
-.add-card i {
-    font-size: 50px;
-    color: #555;
-}
-
-.card-body small {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 12px;
-    color: #6c757d;
-}
-
-.card-body .btn {
-    width: 100%;
-    margin-top: 10px;
-    background-color: #6bbf8a;
-    border: #4b9b6e;
-}
-
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 350px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-input, textarea, select {
-    width: 100%;
-    margin: 10px 0;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+a{
+    text-decoration: none;
 }
 
 input:focus, textarea:focus, select:focus {
-    outline: none;
+    outline: none !important;
+    border-color: #4b9b6e !important;
+    box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
+}
+
+.modal-header{
+    background-color: #607D8B !important;
+    color: white !important;
+}
+
+#viewThoughtButton{
+    width: 100%;
+}
+
+#saveThoughtButton{
+    background-color: #6bbf8a;
     border-color: #4b9b6e;
 }
 
-button #viewButton{
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+#saveThoughtButton:hover{
+    background-color: #4b9b6e !important;
 }
-
-#viewButton:hover,
-#viewButton:active{
-    background-color: #4b9b6e;
-}
-
-#submitThought{
-    background-color: #6bbf8a;
-    border: #4b9b6e;
-    color: white;
-    width: 100%;
-    margin-top: 50px;
-}
-
-#description {
-    display: block;
-    width: 100%;
-    min-height: 120px;
-    overflow-y: auto;
-    resize: none;
-    transition: height 0.3s ease-in-out;
-}
-
-
 
 
 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Chat & Appointments</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/patient-chat.css">
+        <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+    </head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+            <div class="content">
+                <div class="patient-chat-header">
+                    <h1 class="title">Chat & Appointments</h1>
+                </div>
+                <div class="container-fluid py-5">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-4">
+                            <div class="card h-100 p-3" style="background-color: #595d7b;">
+                                <div class="calendar-header d-flex justify-content-between align-items-center">
+                                    <button class="btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2" id="monthYear">Appointments</h5>
+                                    <button class="btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-container">
+                                    <div class="calendar-grid" id="calendar"></div>
+                                </div>
+                                <a class="text-white text-center text-sm font-weight-bold mb-4 icon-move-right mt-4"
+                                   style="text-decoration: none;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                                    Appointment <i class="fas fa-plus text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header shadow-lg">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="d-flex align-items-center">
+                                                <img class="icon" th:src="'data:image/jpeg;base64,' + ${psychotherapist.getProfileImageBase64}" alt="Profile Image" />
+                                                <div class="ms-3">
+                                                    <h4 class="mb-0 d-block" th:text="${psychotherapist.firstName + ' ' + psychotherapist.lastName}"></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
+                                    <div th:each="msg : ${messages}">
+
+                                        <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
+                                            <div class="col-auto">
+                                                <div class="card" style="border: none;">
+                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                        <p class="m-1" th:text="${msg.content}"></p>
+                                                        <div class="d-flex align-items-center text-sm opacity-6">
+                                                            <i class="ni ni-check-bold text-sm me-1"></i>
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
+                                            <div class="col-auto">
+                                                <div class="card" style="background-color: #e9ecef; border: none;">
+                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                        <p class="m-1" th:text="${msg.content}"></p>
+                                                        <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer d-block">
+                                    <div class="d-flex">
+                                        <div class="input-group">
+                                            <input type="text" id="messageInput" class="form-control" placeholder="Type here" oninput="updateCharacterCount()" maxlength="255">
+                                        </div>
+                                        <button onclick="sendMessage()" class="btn mb-0 ms-2" id="sendMessageButton">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                    <small id="charCount" class="text-muted">0/255</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="fixed-plugin">
+                <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="newAppointmentModalLabel">New Appointment</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="appointmentTitle" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="appointmentTitle">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="appointmentDate" class="form-label">Date and Time</label>
+                                        <input type="datetime-local" class="form-control" id="appointmentDate">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="appointmentDescription" class="form-label">Description</label>
+                                        <textarea class="form-control" id="appointmentDescription" rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="closeAppointmentButton" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="saveAppointmentButton">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/scripts/calendar.js"></script>
+        <script>
+            var senderId = [[${patientId}]];
+            var receiverId = [[${psychotherapistId}]];
+        </script>
+        <script src="/scripts/chat.js"></script>
+    </body>
+</html>

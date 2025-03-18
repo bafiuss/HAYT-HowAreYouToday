@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -115,4 +116,7 @@ public class UserService implements UserDetailsService {
         return patientRepository.patientList(psychotherapistId);
     }
 
+    public PsychotherapistEntity getPsychotherapistAssociated(Long patientId){
+        return patientRepository.findPsychotherapistAssociated(patientId);
+    }
 }
