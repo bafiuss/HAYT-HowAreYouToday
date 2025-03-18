@@ -16,10 +16,11 @@
                     <h1 class="title">Chat & Appointments</h1>
                 </div>
                 <div class="container-fluid py-5">
-                    <div class="row mt-4">
-                        <div class="col-lg-12">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-4">
                             <div class="card h-100 p-3" style="background-color: #595d7b;">
-                                <div class="calendar-header">
+                                <div class="calendar-header d-flex justify-content-between align-items-center">
                                     <button class="btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
                                     <h5 class="text-white font-weight-bolder mb-4 pt-2" id="monthYear">Appointments</h5>
                                     <button class="btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
@@ -27,18 +28,15 @@
                                 <div class="calendar-container">
                                     <div class="calendar-grid" id="calendar"></div>
                                 </div>
-                                <a class="text-white text-center text-sm font-weight-bold mb-0 icon-move-right mt-auto" style="text-decoration: none;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
-                                    Appointment
-                                    <i class="fas fa-plus text-sm ms-1" aria-hidden="true"></i>
+                                <a class="text-white text-center text-sm font-weight-bold mb-4 icon-move-right mt-4"
+                                   style="text-decoration: none;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                                    Appointment <i class="fas fa-plus text-sm ms-1" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="container-fluid py-5">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card max-height-vh-70">
+
+                        <div class="col-lg-6 col-12 mb-4">
+                            <div class="card h-100">
                                 <div class="card-header shadow-lg">
                                     <div class="row">
                                         <div class="col-md-10">
@@ -49,24 +47,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-1 my-auto pe-0">
-                                            <button class="btn btn-icon-only shadow-none text-dark mb-0 me-3 me-sm-0" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Video call">
-                                                <i class="ni ni-camera-compact"></i>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
-                                <div  id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
+                                <div id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
                                     <div th:each="msg : ${messages}">
 
                                         <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
                                             <div class="col-auto">
-                                                <div class="card">
-                                                    <div class="card-body py-2 px-3">
-                                                        <p class="mb-1"  th:text="${msg.content}"></p>
+                                                <div class="card" style="border: none;">
+                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                        <p class="m-1" th:text="${msg.content}"></p>
                                                         <div class="d-flex align-items-center text-sm opacity-6">
                                                             <i class="ni ni-check-bold text-sm me-1"></i>
-                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'HH:mm')}"></small>
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -75,11 +68,11 @@
 
                                         <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
                                             <div class="col-auto">
-                                                <div class="card" style="background-color: #e9ecef">
-                                                    <div class="card-body py-2 px-3">
-                                                        <p class="mb-1"  th:text="${msg.content}"></p>
+                                                <div class="card" style="background-color: #e9ecef; border: none;">
+                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                        <p class="m-1" th:text="${msg.content}"></p>
                                                         <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
-                                                            <small style="color: #67748E"  th:text="${#temporals.format(msg.timestamp, 'HH:mm')}"></small>
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -91,19 +84,20 @@
                                 <div class="card-footer d-block">
                                     <div class="d-flex">
                                         <div class="input-group">
-                                            <input type="text" id="messageInput" class="form-control" placeholder="Type here" onfocus="focused(this)" onfocusout="defocused(this)">
+                                            <input type="text" id="messageInput" class="form-control" placeholder="Type here" oninput="updateCharacterCount()" maxlength="255">
                                         </div>
                                         <button onclick="sendMessage()" class="btn mb-0 ms-2" id="sendMessageButton">
                                             <i class="fa-solid fa-paper-plane"></i>
                                         </button>
                                     </div>
+                                    <small id="charCount" class="text-muted">0/255</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="fixed-plugin">
+                <div class="fixed-plugin">
                 <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
