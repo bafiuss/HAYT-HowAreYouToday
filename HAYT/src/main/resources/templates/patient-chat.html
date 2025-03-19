@@ -106,7 +106,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="appointmentForm" th:data-patient-id="${patientId}" th:data-psychotherapist-id="${psychotherapistId}">
                                     <div class="mb-3">
                                         <label for="appointmentTitle" class="form-label">Title</label>
                                         <input type="text" class="form-control" id="appointmentTitle">
@@ -136,6 +136,7 @@
             var senderId = [[${patientId}]];
             var receiverId = [[${psychotherapistId}]];
         </script>
+        <script src="/scripts/appointment.js"></script>
         <script src="/scripts/chat.js"></script>
     </body>
 </html>
