@@ -28,12 +28,10 @@ public class PatientChatController {
     @Autowired
     private MessageService messageService;
 
-    @Autowired
-    private AppointmentService appointmentService;
 
     @GetMapping("/patient-dashboard/chat")
     public String showPatientChatPage(Model model, HttpSession session){
-        UserEntity patient = (PatientEntity) session.getAttribute("user");
+        PatientEntity patient = (PatientEntity) session.getAttribute("user");
         PsychotherapistEntity psychotherapistAssociated = userService.getPsychotherapistAssociated(patient.getId());
 
         List<MessageEntity> messages = messageService.getChatMessages(patient.getId(), psychotherapistAssociated.getId());
@@ -47,23 +45,11 @@ public class PatientChatController {
         return "patient-chat";
     }
 
-    @PostMapping("/save-appointment")
-    public ResponseEntity<String> createAppointment(@RequestBody AppointmentDTO request, Model model) {
-        String response = appointmentService.saveAppointment(request);
-
-        if (response.equals("Appointment created successfully")) {
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.badRequest().body(response);
-        }
-    }
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/messages")
     public MessageEntity sendMessage(@Payload ChatMessage chatMessage) {
         return messageService.saveMessage(chatMessage.getSenderId(), chatMessage.getReceiverId(), chatMessage.getContent());
     }
-
-
 
 }
