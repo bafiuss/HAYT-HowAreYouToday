@@ -24,9 +24,27 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.text())
             .then(data => {
-                alert(data);
                 document.getElementById("closeAppointmentButton").click();
+                highlightAppointmentDay(dateTime);
+
+                const successAlert = document.getElementById("successAlert");
+                successAlert.style.display = "block";
+
             })
             .catch(error => console.error("Error:", error));
     });
 });
+
+
+function highlightAppointmentDay(dateString) {
+    const appointmentDate = new Date(dateString);
+    const year = appointmentDate.getFullYear();
+    const month = appointmentDate.getMonth();
+    const day = appointmentDate.getDate();
+
+    document.querySelectorAll(".day").forEach(dayCell => {
+        if (parseInt(dayCell.textContent) === day && currentDate.getMonth() === month && currentDate.getFullYear() === year) {
+            dayCell.classList.add("appointment-day");
+        }
+    });
+}
