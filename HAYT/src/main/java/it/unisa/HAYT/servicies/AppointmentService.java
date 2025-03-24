@@ -8,6 +8,8 @@ import it.unisa.HAYT.repositories.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AppointmentService {
 
@@ -18,7 +20,7 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
 
 
-    public String saveAppointment(AppointmentDTO request) {
+    public void saveAppointment(AppointmentDTO request) {
         PatientEntity patient = userService.getPatientAssociated(request.getPatientId());
         PsychotherapistEntity psychotherapist = userService.getPsychotherapistAssociated(request.getPatientId());
 
@@ -31,7 +33,11 @@ public class AppointmentService {
 
         appointmentRepository.save(appointment);
 
-        return "Appointment created successfully";
     }
+
+    public List<AppointmentEntity> getAppointmentsByPatientAndTherapist(Long patientId, Long psychotherapistId) {
+        return appointmentRepository.findByPatientIdAndPsychotherapistId(patientId, psychotherapistId);
+    }
+
 }
 
