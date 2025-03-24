@@ -1,6 +1,25 @@
 let currentDate = new Date();
 
-function renderCalendar() {
+document.addEventListener("DOMContentLoaded", renderCalendar);
+
+async function fetchAppointments() {
+    try {
+        let response = await fetch("/appointments");
+        let appointments = await response.json();
+        return appointments.map(app => ({
+            title: app.title,
+            date: new Date(app.dateTime),
+            description: app.description,
+            patientId: app.patientId,
+            psychotherapistId: app.psychotherapistId
+        }));
+    } catch (error) {
+        console.error("Error fetching appointments:", error);
+        return [];
+    }
+}
+
+async function renderCalendar() {
     const calendar = document.getElementById("calendar");
     const monthYear = document.getElementById("monthYear");
     calendar.innerHTML = "";
@@ -23,6 +42,11 @@ function renderCalendar() {
     firstDay = (firstDay === 0) ? 6 : firstDay - 1;
     let daysInMonth = new Date(year, month + 1, 0).getDate();
 
+    let appointments = await fetchAppointments();
+    let appointmentDays = new Set(appointments
+        .filter(app => app.date.getFullYear() === year && app.date.getMonth() === month)
+        .map(app => app.date.getDate()));
+
     for (let i = 0; i < firstDay; i++) {
         let emptyCell = document.createElement("div");
         emptyCell.classList.add("day");
@@ -43,6 +67,10 @@ function renderCalendar() {
             dayCell.classList.add("past-day");
         }
 
+        if (appointmentDays.has(i)) {
+            dayCell.classList.add("appointment-day");
+        }
+
         calendar.appendChild(dayCell);
     }
 }
@@ -56,5 +84,3 @@ function nextMonth() {
     currentDate.setMonth(currentDate.getMonth() + 1);
     renderCalendar();
 }
-
-renderCalendar();
