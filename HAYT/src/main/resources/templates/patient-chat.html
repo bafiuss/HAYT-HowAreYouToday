@@ -99,9 +99,29 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+
                 <div class="fixed-plugin">
-                <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="appointmentsModal" tabindex="-1" aria-labelledby="appointmentsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="appointmentsModalLabel">Appointments for <span id="modalDate"></span></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="appointmentsList"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="closeDetailsAppointmentButton" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fixed-plugin">
+                    <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -117,12 +137,12 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="appointmentDate" class="form-label">Date and Time</label>
-                                        <input type="datetime-local" class="form-control" id="appointmentDate" required>
+                                        <input type="datetime-local" class="form-control" id="appointmentDate">
                                         <span id="errorAppointmentDate" style="font-size: 15px;"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="appointmentDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="appointmentDescription" rows="3" required></textarea>
+                                        <textarea class="form-control" id="appointmentDescription" rows="3"></textarea>
                                         <span id="errorAppointmentDescription" style="font-size: 15px;"></span>
                                     </div>
                                 </form>

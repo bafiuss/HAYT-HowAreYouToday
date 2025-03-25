@@ -43,9 +43,17 @@ async function renderCalendar() {
     let daysInMonth = new Date(year, month + 1, 0).getDate();
 
     let appointments = await fetchAppointments();
-    let appointmentDays = new Set(appointments
+    let appointmentDays = new Map();
+
+    appointments
         .filter(app => app.date.getFullYear() === year && app.date.getMonth() === month)
-        .map(app => app.date.getDate()));
+        .forEach(app => {
+            let day = app.date.getDate();
+            if (!appointmentDays.has(day)) {
+                appointmentDays.set(day, []);
+            }
+            appointmentDays.get(day).push(app);
+        });
 
     for (let i = 0; i < firstDay; i++) {
         let emptyCell = document.createElement("div");
@@ -69,11 +77,57 @@ async function renderCalendar() {
 
         if (appointmentDays.has(i)) {
             dayCell.classList.add("appointment-day");
+
+            dayCell.addEventListener("click", () => showAppointmentsModal(i, appointmentDays.get(i)));
         }
 
         calendar.appendChild(dayCell);
     }
 }
+
+function showAppointmentsModal(day, appointments) {
+    const modalDate = document.getElementById("modalDate");
+    const appointmentsList = document.getElementById("appointmentsList");
+
+    function getDaySuffix(day) {
+        if (day >= 11 && day <= 13) return "th";
+        switch (day % 10) {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    }
+
+    const suffix = getDaySuffix(day);
+
+    const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(new Date());
+
+    modalDate.textContent = `${day}${suffix} of ${monthName}`;
+
+    appointmentsList.innerHTML = "";
+
+    appointments.forEach(app => {
+        const appointmentItem = document.createElement("div");
+        appointmentItem.classList.add("appointment-item");
+
+        appointmentItem.innerHTML = `
+            <p><strong>Title:</strong> ${app.title}</p>
+            <p><strong>Time:</strong> ${app.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+            <p><strong>Description:</strong> ${app.description}</p>
+            <hr>
+        `;
+
+        appointmentsList.appendChild(appointmentItem);
+    });
+
+    const appointmentsModal = new bootstrap.Modal(document.getElementById("appointmentsModal"));
+    appointmentsModal.show();
+}
+
+
+
+
 
 function prevMonth() {
     currentDate.setMonth(currentDate.getMonth() - 1);
