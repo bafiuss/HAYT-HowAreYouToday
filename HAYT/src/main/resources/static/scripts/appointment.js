@@ -21,6 +21,12 @@ document.getElementById("saveAppointmentButton").addEventListener("click", funct
         isValid = false;
     }
 
+    if (description === "") {
+        errorDescription.textContent = "Description is required";
+        errorDescription.style.color = "red";
+        isValid = false;
+    }
+
     if (dateTime === "") {
         errorDate.textContent = "Date and Time are required";
         errorDate.style.color = "red";
