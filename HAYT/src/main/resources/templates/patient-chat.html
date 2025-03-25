@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
     </head>
-    <body>
+    <body data-sender-id="[[${patientId}]]" data-receiver-id="[[${psychotherapistId}]]">
         <div th:insert="~{fragments/navbar :: navbar}"></div>
             <div class="content">
                 <div class="patient-chat-header">
@@ -109,7 +109,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="appointmentForm" th:data-patient-id="${patientId}" th:data-psychotherapist-id="${psychotherapistId}" onsubmit="return checkAppointmentData(this)">
+                                <form id="appointmentForm" th:data-patient-id="${patientId}" th:data-psychotherapist-id="${psychotherapistId}">
                                     <div class="mb-3">
                                         <label for="appointmentTitle" class="form-label">Title</label>
                                         <input type="text" class="form-control" id="appointmentTitle">
