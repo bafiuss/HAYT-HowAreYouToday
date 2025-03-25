@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", renderCalendar);
 
 async function fetchAppointments() {
     try {
-        let response = await fetch("/appointments");
+        let response = await fetch("/patient-appointments");
         let appointments = await response.json();
         return appointments.map(app => ({
             title: app.title,
