@@ -21,12 +21,20 @@ public class PatientAppointmentController {
     @Autowired
     private UserService userService;
 
-    @GetMapping ("/appointments")
-    public List<AppointmentEntity> getAllAppointments(HttpSession session) {
+    @GetMapping ("/patient-appointments")
+    public List<AppointmentEntity> getAllPatientAppointments(HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
         PsychotherapistEntity psychotherapistAssociated = userService.getPsychotherapistAssociated(patient.getId());
 
         return appointmentService.getAppointmentsByPatientAndTherapist(patient.getId(), psychotherapistAssociated.getId());
+    }
+
+    @GetMapping ("/psychotherapist-appointments")
+    public List<AppointmentEntity> getAllPsychotherapistAppointments(HttpSession session) {
+        PatientEntity patient = (PatientEntity) session.getAttribute("user");
+        PsychotherapistEntity psychotherapistAssociated = userService.getPsychotherapistAssociated(patient.getId());
+
+        return appointmentService.getAppointmentsByPatient(psychotherapistAssociated.getId());
     }
 
     @PostMapping("/save-appointment")

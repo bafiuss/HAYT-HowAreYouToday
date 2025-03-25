@@ -39,5 +39,9 @@ public class AppointmentService {
         return appointmentRepository.findByPatientIdAndPsychotherapistId(patientId, psychotherapistId);
     }
 
+    public List<AppointmentEntity> getAppointmentsByPatient(Long psychotherapistId){
+        return appointmentRepository.findByPsychotherapistId(psychotherapistId);
+    }
+
 }
 
