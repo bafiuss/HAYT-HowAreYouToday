@@ -92,6 +92,7 @@
     background-color: rgba(255, 0, 0, 0.3) !important;
     color: white !important;
     font-weight: bold;
+    cursor: pointer;
 }
 .alert{
     z-index: 2;
@@ -140,12 +141,13 @@ input:focus, textarea:focus {
 #saveAppointmentButton:hover{
     background-color: #4b9b6e !important;
 }
-#saveAppointmentButton, #closeAppointmentButton {
+#saveAppointmentButton, #closeAppointmentButton, #closeDetailsAppointmentButton {
     font-size: 16px;
 }
-#closeAppointmentButton:hover{
+#closeAppointmentButton:hover, #closeDetailsAppointmentButton:hover{
     background-color: #5a6268 !important;
 }
+
 
 
 @media (max-width: 900px) {
