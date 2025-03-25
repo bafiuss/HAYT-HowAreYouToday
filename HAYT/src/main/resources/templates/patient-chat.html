@@ -109,18 +109,21 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="appointmentForm" th:data-patient-id="${patientId}" th:data-psychotherapist-id="${psychotherapistId}">
+                                <form id="appointmentForm" th:data-patient-id="${patientId}" th:data-psychotherapist-id="${psychotherapistId}" onsubmit="return checkAppointmentData(this)">
                                     <div class="mb-3">
                                         <label for="appointmentTitle" class="form-label">Title</label>
                                         <input type="text" class="form-control" id="appointmentTitle">
+                                        <span id="errorAppointmentTitle" style="font-size: 15px;"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="appointmentDate" class="form-label">Date and Time</label>
-                                        <input type="datetime-local" class="form-control" id="appointmentDate">
+                                        <input type="datetime-local" class="form-control" id="appointmentDate" required>
+                                        <span id="errorAppointmentDate" style="font-size: 15px;"></span>
                                     </div>
                                     <div class="mb-3">
                                         <label for="appointmentDescription" class="form-label">Description</label>
-                                        <textarea class="form-control" id="appointmentDescription" rows="3"></textarea>
+                                        <textarea class="form-control" id="appointmentDescription" rows="3" required></textarea>
+                                        <span id="errorAppointmentDescription" style="font-size: 15px;"></span>
                                     </div>
                                 </form>
                             </div>
