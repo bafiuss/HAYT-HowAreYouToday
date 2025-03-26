@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Table(name = "messages")
 public class MessageEntity {
 
     @Id
