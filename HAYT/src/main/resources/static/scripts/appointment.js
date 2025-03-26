@@ -226,8 +226,8 @@ function setupSaveAppointmentButton() {
                         .then(response => response.text())
                         .then(data => {
                             document.getElementById("closeAppointmentButton").click();
-                            highlightAppointmentDay(dateTime); // Questa riga aggiorna immediatamente la cella
-                            renderCalendar(); // Questo ricarica il calendario senza ricaricare la pagina
+                            highlightAppointmentDay(dateTime);
+                            renderCalendar();
 
                             document.getElementById("appointmentTitle").value = "";
                             document.getElementById("appointmentDate").value = "";
@@ -249,7 +249,7 @@ function setupSaveAppointmentButton() {
 function getAppointmentsForPsychotherapist() {
     const patientId = document.getElementById("appointmentForm").dataset.patientId;
 
-    return fetch('/psychotherapist-appointments', {
+    return fetch('/psychotherapist-associated-appointments', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
