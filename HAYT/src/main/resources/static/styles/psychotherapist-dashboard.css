@@ -78,7 +78,12 @@
     font-weight: bold;
     cursor: pointer;
 }
-
+.modal-header{
+    background-color: #607D8B;
+}
+.modal-header .modal-title{
+    color: white;
+}
 
 @media (max-width: 900px) {
     .day, .day-name {
