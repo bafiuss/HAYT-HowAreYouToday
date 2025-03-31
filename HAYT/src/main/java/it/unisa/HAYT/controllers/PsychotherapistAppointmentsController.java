@@ -1,7 +1,9 @@
 package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.dto.AppointmentDTO;
+import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.servicies.AppointmentService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,9 @@ public class PsychotherapistAppointmentsController {
     private AppointmentService appointmentService;
 
     @GetMapping("/psychotherapist-appointments")
-    public List<AppointmentDTO> getPsychotherapistAppointments() {
-        return appointmentService.getAllAppointments();
+    public List<AppointmentDTO> getPsychotherapistAppointments(HttpSession session) {
+        PsychotherapistEntity psychotherapist = (PsychotherapistEntity) session.getAttribute("user");
+
+        return appointmentService.getAllPsychotherapistAppointments(psychotherapist.getId());
     }
 }
