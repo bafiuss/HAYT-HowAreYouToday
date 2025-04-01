@@ -108,6 +108,8 @@ function showAppointmentsModal(day, appointments) {
 
     modalDate.textContent = `${day}${suffix} of ${monthName}`;
 
+    appointments.sort((a, b) => a.date - b.date);
+
     appointmentsList.innerHTML = "";
 
     appointments.forEach(app => {
