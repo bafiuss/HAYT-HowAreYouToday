@@ -21,16 +21,23 @@ public class PsychotherapistDashboardController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AppointmentService appointmentService;
+
 
     @GetMapping("/psychotherapist-dashboard")
     public String showPsychotherapistDashboardPage(Model model, HttpSession session) {
         UserEntity psychotherapist = (UserEntity) session.getAttribute("user");
-        int numberOfPatients = userService.getNumberOfPatientsAssociated(psychotherapist.getId());
 
+        int numberOfPatients = userService.getNumberOfPatientsAssociated(psychotherapist.getId());
         List<PatientEntity> firstTwoPatients = userService.getFirstTwoUsers();
+        int sessionsCompleted = appointmentService.getPastAppointmentsCount();
+        int scheduledAppointments = appointmentService.getFutureAppointmentsCount();
 
         model.addAttribute("numberOfPatient", numberOfPatients);
         model.addAttribute("firstTwoPatients", firstTwoPatients);
+        model.addAttribute("sessionsCompleted", sessionsCompleted);
+        model.addAttribute("scheduledAppointments", scheduledAppointments);
         model.addAttribute("hideNavLinks", false);
         model.addAttribute("currentPage", "psychotherapist-dashboard");
 
