@@ -8,6 +8,7 @@ import it.unisa.HAYT.repositories.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,6 +62,14 @@ public class AppointmentService {
         dto.setPatientLastName(appointment.getPatient().getLastName());
 
         return dto;
+    }
+
+    public int getPastAppointmentsCount() {
+        return appointmentRepository.countPastAppointments(LocalDateTime.now());
+    }
+
+    public int getFutureAppointmentsCount(){
+        return appointmentRepository.countFutureAppointments(LocalDateTime.now());
     }
 
 }
