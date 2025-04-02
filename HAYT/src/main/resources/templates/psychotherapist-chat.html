@@ -13,66 +13,103 @@
         <div th:insert="~{fragments/navbar :: navbar}"></div>
             <div class="content">
                 <div class="patients-header">
-                    <h1 class="title">Chat</h1>
+                    <h1 class="title">Chat & Appointments</h1>
                 </div>
-                <div class="col-lg-6 col-12 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header shadow-lg">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="d-flex align-items-center">
-                                        <img class="icon" th:src="'data:image/jpeg;base64,' + ${patient.getProfileImageBase64}" alt="Profile Image" />
-                                        <div class="ms-3">
-                                            <h4 class="mb-0 d-block" th:text="${patient.firstName + ' ' + patient.lastName}"></h4>
-                                        </div>
-                                    </div>
+                <div class="container-fluid py-5">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-4">
+                            <div class="card h-100 p-3" style="background-color: #595d7b;">
+                                <div class="calendar-header d-flex justify-content-between align-items-center">
+                                    <button class="btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2" id="monthYear">Appointments</h5>
+                                    <button class="btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-container">
+                                    <div class="calendar-grid" id="calendar" th:data-patient-id="${patientId}"></div>
                                 </div>
                             </div>
                         </div>
-                        <div id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
-                            <div th:each="msg : ${messages}">
 
-                                <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
-                                    <div class="col-auto">
-                                        <div class="card shadow" style="border: none;">
-                                            <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
-                                                <p class="m-1" th:text="${msg.content}"></p>
-                                                <div class="d-flex align-items-center text-sm opacity-6">
-                                                    <i class="ni ni-check-bold text-sm me-1"></i>
-                                                    <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
+                        <div class="col-lg-6 col-12 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header shadow-lg">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="d-flex align-items-center">
+                                                <img class="icon" th:src="'data:image/jpeg;base64,' + ${patient.getProfileImageBase64}" alt="Profile Image" />
+                                                <div class="ms-3">
+                                                    <h4 class="mb-0 d-block" th:text="${patient.firstName + ' ' + patient.lastName}"></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
+                                    <div th:each="msg : ${messages}">
+
+                                        <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
+                                            <div class="col-auto">
+                                                <div class="card shadow" style="border: none;">
+                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                        <p class="m-1" th:text="${msg.content}"></p>
+                                                        <div class="d-flex align-items-center text-sm opacity-6">
+                                                            <i class="ni ni-check-bold text-sm me-1"></i>
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
+                                            <div class="col-auto">
+                                                <div class="card shadow" style="background-color: #e9ecef; border: none;">
+                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                        <p class="m-1" th:text="${msg.content}"></p>
+                                                        <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
+                                                            <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
-                                    <div class="col-auto">
-                                        <div class="card shadow" style="background-color: #e9ecef; border: none;">
-                                            <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
-                                                <p class="m-1" th:text="${msg.content}"></p>
-                                                <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
-                                                    <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
-                                                </div>
-                                            </div>
+                                <div class="card-footer d-block">
+                                    <div class="d-flex">
+                                        <div class="input-group">
+                                            <input type="text" id="messageInput" class="form-control" placeholder="Type here" oninput="updateCharacterCount()" maxlength="255">
                                         </div>
+                                        <button onclick="sendMessage()" class="btn mb-0 ms-2" id="sendMessageButton">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                        </button>
                                     </div>
+                                    <small id="charCount" class="text-muted">0/255</small>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fixed-plugin">
+                    <div class="modal fade" id="appointmentsModal" tabindex="-1" aria-labelledby="appointmentsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="appointmentsModalLabel">Appointments for <span id="modalDate"></span></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="appointmentsList"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="closeDetailsAppointmentButton" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card-footer d-block">
-                            <div class="d-flex">
-                                <div class="input-group">
-                                    <input type="text" id="messageInput" class="form-control" placeholder="Type here" oninput="updateCharacterCount()" maxlength="255">
-                                </div>
-                                <button onclick="sendMessage()" class="btn mb-0 ms-2" id="sendMessageButton">
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                </button>
-                            </div>
-                            <small id="charCount" class="text-muted">0/255</small>
-                        </div>
-
                     </div>
                 </div>
 
@@ -83,6 +120,7 @@
             var senderId = [[${psychotherapistId}]];
             var receiverId = [[${patientId}]];
         </script>
+        <script src="/scripts/newscript.js"></script>
         <script src="/scripts/chat.js"></script>
     </body>
 </html>
