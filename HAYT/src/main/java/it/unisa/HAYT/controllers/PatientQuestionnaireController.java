@@ -24,13 +24,11 @@ public class PatientQuestionnaireController {
     @PostMapping("/save-questionnaire")
     public String submitQuestionnaire(@Valid @ModelAttribute("questionnaireDTO") QuestionnaireDTO questionnaireDTO,
                                       Model model,
-                                      HttpSession session
-    ) {
-
+                                      HttpSession session)
+    {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
-        long secondsLeft = questionnaireService.getSecondsUntilNextQuestionnaire(patient);
-
         questionnaireService.saveQuestionnaire(questionnaireDTO, patient);
+        long secondsLeft = questionnaireService.getSecondsUntilNextQuestionnaire(patient);
 
         model.addAttribute("countdown", secondsLeft);
         model.addAttribute("hideNavLinks", false);
@@ -38,5 +36,6 @@ public class PatientQuestionnaireController {
 
         return "patient-dashboard";
     }
+
 
 }

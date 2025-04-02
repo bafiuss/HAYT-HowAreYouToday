@@ -38,6 +38,7 @@
                                 <p class="ag-courses-item_description">Fill out the weekly questionnaire.</p>
                                 <strong id="countdown" class="ag-courses-item_description"></strong>
                             </a>
+
                         </div>
                         <div class="ag-courses_item">
                             <a href="/questionnaire" class="ag-courses-item_link">
@@ -270,19 +271,15 @@
                 </div>
         <div th:insert="~{fragments/footer :: footer}"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // Recupera il valore dal backend (se disponibile)
                 let secondsLeft = [[${countdown}]];
 
-                // Avvia il countdown solo se secondsLeft è maggiore di 0
-                if (secondsLeft > 0) {
-                    let questionnaireLink = document.getElementById("questionnaireLink");
-                    let countdownElement = document.getElementById("countdown");
-
-                    function updateCountdown() {
+                function updateCountdown() {
+                    if (secondsLeft > 0) {
                         let now = new Date().getTime();
-                        let futureTime = now + secondsLeft * 1000; // Ora della prossima compilazione
+                        let futureTime = now + secondsLeft * 1000;
 
                         function refreshCountdown() {
                             let currentTime = new Date().getTime();
@@ -294,37 +291,27 @@
                                 let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
                                 let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-                                countdownElement.innerText =
+                                document.getElementById("countdown").innerText =
                                     `Next questionnaire in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-                                questionnaireLink.classList.add("disabled"); // Aggiunge stile disabilitato
-                                questionnaireLink.removeAttribute("href");  // Rimuove href per evitare click
+                                document.getElementById("questionnaireLink").classList.add("disabled");
 
                                 setTimeout(refreshCountdown, 1000);
                             } else {
-                                countdownElement.innerText = "";
-                                questionnaireLink.classList.remove("disabled");
-                                questionnaireLink.setAttribute("href", "javascript:;"); // Riabilita il link
+                                document.getElementById("countdown").innerText = "";
+                                document.getElementById("questionnaireLink").classList.remove("disabled");
                             }
                         }
 
                         refreshCountdown();
+                    } else {
+                        document.getElementById("countdown").innerText = "";
+                        document.getElementById("questionnaireLink").classList.remove("disabled");
                     }
-
-                    updateCountdown();
-                } else {
-                    // Se secondsLeft è 0 o non disponibile, mostra direttamente il messaggio
-                    let countdownElement = document.getElementById("countdown");
-                    let questionnaireLink = document.getElementById("questionnaireLink");
-
-                    countdownElement.innerText = "";
-                    questionnaireLink.classList.remove("disabled");
-                    questionnaireLink.setAttribute("href", "javascript:;");
                 }
+
+                updateCountdown();
             });
         </script>
-
-
-
     </body>
 </html>

@@ -16,17 +16,18 @@ public class PatientDashboardController {
     private QuestionnaireService questionnaireService;
 
     @GetMapping("/patient-dashboard")
-    public String showPatientDashboardPage(Model model, HttpSession session) {
+    public String getDashboard(Model model, HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
+
         long secondsLeft = questionnaireService.getSecondsUntilNextQuestionnaire(patient);
 
-        model.addAttribute("hideNavLinks", false);
-        model.addAttribute("currentPage", "patient-dashboard");
-        model.addAttribute("questionnaireDTO", new QuestionnaireDTO());
         model.addAttribute("countdown", secondsLeft);
+        model.addAttribute("hideNavLinks", false);
+        model.addAttribute("questionnaireDTO", new QuestionnaireDTO());
 
         return "patient-dashboard";
     }
+
 
 
 }
