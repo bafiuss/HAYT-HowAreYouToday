@@ -54,9 +54,15 @@
                                     </div>
                                 </div>
                                 <div id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
-                                    <div th:each="msg : ${messages}">
+                                    <div th:each="msg, iterStat : ${messages}">
 
-                                        <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
+                                        <div th:if="${iterStat.first or #temporals.format(msg.timestamp, 'yyyy-MM-dd') != #temporals.format(messages[iterStat.index - 1].timestamp, 'yyyy-MM-dd')}"
+                                             class="text-center my-3 text-muted">
+                                            <b th:text="${#strings.toUpperCase(#temporals.format(msg.timestamp, 'dd/MM/yyyy'))}"></b>
+                                        </div>
+
+                                        <div class="row justify-content-start mb-4"
+                                             th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
                                             <div class="col-auto">
                                                 <div class="card shadow" style="border: none;">
                                                     <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
@@ -70,7 +76,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
+                                        <div class="row justify-content-end text-right mb-4"
+                                             th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
                                             <div class="col-auto">
                                                 <div class="card shadow" style="background-color: #e9ecef; border: none;">
                                                     <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
@@ -82,8 +89,10 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
+
 
                                 <div class="card-footer d-block">
                                     <div class="d-flex">
