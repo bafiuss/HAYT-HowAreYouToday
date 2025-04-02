@@ -29,7 +29,7 @@ public class PatientAppointmentController {
         return appointmentService.getAppointmentsByPatientAndTherapist(patient.getId(), psychotherapistAssociated.getId());
     }
 
-    @GetMapping ("/psychotherapist-appointments")
+    @GetMapping ("/psychotherapist-associated-appointments")
     public List<AppointmentEntity> getAllPsychotherapistAppointments(HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
         PsychotherapistEntity psychotherapistAssociated = userService.getPsychotherapistAssociated(patient.getId());

@@ -5,14 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
     background-color: #F5F5F5;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 20 20'%3E%3Cg %3E%3Cpolygon fill='%23F2F2F2' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23F2F2F2' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E");
 }
-
-.patients-header{
+.psychotherapist-chat-header{
     text-align: center;
 }
-
 .container {
     max-width: 900px;
     text-align: center;
@@ -23,7 +22,6 @@
     color: #4F46E5;
     margin-top: 50px;
 }
-
 .icon {
     width: 90px;
     height: 90px;
@@ -35,6 +33,11 @@
     max-width: 100%;
     overflow: hidden;
 }
+input:focus, textarea:focus {
+    outline: none !important;
+    border-color: #4b9b6e !important;
+    box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
+}
 #sendMessageButton{
     background-color: #4F46E5;
 }
@@ -42,23 +45,22 @@
     color: white !important;
     transition: color 0s;
 }
-#sendMessageButton:active i {
-    color: white !important;
-}
 #sendMessageButton:hover i{
     color: rgba(255, 255, 255, 0.66) !important;
 }
-#saveAppointmentButton{
-    background-color: #6bbf8a;
-    border-color: #4b9b6e;
-}
-#saveAppointmentButton:hover{
-    background-color: #4b9b6e !important;
-}
 
-#saveAppointmentButton, #closeAppointmentButton {
-    font-size: 16px;
+@media (max-width: 768px) {
+    .title{
+        font-size: 2.2em;
+    }
 }
-#closeAppointmentButton:hover{
-    background-color: #5a6268 !important;
+@media (max-width: 600px) {
+    .title{
+        font-size: 2em;
+    }
+}
+@media (max-width: 415px) {
+    .title{
+        font-size: 1.8em;
+    }
 }

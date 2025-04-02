@@ -31,7 +31,7 @@ async function renderCalendar() {
     let month = currentDate.getMonth();
     let today = new Date();
 
-    monthYear.textContent = `Appointments - ${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
+    monthYear.textContent = `${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
 
     const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     daysOfWeek.forEach(day => {
@@ -107,6 +107,8 @@ function showAppointmentsModal(day, appointments) {
     const monthName = new Intl.DateTimeFormat("en-US", { month: "long" }).format(new Date());
 
     modalDate.textContent = `${day}${suffix} of ${monthName}`;
+
+    appointments.sort((a, b) => a.date - b.date);
 
     appointmentsList.innerHTML = "";
 
@@ -226,8 +228,8 @@ function setupSaveAppointmentButton() {
                         .then(response => response.text())
                         .then(data => {
                             document.getElementById("closeAppointmentButton").click();
-                            highlightAppointmentDay(dateTime); // Questa riga aggiorna immediatamente la cella
-                            renderCalendar(); // Questo ricarica il calendario senza ricaricare la pagina
+                            highlightAppointmentDay(dateTime);
+                            renderCalendar();
 
                             document.getElementById("appointmentTitle").value = "";
                             document.getElementById("appointmentDate").value = "";
@@ -249,7 +251,7 @@ function setupSaveAppointmentButton() {
 function getAppointmentsForPsychotherapist() {
     const patientId = document.getElementById("appointmentForm").dataset.patientId;
 
-    return fetch('/psychotherapist-appointments', {
+    return fetch('/psychotherapist-associated-appointments', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
