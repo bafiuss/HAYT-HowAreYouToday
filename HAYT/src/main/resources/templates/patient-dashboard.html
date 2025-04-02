@@ -32,10 +32,11 @@
                             </a>
                         </div>
                         <div class="ag-courses_item">
-                            <a class="ag-courses-item_link" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newPageModal">
+                            <a class="ag-courses-item_link" href="javascript:;" id="questionnaireLink" data-bs-toggle="modal" data-bs-target="#newPageModal">
                                 <div class="ag-courses-item_bg"></div>
                                 <div class="ag-courses-item_title">Questionnaire ❓</div>
                                 <p class="ag-courses-item_description">Fill out the weekly questionnaire.</p>
+                                <strong id="countdown" class="ag-courses-item_description"></strong>
                             </a>
                         </div>
                         <div class="ag-courses_item">
@@ -269,5 +270,61 @@
                 </div>
         <div th:insert="~{fragments/footer :: footer}"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Recupera il valore dal backend (se disponibile)
+                let secondsLeft = [[${countdown}]];
+
+                // Avvia il countdown solo se secondsLeft è maggiore di 0
+                if (secondsLeft > 0) {
+                    let questionnaireLink = document.getElementById("questionnaireLink");
+                    let countdownElement = document.getElementById("countdown");
+
+                    function updateCountdown() {
+                        let now = new Date().getTime();
+                        let futureTime = now + secondsLeft * 1000; // Ora della prossima compilazione
+
+                        function refreshCountdown() {
+                            let currentTime = new Date().getTime();
+                            let timeDiff = futureTime - currentTime;
+
+                            if (timeDiff > 0) {
+                                let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                                let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                                let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                                countdownElement.innerText =
+                                    `Next questionnaire in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                                questionnaireLink.classList.add("disabled"); // Aggiunge stile disabilitato
+                                questionnaireLink.removeAttribute("href");  // Rimuove href per evitare click
+
+                                setTimeout(refreshCountdown, 1000);
+                            } else {
+                                countdownElement.innerText = "";
+                                questionnaireLink.classList.remove("disabled");
+                                questionnaireLink.setAttribute("href", "javascript:;"); // Riabilita il link
+                            }
+                        }
+
+                        refreshCountdown();
+                    }
+
+                    updateCountdown();
+                } else {
+                    // Se secondsLeft è 0 o non disponibile, mostra direttamente il messaggio
+                    let countdownElement = document.getElementById("countdown");
+                    let questionnaireLink = document.getElementById("questionnaireLink");
+
+                    countdownElement.innerText = "";
+                    questionnaireLink.classList.remove("disabled");
+                    questionnaireLink.setAttribute("href", "javascript:;");
+                }
+            });
+        </script>
+
+
+
     </body>
 </html>
