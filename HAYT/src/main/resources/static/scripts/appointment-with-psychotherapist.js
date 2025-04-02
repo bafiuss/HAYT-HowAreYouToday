@@ -40,7 +40,7 @@ async function renderCalendar(patientId) {
     let month = currentDate.getMonth();
     let today = new Date();
 
-    monthYear.textContent = `Appointments - ${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
+    monthYear.textContent = `${new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(currentDate)}`;
 
     const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     daysOfWeek.forEach(day => {
