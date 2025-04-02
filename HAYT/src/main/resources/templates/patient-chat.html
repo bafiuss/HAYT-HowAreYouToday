@@ -22,24 +22,24 @@
                 <div class="container-fluid py-5">
                     <div class="row">
 
-                        <div class="col-lg-6 col-12 mb-4">
-                            <div class="card h-100 p-3" style="background-color: #595d7b;">
-                                <div class="calendar-header d-flex justify-content-between align-items-center">
-                                    <button class="btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
-                                    <h5 class="text-white font-weight-bolder mb-4 pt-2" id="monthYear">Appointments</h5>
-                                    <button class="btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+                            <div class="col-lg-6 col-12 mb-4" style="max-height: 550px;">
+                                <div class="card h-100 p-3" style="background-color: #595d7b;">
+                                    <div class="calendar-header d-flex justify-content-between align-items-center">
+                                        <button class="btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+                                        <h5 class="text-white font-weight-bolder mb-4 pt-2" id="monthYear">Appointments</h5>
+                                        <button class="btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="calendar-container">
+                                        <div class="calendar-grid" id="calendar"></div>
+                                    </div>
+                                    <a class="text-white text-center text-sm font-weight-bold mb-4 icon-move-right mt-4"
+                                       style="text-decoration: none;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                                        Appointment <i class="fas fa-plus text-sm ms-1" aria-hidden="true"></i>
+                                    </a>
                                 </div>
-                                <div class="calendar-container">
-                                    <div class="calendar-grid" id="calendar"></div>
-                                </div>
-                                <a class="text-white text-center text-sm font-weight-bold mb-4 icon-move-right mt-4"
-                                   style="text-decoration: none;" href="javascript:;" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
-                                    Appointment <i class="fas fa-plus text-sm ms-1" aria-hidden="true"></i>
-                                </a>
                             </div>
-                        </div>
 
-                        <div class="col-lg-6 col-12 mb-4">
+                        <div class="col-lg-6 col-12 mb-4" style="max-height: 550px;">
                             <div class="card h-100">
                                 <div class="card-header shadow-lg">
                                     <div class="row">

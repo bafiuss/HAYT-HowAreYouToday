@@ -58,3 +58,19 @@ input:focus, textarea:focus {
     color: rgba(255, 255, 255, 0.66) !important;
 }
 
+@media (max-width: 768px) {
+    .title{
+        font-size: 2.2em;
+    }
+}
+@media (max-width: 600px) {
+    .title{
+        font-size: 2em;
+    }
+}
+@media (max-width: 415px) {
+    .title{
+        font-size: 1.8em;
+    }
+}
+

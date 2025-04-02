@@ -45,3 +45,19 @@ input:focus, textarea:focus {
     color: white !important;
     transition: color 0s;
 }
+
+@media (max-width: 768px) {
+    .title{
+        font-size: 2.2em;
+    }
+}
+@media (max-width: 600px) {
+    .title{
+        font-size: 2em;
+    }
+}
+@media (max-width: 415px) {
+    .title{
+        font-size: 1.8em;
+    }
+}
