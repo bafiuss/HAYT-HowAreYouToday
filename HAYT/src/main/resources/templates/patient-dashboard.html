@@ -59,214 +59,214 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
+
                         <form action="/save-questionnaire" method="post" th:object="${questionnaireDTO}">
+                            <div style="padding: 0 1em">
+                                <!-- Depressed Mood -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt sad, down, or hopeless for most of the day?</p>
+                                    <select class="form-select" th:field="*{depressedMood}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day for most of the time</option>
+                                    </select>
+                                </div>
 
-                            <!-- Depressed Mood -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt sad, down, or hopeless for most of the day?</p>
-                                <select class="form-select" th:field="*{depressedMood}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day for most of the time</option>
-                                </select>
+                                <!-- Loss of Interest or Pleasure -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you lost interest or pleasure in activities you usually enjoy?</p>
+                                    <select class="form-select" th:field="*{lossOfInterest}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day for most of the time</option>
+                                    </select>
+                                </div>
+
+                                <!-- Changes in Appetite or Weight -->
+                                <div class="mb-3">
+                                    <p>In the past week, have you noticed significant changes in your appetite or weight (without trying to diet)?</p>
+                                    <select class="form-select" th:field="*{appetiteChanges}">
+                                        <option value="1">No changes</option>
+                                        <option value="2">Slight decrease in appetite or slight weight loss</option>
+                                        <option value="3">Significant decrease in appetite or noticeable weight loss</option>
+                                        <option value="4">Increased appetite or slight weight gain</option>
+                                        <option value="5">Significant increase in appetite or noticeable weight gain</option>
+                                    </select>
+                                </div>
+
+                                <!-- Insomnia or Hypersomnia -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you had trouble sleeping or, on the contrary, slept too much?</p>
+                                    <select class="form-select" th:field="*{insomnia}">
+                                        <option value="1">No difficulties</option>
+                                        <option value="2">Trouble sleeping for 1-2 nights</option>
+                                        <option value="3">Trouble sleeping for 3-4 nights</option>
+                                        <option value="4">Slept much more than usual for 1-2 days</option>
+                                        <option value="5">Slept much more than usual for 3-4 days or more</option>
+                                    </select>
+                                </div>
+
+                                <!-- Psychomotor Agitation or Retardation -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt particularly agitated or slowed down in your movements or speech?</p>
+                                    <select class="form-select" th:field="*{psychomotorAgitation}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day for most of the time</option>
+                                    </select>
+                                </div>
+
+                                <!-- Fatigue or Loss of Energy -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt tired or lacked energy?</p>
+                                    <select class="form-select" th:field="*{fatigue}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day for most of the time</option>
+                                    </select>
+                                </div>
+
+                                <!-- Feelings of Worthlessness or Guilt -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt worthless or experienced excessive guilt?</p>
+                                    <select class="form-select" th:field="*{worthlessness}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day for most of the time</option>
+                                    </select>
+                                </div>
+
+                                <!-- Difficulty Concentrating -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you had difficulty concentrating or making decisions, even for simple matters?</p>
+                                    <select class="form-select" th:field="*{difficultyConcentratingDepression}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day for most of the time</option>
+                                    </select>
+                                </div>
+
+                                <!-- ANXIETY SECTION -->
+                                <h5 class="mt-4">ANXIETY</h5>
+
+                                <!-- Excessive Worry -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you worried excessively about things that normally wouldn’t cause much concern?</p>
+                                    <select class="form-select" th:field="*{excessiveWorry}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Difficulty Controlling Worry -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you found it difficult to control or stop worrying?</p>
+                                    <select class="form-select" th:field="*{difficultyControllingWorry}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Restlessness or Feeling Tense -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt restless or tense?</p>
+                                    <select class="form-select" th:field="*{restlessness}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Easy Fatigue -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt easily tired?</p>
+                                    <select class="form-select" th:field="*{easyFatigue}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Difficulty Concentrating -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you had difficulty concentrating or keeping your mind focused on one thing for an extended period?</p>
+                                    <select class="form-select" th:field="*{difficultyConcentratingAnxiety}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Irritability -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you felt irritable or easily annoyed by small things?</p>
+                                    <select class="form-select" th:field="*{irritability}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Muscle Tension -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you noticed muscle tension?</p>
+                                    <select class="form-select" th:field="*{muscleTension}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- Sleep Disturbances -->
+                                <div class="mb-3">
+                                    <p>In the past week, how often have you had difficulty sleeping?</p>
+                                    <select class="form-select" th:field="*{sleepDisturbances}">
+                                        <option value="1">Never</option>
+                                        <option value="2">1-2 days</option>
+                                        <option value="3">3-4 days</option>
+                                        <option value="4">5-6 days</option>
+                                        <option value="5">Every day</option>
+                                    </select>
+                                </div>
                             </div>
-
-                            <!-- Loss of Interest or Pleasure -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you lost interest or pleasure in activities you usually enjoy?</p>
-                                <select class="form-select" th:field="*{lossOfInterest}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day for most of the time</option>
-                                </select>
-                            </div>
-
-                            <!-- Changes in Appetite or Weight -->
-                            <div class="mb-3">
-                                <p>In the past week, have you noticed significant changes in your appetite or weight (without trying to diet)?</p>
-                                <select class="form-select" th:field="*{appetiteChanges}">
-                                    <option value="1">No changes</option>
-                                    <option value="2">Slight decrease in appetite or slight weight loss</option>
-                                    <option value="3">Significant decrease in appetite or noticeable weight loss</option>
-                                    <option value="4">Increased appetite or slight weight gain</option>
-                                    <option value="5">Significant increase in appetite or noticeable weight gain</option>
-                                </select>
-                            </div>
-
-                            <!-- Insomnia or Hypersomnia -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you had trouble sleeping or, on the contrary, slept too much?</p>
-                                <select class="form-select" th:field="*{insomnia}">
-                                    <option value="1">No difficulties</option>
-                                    <option value="2">Trouble sleeping for 1-2 nights</option>
-                                    <option value="3">Trouble sleeping for 3-4 nights</option>
-                                    <option value="4">Slept much more than usual for 1-2 days</option>
-                                    <option value="5">Slept much more than usual for 3-4 days or more</option>
-                                </select>
-                            </div>
-
-                            <!-- Psychomotor Agitation or Retardation -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt particularly agitated or slowed down in your movements or speech?</p>
-                                <select class="form-select" th:field="*{psychomotorAgitation}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day for most of the time</option>
-                                </select>
-                            </div>
-
-                            <!-- Fatigue or Loss of Energy -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt tired or lacked energy?</p>
-                                <select class="form-select" th:field="*{fatigue}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day for most of the time</option>
-                                </select>
-                            </div>
-
-                            <!-- Feelings of Worthlessness or Guilt -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt worthless or experienced excessive guilt?</p>
-                                <select class="form-select" th:field="*{worthlessness}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day for most of the time</option>
-                                </select>
-                            </div>
-
-                            <!-- Difficulty Concentrating -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you had difficulty concentrating or making decisions, even for simple matters?</p>
-                                <select class="form-select" th:field="*{difficultyConcentratingDepression}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day for most of the time</option>
-                                </select>
-                            </div>
-
-                            <!-- ANXIETY SECTION -->
-                            <h5 class="mt-4">ANXIETY</h5>
-
-                            <!-- Excessive Worry -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you worried excessively about things that normally wouldn’t cause much concern?</p>
-                                <select class="form-select" th:field="*{excessiveWorry}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Difficulty Controlling Worry -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you found it difficult to control or stop worrying?</p>
-                                <select class="form-select" th:field="*{difficultyControllingWorry}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Restlessness or Feeling Tense -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt restless or tense?</p>
-                                <select class="form-select" th:field="*{restlessness}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Easy Fatigue -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt easily tired?</p>
-                                <select class="form-select" th:field="*{easyFatigue}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Difficulty Concentrating -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you had difficulty concentrating or keeping your mind focused on one thing for an extended period?</p>
-                                <select class="form-select" th:field="*{difficultyConcentratingAnxiety}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Irritability -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you felt irritable or easily annoyed by small things?</p>
-                                <select class="form-select" th:field="*{irritability}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Muscle Tension -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you noticed muscle tension?</p>
-                                <select class="form-select" th:field="*{muscleTension}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
-                            <!-- Sleep Disturbances -->
-                            <div class="mb-3">
-                                <p>In the past week, how often have you had difficulty sleeping?</p>
-                                <select class="form-select" th:field="*{sleepDisturbances}">
-                                    <option value="1">Never</option>
-                                    <option value="2">1-2 days</option>
-                                    <option value="3">3-4 days</option>
-                                    <option value="4">5-6 days</option>
-                                    <option value="5">Every day</option>
-                                </select>
-                            </div>
-
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                            
-                        </form>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-            </div>
         <div th:insert="~{fragments/footer :: footer}"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
