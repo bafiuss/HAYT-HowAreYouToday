@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -18,6 +20,11 @@ public class QuestionnaireEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
+    private PatientEntity patient;
+
 
     private int depressedMood;
     private int lossOfInterest;
@@ -36,4 +43,7 @@ public class QuestionnaireEntity {
     private int irritability;
     private int muscleTension;
     private int sleepDisturbances;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
 }

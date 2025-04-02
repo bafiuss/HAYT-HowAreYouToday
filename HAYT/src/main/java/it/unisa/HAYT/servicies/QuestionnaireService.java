@@ -1,10 +1,15 @@
 package it.unisa.HAYT.servicies;
 
 import it.unisa.HAYT.dto.QuestionnaireDTO;
+import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.QuestionnaireEntity;
 import it.unisa.HAYT.repositories.QuestionnaireRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 @Service
 public class QuestionnaireService {
@@ -12,7 +17,8 @@ public class QuestionnaireService {
     @Autowired
     private QuestionnaireRepository questionnaireRepository;
 
-    public void saveQuestionnaire(QuestionnaireDTO questionnaireDTO) {
+    public void saveQuestionnaire(QuestionnaireDTO questionnaireDTO, PatientEntity patient) {
+
         QuestionnaireEntity questionnaire = new QuestionnaireEntity();
 
         questionnaire.setDepressedMood(questionnaireDTO.getDepressedMood());
@@ -33,7 +39,26 @@ public class QuestionnaireService {
         questionnaire.setMuscleTension(questionnaireDTO.getMuscleTension());
         questionnaire.setSleepDisturbances(questionnaireDTO.getSleepDisturbances());
 
+        questionnaire.setPatient(patient);
+
+        questionnaire.setCompletedAt(LocalDateTime.now());
+
         questionnaireRepository.save(questionnaire);
     }
+
+    public LocalDateTime getLastQuestionnaireDate(PatientEntity patient) {
+        return questionnaireRepository.findLastSubmissionDateByPatientId(patient.getId());
+    }
+
+    public long getSecondsUntilNextQuestionnaire(PatientEntity patient) {
+        LocalDateTime lastSubmission = getLastQuestionnaireDate(patient);
+        if (lastSubmission == null) return 0;
+
+        LocalDateTime nextAvailable = lastSubmission.plusDays(7);
+        Duration timeLeft = Duration.between(LocalDateTime.now(), nextAvailable);
+
+        return Math.max(timeLeft.getSeconds(), 0);
+    }
+
 }
 
