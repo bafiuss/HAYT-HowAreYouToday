@@ -1,5 +1,6 @@
 package it.unisa.HAYT.controllers;
 
+import it.unisa.HAYT.dto.QuestionnaireDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ public class PatientDashboardController {
     public String showPatientDashboardPage(Model model) {
         model.addAttribute("hideNavLinks", false);
         model.addAttribute("currentPage", "patient-dashboard");
+        model.addAttribute("questionnaireDTO", new QuestionnaireDTO());
 
         return "patient-dashboard";
     }
