@@ -49,15 +49,14 @@
                                 <div id="chatMessages" class="card-body overflow-auto overflow-x-hidden">
                                     <div th:each="msg, iterStat : ${messages}">
 
-                                        <div th:if="${iterStat.first or #temporals.format(msg.timestamp, 'yyyy-MM-dd') != #temporals.format(messages[iterStat.index - 1].timestamp, 'yyyy-MM-dd')}"
-                                             class="text-center my-3 text-muted">
+                                        <div th:if="${iterStat.first or #temporals.format(msg.timestamp, 'yyyy-MM-dd') != #temporals.format(messages[iterStat.index - 1].timestamp, 'yyyy-MM-dd')}" class="text-center my-3 text-muted">
                                             <b th:text="${#strings.toUpperCase(#temporals.format(msg.timestamp, 'dd/MM/yyyy'))}"></b>
                                         </div>
 
                                         <div class="row justify-content-start mb-4" th:if="${msg.getReceiver().getId() == psychotherapistId} and ${msg.getSender().getId() == patientId}">
                                             <div class="col-auto">
                                                 <div class="card shadow" style="border: none;">
-                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                    <div class="card-body card-body-chat py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
                                                         <p class="m-1" th:text="${msg.content}"></p>
                                                         <div class="d-flex align-items-center text-sm opacity-6">
                                                             <i class="ni ni-check-bold text-sm me-1"></i>
@@ -71,7 +70,7 @@
                                         <div class="row justify-content-end text-right mb-4" th:if="${msg.getReceiver().getId() == patientId} and ${msg.getSender().getId() == psychotherapistId}">
                                             <div class="col-auto">
                                                 <div class="card shadow" style="background-color: #e9ecef; border: none;">
-                                                    <div class="card-body py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
+                                                    <div class="card-body card-body-chat py-2" style="max-width: 300px; word-wrap: break-word; white-space: normal; overflow: visible;">
                                                         <p class="m-1" th:text="${msg.content}"></p>
                                                         <div class="d-flex align-items-center justify-content-end text-sm opacity-6">
                                                             <small style="color: #67748E" th:text="${#temporals.format(msg.timestamp, 'hh:mm a')}"></small>
@@ -98,6 +97,55 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="questionnaires-header">
+                    <h1 class="title">Questionnaires</h1>
+                </div>
+                <div class="container-fluid py-2">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12 mt-4">
+                            <div class="card mb-4 border-0" style="background-color: transparent">
+                                <div class="card-body p-3">
+                                    <div class="row d-flex justify-content-center">
+
+                                        <div th:if="${questionnaires == null or questionnaires.size() == 0}" class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                                            <div class="card card-blog card-plain border-0" style="border-radius: 10px 10px 0 0;">
+                                                <div class="position-relative">
+                                                    <div class="d-block shadow-xl border-radius-xl">
+                                                        <img src="/images/patient/no-questionnaire-submitted.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body text-center" style="background-color: white; border-radius: 0 0 10px 10px;">
+                                                <p class="text-gradient text-dark mb-4 text-sm" style="color: #344767;">No questionnaires submitted</p>
+                                            </div>
+                                        </div>
+
+
+                                            <div th:each="questionnaire : ${questionnaires}" class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                                                <div class="card card-blog card-plain border-0" style="border-radius: 10px 10px 0 0;">
+                                                    <div class="position-relative">
+                                                        <div class="d-block shadow-xl border-radius-xl">
+                                                            <img src="/images/patient/questionnaire-image.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body text-center" style="background-color: white; border-radius: 0 0 10px 10px;">
+                                                    <p class="text-gradient text-dark mb-4 text-sm" style="color: #344767;">
+                                                        Submitted on <strong th:text="${#temporals.format(questionnaire.completedAt, 'dd/MM/yyyy')}"></strong>
+                                                    </p><div class="d-flex align-items-center justify-content-between">
+                                                        <button type="button" class="button-24" id="viewThoughtButton" data-bs-toggle="modal" data-bs-target="#newPageModal" style="width: 100%;">View</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- MODAL FOR APPOINTMENT LIST -->

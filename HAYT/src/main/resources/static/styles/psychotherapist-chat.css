@@ -12,6 +12,11 @@
 .psychotherapist-chat-header{
     text-align: center;
 }
+.card-body-chat {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
 .container {
     max-width: 900px;
     text-align: center;
@@ -21,6 +26,9 @@
     font-weight: bold;
     color: #4F46E5;
     margin-top: 50px;
+}
+.questionnaires-header .title{
+    margin-top: 0;
 }
 .icon {
     width: 90px;
