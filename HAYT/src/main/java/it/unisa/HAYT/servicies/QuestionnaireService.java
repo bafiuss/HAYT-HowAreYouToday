@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class QuestionnaireService {
@@ -44,6 +45,10 @@ public class QuestionnaireService {
         questionnaire.setCompletedAt(LocalDateTime.now());
 
         questionnaireRepository.save(questionnaire);
+    }
+
+    public List<QuestionnaireEntity> getPatientQuestionnaires(Long patientId){
+        return questionnaireRepository.findPatientQuestionnaires(patientId);
     }
 
     public LocalDateTime getLastQuestionnaireDate(PatientEntity patient) {

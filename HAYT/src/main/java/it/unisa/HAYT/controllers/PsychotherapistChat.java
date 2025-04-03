@@ -1,10 +1,8 @@
 package it.unisa.HAYT.controllers;
 
-import it.unisa.HAYT.entities.MessageEntity;
-import it.unisa.HAYT.entities.PatientEntity;
-import it.unisa.HAYT.entities.PsychotherapistEntity;
-import it.unisa.HAYT.entities.UserEntity;
+import it.unisa.HAYT.entities.*;
 import it.unisa.HAYT.servicies.MessageService;
+import it.unisa.HAYT.servicies.QuestionnaireService;
 import it.unisa.HAYT.servicies.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +25,22 @@ public class PsychotherapistChat {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private QuestionnaireService questionnaireService;
+
     @GetMapping("/psychotherapist-dashboard/patients/patient={id}")
     public String showPsychotherapistChatPage(@PathVariable("id") Long id, Model model, HttpSession session) {
         UserEntity psychotherapist = (PsychotherapistEntity) session.getAttribute("user");
         PatientEntity patientAssociated = userService.getPatientAssociated(id);
 
         List<MessageEntity> messages = messageService.getChatMessages(psychotherapist.getId(), patientAssociated.getId());
+        List<QuestionnaireEntity> questionnaires = questionnaireService.getPatientQuestionnaires(id);
+
 
         model.addAttribute("patientId", patientAssociated.getId());
         model.addAttribute("psychotherapistId", psychotherapist.getId());
         model.addAttribute("messages", messages);
+        model.addAttribute("questionnaires",questionnaires);
         model.addAttribute("patient", patientAssociated);
         model.addAttribute("hideNavLinks",false);
 
