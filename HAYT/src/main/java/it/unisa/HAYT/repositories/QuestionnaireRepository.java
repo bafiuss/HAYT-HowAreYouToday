@@ -3,6 +3,7 @@ package it.unisa.HAYT.repositories;
 import it.unisa.HAYT.entities.QuestionnaireEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -16,4 +17,7 @@ public interface QuestionnaireRepository extends JpaRepository<QuestionnaireEnti
 
     @Query("SELECT q FROM QuestionnaireEntity q WHERE q.patient.id =:patientId")
     List<QuestionnaireEntity> findPatientQuestionnaires(Long patientId);
+
+    @Query("SELECT q FROM QuestionnaireEntity q WHERE q.id = :id")
+    QuestionnaireEntity findByIdWithDetails(@Param("id") Long id);
 }

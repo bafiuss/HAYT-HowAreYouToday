@@ -65,5 +65,9 @@ public class QuestionnaireService {
         return Math.max(timeLeft.getSeconds(), 0);
     }
 
+    public QuestionnaireEntity getQuestionnaireByIdWithDetails(Long questionnaireId){
+        return questionnaireRepository.findByIdWithDetails(questionnaireId);
+    }
+
 }
 
