@@ -1,21 +1,19 @@
 package it.unisa.HAYT.controllers;
 
-import it.unisa.HAYT.entities.MessageEntity;
-import it.unisa.HAYT.entities.PatientEntity;
-import it.unisa.HAYT.entities.PsychotherapistEntity;
-import it.unisa.HAYT.entities.UserEntity;
+import it.unisa.HAYT.entities.*;
+import it.unisa.HAYT.repositories.QuestionnaireRepository;
 import it.unisa.HAYT.servicies.MessageService;
+import it.unisa.HAYT.servicies.QuestionnaireService;
 import it.unisa.HAYT.servicies.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PsychotherapistChat {
@@ -27,20 +25,35 @@ public class PsychotherapistChat {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private QuestionnaireService questionnaireService;
+
     @GetMapping("/psychotherapist-dashboard/patients/patient={id}")
     public String showPsychotherapistChatPage(@PathVariable("id") Long id, Model model, HttpSession session) {
         UserEntity psychotherapist = (PsychotherapistEntity) session.getAttribute("user");
         PatientEntity patientAssociated = userService.getPatientAssociated(id);
 
         List<MessageEntity> messages = messageService.getChatMessages(psychotherapist.getId(), patientAssociated.getId());
+        List<QuestionnaireEntity> questionnaires = questionnaireService.getPatientQuestionnaires(id);
+
 
         model.addAttribute("patientId", patientAssociated.getId());
         model.addAttribute("psychotherapistId", psychotherapist.getId());
         model.addAttribute("messages", messages);
+        model.addAttribute("questionnaires",questionnaires);
         model.addAttribute("patient", patientAssociated);
         model.addAttribute("hideNavLinks",false);
 
         return "psychotherapist-chat";
+    }
+
+
+    @GetMapping("/api/questionnaires/{questionnaireId}")
+    @ResponseBody
+    public ResponseEntity<QuestionnaireEntity> getQuestionnaire(@PathVariable Long questionnaireId) {
+        QuestionnaireEntity questionnaire = questionnaireService.getQuestionnaireByIdWithDetails(questionnaireId);
+
+        return ResponseEntity.ok(questionnaire);
     }
 
 }

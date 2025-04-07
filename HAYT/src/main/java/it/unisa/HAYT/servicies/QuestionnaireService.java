@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class QuestionnaireService {
@@ -46,6 +47,10 @@ public class QuestionnaireService {
         questionnaireRepository.save(questionnaire);
     }
 
+    public List<QuestionnaireEntity> getPatientQuestionnaires(Long patientId){
+        return questionnaireRepository.findPatientQuestionnaires(patientId);
+    }
+
     public LocalDateTime getLastQuestionnaireDate(PatientEntity patient) {
         return questionnaireRepository.findLastSubmissionDateByPatientId(patient.getId());
     }
@@ -58,6 +63,10 @@ public class QuestionnaireService {
         Duration timeLeft = Duration.between(LocalDateTime.now(), nextAvailable);
 
         return Math.max(timeLeft.getSeconds(), 0);
+    }
+
+    public QuestionnaireEntity getQuestionnaireByIdWithDetails(Long questionnaireId){
+        return questionnaireRepository.findByIdWithDetails(questionnaireId);
     }
 
 }

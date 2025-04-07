@@ -12,6 +12,11 @@
 .psychotherapist-chat-header{
     text-align: center;
 }
+.card-body-chat {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
 .container {
     max-width: 900px;
     text-align: center;
@@ -21,6 +26,9 @@
     font-weight: bold;
     color: #4F46E5;
     margin-top: 50px;
+}
+.questionnaires-header .title{
+    margin-top: 0;
 }
 .icon {
     width: 90px;
@@ -48,19 +56,77 @@ input:focus, textarea:focus {
 #sendMessageButton:hover i{
     color: rgba(255, 255, 255, 0.66) !important;
 }
+.mood-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+.mood-label {
+    flex: 1;
+    min-width: 250px;
+    text-align: justify;
+}
+.mood-bar {
+    height: 20px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    flex: 2;
+}
+
+.mood-bar-inner {
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    transition: width 0.5s ease;
+}
+
+.mood-bar span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mood-bar span:nth-child(1) { left: 20%; }
+.mood-bar span:nth-child(2) { left: 40%; }
+.mood-bar span:nth-child(3) { left: 60%; }
+.mood-bar span:nth-child(4) { left: 80%; }
+
+.btn-secondary:hover{
+    background-color: #5c606c !important;
+}
 
 @media (max-width: 768px) {
     .title{
         font-size: 2.2em;
+    }
+    .mood-label{
+        min-width: 200px;
     }
 }
 @media (max-width: 600px) {
     .title{
         font-size: 2em;
     }
+    .mood-label{
+        min-width: 185px;
+    }
 }
 @media (max-width: 415px) {
     .title{
         font-size: 1.8em;
+    }
+    .mood-label{
+        min-width: 150px;
+    }
+}
+@media (max-width: 375px) {
+    .mood-label{
+        min-width: 130px;
     }
 }
