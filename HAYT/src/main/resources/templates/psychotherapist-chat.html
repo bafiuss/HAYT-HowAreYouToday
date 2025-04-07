@@ -103,17 +103,17 @@
                 <h1 class="title">Questionnaires</h1>
             </div>
             <div class="container-fluid py-2">
-                <div class="row d-flex justify-content-center">
+                <div class="row">
                     <div class="col-12 mt-4">
                         <div class="card mb-4 border-0" style="background-color: transparent">
                             <div class="card-body p-3">
-                                <div class="row d-flex justify-content-center">
+                                <div class="row">
 
                                     <div th:if="${questionnaires == null or questionnaires.size() == 0}" class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                                         <div class="card card-blog card-plain border-0" style="border-radius: 10px 10px 0 0;">
                                             <div class="position-relative">
                                                 <div class="d-block shadow-xl border-radius-xl">
-                                                    <img src="/images/patient/no-questionnaire-submitted.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
+                                                    <img src="/images/patient/no-questionnaire-image.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
                                                 </div>
                                             </div>
                                         </div>
@@ -180,7 +180,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="mb-3 mood-container">
+                            <div class="mb-3 mood-container vertical">
                                 <p class="mood-label">In the past week, how often have you felt sad, down, or hopeless for most of the day?</p>
                                 <div id="depressedMoodBar" class="mood-bar"></div>
                             </div>
