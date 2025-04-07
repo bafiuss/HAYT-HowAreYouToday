@@ -1,6 +1,7 @@
 package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.dto.AppointmentDTO;
+import it.unisa.HAYT.dto.MessageDTO;
 import it.unisa.HAYT.entities.*;
 import it.unisa.HAYT.servicies.AppointmentService;
 import it.unisa.HAYT.servicies.MessageService;
@@ -48,8 +49,8 @@ public class PatientChatController {
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/messages")
-    public MessageEntity sendMessage(@Payload ChatMessage chatMessage) {
-        return messageService.saveMessage(chatMessage.getSenderId(), chatMessage.getReceiverId(), chatMessage.getContent());
+    public MessageEntity sendMessage(@Payload MessageDTO messageDTO) {
+        return messageService.saveMessage(messageDTO.getSenderId(), messageDTO.getReceiverId(), messageDTO.getContent());
     }
 
 }
