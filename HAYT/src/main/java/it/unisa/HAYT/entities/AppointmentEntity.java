@@ -4,10 +4,13 @@ import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.PsychotherapistEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "appointments")
 public class AppointmentEntity {
 
@@ -19,7 +22,6 @@ public class AppointmentEntity {
 
     private LocalDateTime dateTime;
 
-    @Column(length = 1000)
     private String description;
 
     @ManyToOne
@@ -30,4 +32,11 @@ public class AppointmentEntity {
     @JoinColumn(name = "psychotherapist_id")
     private PsychotherapistEntity psychotherapist;
 
+    public AppointmentEntity(String title, LocalDateTime dateTime, String description, PatientEntity patient, PsychotherapistEntity psychotherapist) {
+        this.title = title;
+        this.dateTime = dateTime;
+        this.description = description;
+        this.patient = patient;
+        this.psychotherapist = psychotherapist;
+    }
 }

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "questionnaires")
 public class QuestionnaireEntity {
@@ -46,4 +45,25 @@ public class QuestionnaireEntity {
 
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
+
+    public QuestionnaireEntity(PatientEntity patient, int depressedMood, int lossOfInterest, int appetiteChanges, int insomnia, int psychomotorAgitation, int fatigue, int worthlessness, int difficultyConcentratingDepression, int excessiveWorry, int difficultyControllingWorry, int restlessness, int easyFatigue, int difficultyConcentratingAnxiety, int irritability, int muscleTension, int sleepDisturbances, LocalDateTime completedAt) {
+        this.patient = patient;
+        this.depressedMood = depressedMood;
+        this.lossOfInterest = lossOfInterest;
+        this.appetiteChanges = appetiteChanges;
+        this.insomnia = insomnia;
+        this.psychomotorAgitation = psychomotorAgitation;
+        this.fatigue = fatigue;
+        this.worthlessness = worthlessness;
+        this.difficultyConcentratingDepression = difficultyConcentratingDepression;
+        this.excessiveWorry = excessiveWorry;
+        this.difficultyControllingWorry = difficultyControllingWorry;
+        this.restlessness = restlessness;
+        this.easyFatigue = easyFatigue;
+        this.difficultyConcentratingAnxiety = difficultyConcentratingAnxiety;
+        this.irritability = irritability;
+        this.muscleTension = muscleTension;
+        this.sleepDisturbances = sleepDisturbances;
+        this.completedAt = completedAt;
+    }
 }

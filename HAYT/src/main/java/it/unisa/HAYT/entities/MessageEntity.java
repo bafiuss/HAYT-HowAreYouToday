@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "messages")
 public class MessageEntity {
 
@@ -33,5 +34,11 @@ public class MessageEntity {
     @Column(nullable = false)
     private LocalDateTime timestamp;
 
+    public MessageEntity(UserEntity sender, UserEntity receiver, String content, LocalDateTime timestamp) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.content = content;
+        this.timestamp = timestamp;
+    }
 }
 
