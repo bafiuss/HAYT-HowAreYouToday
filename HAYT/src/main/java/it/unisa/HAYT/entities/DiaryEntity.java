@@ -18,6 +18,10 @@ public class DiaryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id", nullable = false)
+    private PatientEntity patient;
+
     private String title;
 
     @Column(columnDefinition = "TEXT")
