@@ -1,37 +1,41 @@
-document.getElementById("saveThoughtButton").addEventListener("click", async () => {
-    const titleInput = document.getElementById("pageTitle");
-    const contentInput = document.getElementById("pageContent");
-    const moodInput = document.querySelector(".form-select");
+const saveButton = document.getElementById("saveThoughtButton");
 
-    const diaryEntry = {
-        title: titleInput.value,
-        content: contentInput.value,
-        mood: moodInput.value
-    };
+if (saveButton) {
+    saveButton.addEventListener("click", async () => {
+        const titleInput = document.getElementById("pageTitle");
+        const contentInput = document.getElementById("pageContent");
+        const moodInput = document.querySelector(".form-select");
 
-    const response = await fetch("/api/diary", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(diaryEntry)
+        const diaryEntry = {
+            title: titleInput.value,
+            content: contentInput.value,
+            mood: moodInput.value
+        };
+
+        const response = await fetch("/api/diary", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(diaryEntry)
+        });
+
+        if (response.ok) {
+            const newThought = await response.json();
+
+            titleInput.value = "";
+            contentInput.value = "";
+            moodInput.value = "";
+
+            const modalElement = document.getElementById("newPageModal");
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+
+            addThoughtToList(newThought);
+
+        } else {
+            alert("Errore durante il salvataggio.");
+        }
     });
-
-    if (response.ok) {
-        const newThought = await response.json();
-
-        titleInput.value = "";
-        contentInput.value = "";
-        moodInput.value = "";
-
-        const modalElement = document.getElementById("newPageModal");
-        const modalInstance = bootstrap.Modal.getInstance(modalElement);
-        modalInstance.hide();
-
-        addThoughtToList(newThought);
-
-    } else {
-        alert("Errore durante il salvataggio.");
-    }
-});
+}
 
 function addThoughtToList(thought) {
     const thoughtsContainer = document.getElementById("thoughtsContainer");
@@ -94,7 +98,7 @@ function truncateText(text, maxLength) {
 
 function formatDate(isoString) {
     const date = new Date(isoString);
-    return date.toLocaleDateString('it-IT');
+    return date.toLocaleDateString('en-EN');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
