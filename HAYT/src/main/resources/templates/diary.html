@@ -84,16 +84,16 @@
                                 <div class="mb-3">
                                     <label class="form-label">Today I feel</label>
                                     <select class="form-select" name="mood" th:field="*{mood}">
-                                        <option value="happy">Happy</option>
-                                        <option value="sad">Sad</option>
-                                        <option value="anxious">Anxious</option>
-                                        <option value="lonely">Lonely</option>
-                                        <option value="confused">Confused</option>
-                                        <option value="angry">Angry</option>
-                                        <option value="motivated">Motivated</option>
-                                        <option value="overwhelmed">Overwhelmed</option>
-                                        <option value="hopeful">Hopeful</option>
-                                        <option value="grateful">Grateful</option>
+                                        <option value="Happy">Happy</option>
+                                        <option value="Sad">Sad</option>
+                                        <option value="Anxious">Anxious</option>
+                                        <option value="Lonely">Lonely</option>
+                                        <option value="Confused">Confused</option>
+                                        <option value="Angry">Angry</option>
+                                        <option value="Motivated">Motivated</option>
+                                        <option value="Overwhelmed">Overwhelmed</option>
+                                        <option value="Hopeful">Hopeful</option>
+                                        <option value="Grateful">Grateful</option>
                                     </select>
                                 </div>
                             </form>
@@ -137,98 +137,6 @@
     </div>
     <div th:insert="~{fragments/footer :: footer}"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById("saveThoughtButton").addEventListener("click", async () => {
-            const titleInput = document.getElementById("pageTitle");
-            const contentInput = document.getElementById("pageContent");
-            const moodInput = document.querySelector(".form-select");
-
-            const diaryEntry = {
-                title: titleInput.value,
-                content: contentInput.value,
-                mood: moodInput.value
-            };
-
-            const response = await fetch("/api/diary", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(diaryEntry)
-            });
-
-            if (response.ok) {
-                const newThought = await response.json();
-
-                titleInput.value = "";
-                contentInput.value = "";
-                moodInput.value = "";
-
-                const modalElement = document.getElementById("newPageModal");
-                const modalInstance = bootstrap.Modal.getInstance(modalElement);
-                modalInstance.hide();
-
-                addThoughtToList(newThought);
-
-            } else {
-                alert("Errore durante il salvataggio.");
-            }
-        });
-
-        function addThoughtToList(thought) {
-            const thoughtsContainer = document.getElementById("thoughtsContainer");
-            const newPageBox = thoughtsContainer.querySelector(".col-xl-3");
-
-            const thoughtHTML = `
-                <div class="col-xl-3 col-md-6 mb-4" id="thought-${thought.id}">
-                    <div class="card card-blog card-plain border-0">
-                        <div class="position-relative">
-                            <a class="d-block shadow-xl border-radius-xl">
-                                <img src="/images/patient/diary-thought.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767;">${formatDate(thought.createdAt)}</p>
-                               <h5 style="color: #344767;">
-                                   I feel <strong>${thought.mood}</strong>
-                               </h5>
-                            <p class="mb-4 text-sm" style="color: #8392AB;">${truncateText(thought.content, 30)}</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <button type="button" class="button-24" data-bs-toggle="modal" data-bs-target="#newPageModal">View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            newPageBox.insertAdjacentHTML("afterend", thoughtHTML);
-        }
-
-        function truncateText(text, maxLength) {
-            if (text.length <= maxLength) return text;
-            return text.slice(0, maxLength).trim() + "...";
-        }
-
-        function formatDate(isoString) {
-            const date = new Date(isoString);
-            return date.toLocaleDateString('it-IT');
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const buttons = document.querySelectorAll('.view-thought-button');
-
-            buttons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const title = this.getAttribute('data-title');
-                    const content = this.getAttribute('data-content');
-                    const mood = this.getAttribute('data-mood');
-
-                    // Popola i campi del modal
-                    document.getElementById('thoughtTitle').value = title;
-                    document.getElementById('thoughtContent').value = content;
-                    document.getElementById('thoughtMood').value = mood;
-
-                });
-            });
-        });
-    </script>
+    <script src="/scripts/diary.js"></script>
     </body>
 </html>
