@@ -2,40 +2,73 @@ const saveButton = document.getElementById("saveThoughtButton");
 
 if (saveButton) {
     saveButton.addEventListener("click", async () => {
+
         const titleInput = document.getElementById("pageTitle");
         const contentInput = document.getElementById("pageContent");
         const moodInput = document.querySelector(".form-select");
 
-        const diaryEntry = {
-            title: titleInput.value,
-            content: contentInput.value,
-            mood: moodInput.value
-        };
+        const errorTitle = document.getElementById("errorThoughtTitle");
+        const errorContent = document.getElementById("errorThoughtContent");
+        const errorMood = document.getElementById("errorThoughtMood");
 
-        const response = await fetch("/api/diary", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(diaryEntry)
-        });
+        errorTitle.textContent = "";
+        errorContent.textContent = "";
+        errorMood.textContent = "";
 
-        if (response.ok) {
-            const newThought = await response.json();
+        let isValid = true;
 
-            titleInput.value = "";
-            contentInput.value = "";
-            moodInput.value = "";
+        if (titleInput.value.trim() === "") {
+            errorTitle.textContent = "Title is required";
+            errorTitle.style.color = "red";
+            isValid = false;
+        }
 
-            const modalElement = document.getElementById("newPageModal");
-            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-            modalInstance.hide();
+        if (contentInput.value.trim() === "") {
+            errorContent.textContent = "Description is required";
+            errorContent.style.color = "red";
+            isValid = false;
+        }
 
-            addThoughtToList(newThought);
+        if (moodInput.value === "null" || moodInput.value.trim() === "") {
+            errorMood.textContent = "Mood is required";
+            errorMood.style.color = "red";
+            isValid = false;
+        }
 
-        } else {
-            alert("Errore durante il salvataggio.");
+        if (isValid) {
+
+            const diaryEntry = {
+                title: titleInput.value.trim(),
+                content: contentInput.value.trim(),
+                mood: moodInput.value
+            };
+
+            const response = await fetch("/api/diary", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(diaryEntry)
+            });
+
+            if (response.ok) {
+                const newThought = await response.json();
+
+                titleInput.value = "";
+                contentInput.value = "";
+                moodInput.value = "null";
+
+                const modalElement = document.getElementById("newPageModal");
+                const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                modalInstance.hide();
+
+                addThoughtToList(newThought);
+
+            } else {
+                alert("Errore durante il salvataggio.");
+            }
         }
     });
 }
+
 
 function addThoughtToList(thought) {
     const thoughtsContainer = document.getElementById("thoughtsContainer");

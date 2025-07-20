@@ -79,14 +79,17 @@
                                 <div class="mb-3">
                                     <label for="pageTitle" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="pageTitle" th:field="*{title}">
+                                    <span id="errorThoughtTitle" style="font-size: 15px;"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="pageContent" class="form-label">Content</label>
                                     <textarea class="form-control" id="pageContent" rows="3" th:field="*{content}"></textarea>
+                                    <span id="errorThoughtContent" style="font-size: 15px;"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Today I feel</label>
                                     <select class="form-select" name="mood" th:field="*{mood}">
+                                        <option value="null"></option>
                                         <option value="Happy">Happy</option>
                                         <option value="Sad">Sad</option>
                                         <option value="Anxious">Anxious</option>
@@ -98,6 +101,7 @@
                                         <option value="Hopeful">Hopeful</option>
                                         <option value="Grateful">Grateful</option>
                                     </select>
+                                    <span id="errorThoughtMood" style="font-size: 15px;"></span>
                                 </div>
                             </form>
                         </div>
