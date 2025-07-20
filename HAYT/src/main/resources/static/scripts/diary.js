@@ -47,21 +47,21 @@ function addThoughtToList(thought) {
 
     const thoughtHTML = `
         <div class="col-xl-3 col-md-6 mb-4" id="${thoughtId}">
-            <div class="card card-blog card-plain border-0">
+            <div class="card card-blog card-plain border-0 h-100 d-flex flex-column">
                 <div class="position-relative">
                     <a class="d-block shadow-xl border-radius-xl">
                         <img src="/images/patient/diary-thought.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
                     </a>
                 </div>
-                <div class="card-body">
+                <div class="card-body d-flex flex-column flex-grow-1">
                     <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767;">${formattedDate}</p>
                     <h5 style="color: #344767;">
                         I feel <strong>${thought.mood}</strong>
                     </h5>
                     <p class="mb-4 text-sm" style="color: #8392AB;">${truncatedContent}</p>
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center justify-content-between mt-auto">
                         <button type="button"
-                                class="button-24 view-thought-button"
+                                class="button-24 view-thought-button w-100"
                                 data-bs-toggle="modal"
                                 data-bs-target="#thoughtPageModal"
                                 data-title="${thought.title}"
@@ -98,7 +98,7 @@ function truncateText(text, maxLength) {
 
 function formatDate(isoString) {
     const date = new Date(isoString);
-    return date.toLocaleDateString('en-EN');
+    return date.toLocaleDateString('it-IT');
 }
 
 document.addEventListener("DOMContentLoaded", () => {

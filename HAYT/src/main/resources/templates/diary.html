@@ -29,29 +29,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div th:each="thought : ${thoughtsList}"  class="col-xl-3 col-md-6 mb-4">
-                                        <div class="card card-blog card-plain border-0">
+                                    <div th:each="thought : ${thoughtsList}" class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card card-blog card-plain border-0 h-100 d-flex flex-column">
                                             <div class="position-relative">
                                                 <a class="d-block shadow-xl border-radius-xl">
                                                     <img src="/images/patient/diary-thought.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl rounded-top">
                                                 </a>
                                             </div>
-                                            <div class="card-body">
-                                                <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767; !important;" th:text="${#temporals.format(thought.getCreatedAt(), 'dd/MM/yyyy')}"></p>
-                                                <a href="javascript:;">
-                                                    <h5 style="color: #344767; !important;">
+                                            <div class="card-body d-flex flex-column flex-grow-1">
+                                                <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767;" th:text="${#temporals.format(thought.getCreatedAt(), 'dd/MM/yyyy')}"></p>
+                                                    <h5 style="color: #344767;">
                                                         I feel <strong th:text="${thought.getMood()}"></strong>
                                                     </h5>
-                                                </a>
-                                                    <p class="mb-4 text-sm" style="color: #8392AB !important" th:text="${thought.content.length() > 30 ? thought.content.substring(0, 30) + '...' : thought.content}"></p>
-                                                <div class="d-flex align-items-center justify-content-between">
+                                                <p class="mb-4 text-sm" style="color: #8392AB;" th:text="${thought.content.length() > 30 ? thought.content.substring(0, 30) + '...' : thought.content}"></p>
+                                                <div class="d-flex align-items-center justify-content-between mt-auto">
                                                     <button type="button"
-                                                            class="button-24 view-thought-button"
+                                                            class="button-24 view-thought-button w-100"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#thoughtPageModal"
                                                             th:attr="data-title=${thought.title},
-                                                                     data-content=${thought.content},
-                                                                     data-mood=${thought.mood}">
+                                                             data-content=${thought.content},
+                                                             data-mood=${thought.mood}">
                                                         View
                                                     </button>
                                                 </div>
