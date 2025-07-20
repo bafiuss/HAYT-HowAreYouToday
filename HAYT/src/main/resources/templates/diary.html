@@ -37,8 +37,11 @@
                                                 </a>
                                             </div>
                                             <div class="card-body d-flex flex-column flex-grow-1">
-                                                <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767;" th:text="${#temporals.format(thought.getCreatedAt(), 'dd/MM/yyyy')}"></p>
-                                                    <h5 style="color: #344767;">
+                                                <div class="d-flex justify-content-between text-sm mb-2" style="color: #344767;">
+                                                    <span th:text="${#temporals.format(thought.getCreatedAt(), 'dd/MM/yyyy')}"></span>
+                                                    <span th:text="${#temporals.format(thought.getCreatedAt(), 'hh:mm a')}"></span>
+                                                </div>
+                                                <h5 style="color: #344767;">
                                                         I feel <strong th:text="${thought.getMood()}"></strong>
                                                     </h5>
                                                 <p class="mb-4 text-sm" style="color: #8392AB;" th:text="${thought.content.length() > 30 ? thought.content.substring(0, 30) + '...' : thought.content}"></p>

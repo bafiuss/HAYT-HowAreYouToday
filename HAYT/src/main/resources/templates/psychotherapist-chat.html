@@ -131,8 +131,11 @@
                                             </div>
 
                                             <div class="card-body">
-                                                <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767; !important;" th:text="${#temporals.format(diaryEntry.getCreatedAt(), 'dd/MM/yyyy')}"></p>
-                                                    <h5 style="color: #344767; !important;">
+                                                <div class="d-flex justify-content-between text-sm mb-2" style="color: #344767;">
+                                                    <span th:text="${#temporals.format(diaryEntry.getCreatedAt(), 'dd/MM/yyyy')}"></span>
+                                                    <span th:text="${#temporals.format(diaryEntry.getCreatedAt(), 'hh:mm a')}"></span>
+                                                </div>
+                                                <h5 style="color: #344767; !important;">
                                                         I feel <strong th:text="${diaryEntry.getMood()}"></strong>
                                                     </h5>
                                                 <p class="mb-4 text-sm" style="color: #8392AB !important" th:text="${diaryEntry.content.length() > 30 ? diaryEntry.content.substring(0, 30) + '...' : diaryEntry.content}"></p>
