@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
+import  it.unisa.HAYT.entities.DiaryEntity.Mood;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -28,6 +29,9 @@ public class DatabasePopulator {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private DiaryRepository diaryRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -120,6 +124,29 @@ public class DatabasePopulator {
                 );
 
                 appointmentRepository.saveAll(appointments);
+            }
+
+            if(diaryRepository.count() == 0){
+                List<DiaryEntity> diaryEntries = List.of(
+                        new DiaryEntity("Today was overwhelming. I felt like I couldn’t handle anything.", LocalDateTime.of(2025, 7, 5, 10, 0), Mood.grief, "NEGATIVE", "Too Much to Handle", patient1),
+                        new DiaryEntity("I woke up feeling energized and went for a long walk.", LocalDateTime.of(2025, 7, 6, 9, 30), Mood.optimism, "POSITIVE", "A Productive Morning", patient2),
+                        new DiaryEntity("I can’t stop thinking about all the mistakes I’ve made.", LocalDateTime.of(2025, 7, 7, 21, 15), Mood.remorse, "NEGATIVE", "Obsessive Thoughts", patient3),
+                        new DiaryEntity("I’m grateful for the support I received from my therapist today.", LocalDateTime.of(2025, 7, 8, 14, 50), Mood.gratitude, "POSITIVE", "Support Matters", patient1),
+                        new DiaryEntity("I feel so alone, like no one really understands me.", LocalDateTime.of(2025, 7, 9, 19, 40), Mood.grief, "NEGATIVE", "Crushing Loneliness", patient2),
+                        new DiaryEntity("Today I managed to open up about how I really feel.", LocalDateTime.of(2025, 7, 10, 16, 10), Mood.relief, "POSITIVE", "Opening Up", patient3),
+                        new DiaryEntity("I don't even know what I'm feeling anymore. Everything’s blurry.", LocalDateTime.of(2025, 7, 11, 12, 25), Mood.confusion, "NEUTRAL", "Mental Fog", patient1),
+                        new DiaryEntity("I’m really angry at myself for not sticking to my plans.", LocalDateTime.of(2025, 7, 12, 18, 0), Mood.anger, "NEGATIVE", "Frustrated with Myself", patient2),
+                        new DiaryEntity("The day went by without much thought. It was just okay.", LocalDateTime.of(2025, 7, 13, 15, 45), Mood.neutral, "NEUTRAL", "Just Another Day", patient3),
+                        new DiaryEntity("I finally felt a spark of happiness while doing something I love.", LocalDateTime.of(2025, 7, 14, 11, 20), Mood.joy, "POSITIVE", "Joy in Small Things", patient1),
+                        new DiaryEntity("The day started off well but ended in deep sadness.", LocalDateTime.of(2025, 7, 15, 17, 35), Mood.sadness, "NEGATIVE", "Emotional Rollercoaster", patient2),
+                        new DiaryEntity("Even though it was hard, I feel like I grew from today’s experience.", LocalDateTime.of(2025, 7, 16, 20, 5), Mood.realization, "POSITIVE", "Growing Through Struggles", patient3),
+                        new DiaryEntity("My mind is so noisy at night, I can’t seem to quiet it.", LocalDateTime.of(2025, 7, 17, 22, 10), Mood.nervousness, "NEGATIVE", "Noisy Thoughts", patient1),
+                        new DiaryEntity("Despite everything, I felt lucky to have my family today.", LocalDateTime.of(2025, 7, 18, 13, 55), Mood.gratitude, "POSITIVE", "Thankful for My Family", patient2),
+                        new DiaryEntity("I cried for no clear reason today. Maybe I needed it.", LocalDateTime.of(2025, 7, 19, 8, 45), Mood.sadness, "NEGATIVE", "Unexplained Tears", patient3)
+                );
+
+
+                diaryRepository.saveAll(diaryEntries);
             }
 
 
