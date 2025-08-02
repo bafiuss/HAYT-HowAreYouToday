@@ -76,7 +76,17 @@ function addThoughtToList(thought) {
 
     const thoughtId = `thought-${thought.id}`;
     const truncatedContent = truncateText(thought.content, 30);
-    const formattedDate = formatDate(thought.createdAt);
+
+    const date = new Date(thought.createdAt);
+    const formattedDate = date.toLocaleDateString('it-IT');
+
+    const formattedTime = date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    const capitalizedMood = thought.mood.charAt(0).toUpperCase() + thought.mood.slice(1).toLowerCase();
 
     const thoughtHTML = `
         <div class="col-xl-3 col-md-6 mb-4" id="${thoughtId}">
@@ -87,9 +97,12 @@ function addThoughtToList(thought) {
                     </a>
                 </div>
                 <div class="card-body d-flex flex-column flex-grow-1">
-                    <p class="text-gradient text-dark mb-2 text-sm" style="color: #344767;">${formattedDate}</p>
+                    <div class="d-flex justify-content-between text-sm mb-2" style="color: #344767;">
+                        <span>${formattedDate}</span>
+                        <span>${formattedTime}</span>
+                    </div>
                     <h5 style="color: #344767;">
-                        I feel <strong>${thought.mood}</strong>
+                        <strong>${capitalizedMood}</strong>
                     </h5>
                     <p class="mb-4 text-sm" style="color: #8392AB;">${truncatedContent}</p>
                     <div class="d-flex align-items-center justify-content-between mt-auto">
@@ -119,7 +132,8 @@ function addThoughtToList(thought) {
 
             document.getElementById('thoughtTitle').value = title;
             document.getElementById('thoughtContent').value = content;
-            document.getElementById('thoughtMood').value = mood;
+            document.getElementById('thoughtMood').value = mood.charAt(0).toUpperCase() + mood.slice(1).toLowerCase();
+
         });
     }
 }
@@ -145,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById('thoughtTitle').value = title;
             document.getElementById('thoughtContent').value = content;
-            document.getElementById('thoughtMood').value = mood;
+            document.getElementById('thoughtMood').value = mood.charAt(0).toUpperCase() + mood.slice(1).toLowerCase();
         });
     });
 });

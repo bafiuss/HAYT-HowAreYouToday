@@ -42,8 +42,8 @@
                                                     <span th:text="${#temporals.format(thought.getCreatedAt(), 'hh:mm a')}"></span>
                                                 </div>
                                                 <h5 style="color: #344767;">
-                                                        I feel <strong th:text="${thought.getMood()}"></strong>
-                                                    </h5>
+                                                    <strong th:text="${#strings.capitalize(thought.getMood())}"></strong>
+                                                </h5>
                                                 <p class="mb-4 text-sm" style="color: #8392AB;" th:text="${thought.content.length() > 30 ? thought.content.substring(0, 30) + '...' : thought.content}"></p>
                                                 <div class="d-flex align-items-center justify-content-between mt-auto">
                                                     <button type="button"
@@ -90,17 +90,39 @@
                                     <label class="form-label">Today I feel</label>
                                     <select class="form-select" name="mood" th:field="*{mood}">
                                         <option value="null"></option>
-                                        <option value="Happy">Happy</option>
-                                        <option value="Sad">Sad</option>
-                                        <option value="Anxious">Anxious</option>
-                                        <option value="Lonely">Lonely</option>
-                                        <option value="Confused">Confused</option>
-                                        <option value="Angry">Angry</option>
-                                        <option value="Motivated">Motivated</option>
-                                        <option value="Overwhelmed">Overwhelmed</option>
-                                        <option value="Hopeful">Hopeful</option>
-                                        <option value="Grateful">Grateful</option>
+                                        <option value="" disabled selected>--- Positive ---</option>
+                                        <option value="admiration">Admiration</option>
+                                        <option value="amusement">Amusement</option>
+                                        <option value="approval">Approval</option>
+                                        <option value="caring">Caring</option>
+                                        <option value="desire">Desire</option>
+                                        <option value="excitement">Excitement</option>
+                                        <option value="gratitude">Gratitude</option>
+                                        <option value="joy">Joy</option>
+                                        <option value="love">Love</option>
+                                        <option value="optimism">Optimism</option>
+                                        <option value="pride">Pride</option>
+                                        <option value="relief">Relief</option>
+                                        <option value="" disabled selected>--- Negative ---</option>
+                                        <option value="anger">Anger</option>
+                                        <option value="annoyance">Annoyance</option>
+                                        <option value="disappointment">Disappointment</option>
+                                        <option value="disapproval">Disapproval</option>
+                                        <option value="disgust">Disgust</option>
+                                        <option value="embarrassment">Embarrassment</option>
+                                        <option value="fear">Fear</option>
+                                        <option value="grief">Grief</option>
+                                        <option value="nervousness">Nervousness</option>
+                                        <option value="remorse">Remorse</option>
+                                        <option value="sadness">Sadness</option>
+                                        <option value="" disabled selected>--- Other ---</option>
+                                        <option value="confusion">Confusion</option>
+                                        <option value="curiosity">Curiosity</option>
+                                        <option value="realization">Realization</option>
+                                        <option value="surprise">Surprise</option>
+                                        <option value="neutral">Neutral</option>
                                     </select>
+
                                     <span id="errorThoughtMood" style="font-size: 15px;"></span>
                                 </div>
                             </form>
