@@ -1,5 +1,6 @@
 package it.unisa.HAYT.dto;
 
+import it.unisa.HAYT.entities.DiaryEntity.Mood;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ public class DiaryDTO {
 
     private String title;
     private String content;
-    private String mood;
+    private Mood mood;
 
 }
 
