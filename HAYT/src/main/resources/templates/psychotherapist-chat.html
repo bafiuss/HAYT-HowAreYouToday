@@ -149,8 +149,8 @@
                                                                      data-mood=${diaryEntry.mood}">
                                                             View
                                                     </button>
-                                                    <strong th:classappend="'sentiment-' + ${diaryEntry.sentiment.toLowerCase()}" class="text-white px-3 py-1 rounded d-flex align-items-center">
-                                                        <span th:text="${diaryEntry.sentiment}"></span>
+                                                    <strong th:classappend="'sentiment-' + ${diaryEntry.sentiment.name().toLowerCase()}" class="text-white px-3 py-1 rounded d-flex align-items-center">
+                                                        <span th:text="${diaryEntry.sentiment.name().toUpperCase()}"></span>
                                                     </strong>
                                                 </div>
                                             </div>

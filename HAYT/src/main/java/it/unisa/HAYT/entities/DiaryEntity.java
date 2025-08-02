@@ -32,13 +32,17 @@ public class DiaryEntity {
     public enum Mood {admiration, amusement, anger, annoyance, approval, caring, confusion, curiosity, desire, disappointment,
         disapproval, disgust, embarrassment, excitement, fear, gratitude, grief, joy, love, nervousness, optimism, pride, realization, relief, remorse, sadness, surprise, neutral
     }
+    public enum Sentiment{negative, neutral, positive}
 
-
+    @Enumerated(EnumType.STRING)
     private Mood mood;
-    private String sentiment;
+
+    @Enumerated(EnumType.STRING)
+    private Sentiment sentiment;
+
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public DiaryEntity(String content, LocalDateTime createdAt, Mood mood, String sentiment, String title, PatientEntity patient){
+    public DiaryEntity(String content, LocalDateTime createdAt, Mood mood, Sentiment sentiment, String title, PatientEntity patient){
         this.content = content;
         this.createdAt = createdAt;
         this.mood = mood;

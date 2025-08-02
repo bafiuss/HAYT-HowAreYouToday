@@ -9,6 +9,7 @@ import it.unisa.HAYT.repositories.DiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import it.unisa.HAYT.entities.DiaryEntity.Sentiment;
 
 import java.util.List;
 import java.util.Map;
@@ -29,13 +30,13 @@ public class DiaryService {
         entry.setMood(dto.getMood());
         entry.setPatient(patient);
 
-        String sentiment = analyzeWithPython(dto.getContent());
+        Sentiment sentiment = analyzeWithPython(dto.getContent());
         entry.setSentiment(sentiment);
 
         return diaryEntryRepository.save(entry);
     }
 
-    private String analyzeWithPython(String text) {
+    private Sentiment analyzeWithPython(String text) {
         String url = "http://localhost:5000/analyze";
         var request = Map.of("text", text);
         var response = restTemplate.postForEntity(url, request, String.class);
@@ -43,13 +44,14 @@ public class DiaryService {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             SentimentDTO sentimentResponse = objectMapper.readValue(response.getBody(), SentimentDTO.class);
-            return sentimentResponse.getReadableLabel();
+            String label = sentimentResponse.getReadableLabel().toLowerCase();
+            return Sentiment.valueOf(label);
         } catch (Exception e) {
             e.printStackTrace();
-            return "UNKNOWN";
+            return Sentiment.valueOf("unknown");
         }
-
     }
+
 
 
     public List<DiaryEntity> findByPatientIdOrderByCreatedAtDesc(Long patientId) {
