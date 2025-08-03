@@ -43,10 +43,14 @@ public class QuestionnaireEntity {
     private int muscleTension;
     private int sleepDisturbances;
 
+    private int impactWorkStudy;
+    private int impactSocial;
+    private int impactLeisure;
+
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
 
-    public QuestionnaireEntity(PatientEntity patient, int depressedMood, int lossOfInterest, int appetiteChanges, int insomnia, int psychomotorAgitation, int fatigue, int worthlessness, int difficultyConcentratingDepression, int excessiveWorry, int difficultyControllingWorry, int restlessness, int easyFatigue, int difficultyConcentratingAnxiety, int irritability, int muscleTension, int sleepDisturbances, LocalDateTime completedAt) {
+    public QuestionnaireEntity(PatientEntity patient, int depressedMood, int lossOfInterest, int appetiteChanges, int insomnia, int psychomotorAgitation, int fatigue, int worthlessness, int difficultyConcentratingDepression, int excessiveWorry, int difficultyControllingWorry, int restlessness, int easyFatigue, int difficultyConcentratingAnxiety, int irritability, int muscleTension, int sleepDisturbances, int impactWorkStudy, int impactSocial, int impactLeisure, LocalDateTime completedAt) {
         this.patient = patient;
         this.depressedMood = depressedMood;
         this.lossOfInterest = lossOfInterest;
@@ -65,5 +69,8 @@ public class QuestionnaireEntity {
         this.muscleTension = muscleTension;
         this.sleepDisturbances = sleepDisturbances;
         this.completedAt = completedAt;
+        this.impactWorkStudy = impactWorkStudy;
+        this.impactSocial = impactSocial;
+        this.impactLeisure = impactLeisure;
     }
 }

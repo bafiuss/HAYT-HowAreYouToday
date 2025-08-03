@@ -52,7 +52,9 @@ public class DiaryService {
         }
     }
 
-
+    public int numberOfDiaryEntriesAssociated(Long psychotherapistId){
+        return diaryEntryRepository.numberOfDiaryEntriesAssociated(psychotherapistId);
+    }
 
     public List<DiaryEntity> findByPatientIdOrderByCreatedAtDesc(Long patientId) {
         return diaryEntryRepository.findByPatientIdOrderByCreatedAtDesc(patientId);

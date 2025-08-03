@@ -88,13 +88,12 @@ public class DatabasePopulator {
             if(questionnaireRepository.count() == 0){
 
                 List<QuestionnaireEntity> questionnaires = List.of(
-                        new QuestionnaireEntity(patient1,2,5,3,1,1,5,4,2,3,4,1,5,6,2,3,1,LocalDateTime.of(2025, 3, 16, 10, 45)),
-                        new QuestionnaireEntity(patient1, 3, 4, 2, 5, 4, 3, 2, 5, 4, 1, 3, 4, 5, 2, 3, 1, LocalDateTime.of(2025, 3, 23, 10, 45)),
-                        new QuestionnaireEntity(patient1, 4, 3, 5, 2, 4, 4, 1, 5, 3, 2, 4, 5, 3, 1, 5, 2, LocalDateTime.of(2025, 3, 30, 10, 45)),
-                        new QuestionnaireEntity(patient1, 5, 2, 4, 1, 3, 5, 2, 4, 3, 1, 5, 4, 2, 3, 4, 1, LocalDateTime.of(2025, 4, 6, 10, 45)),
-
-                        new QuestionnaireEntity(patient2, 3, 5, 2, 4, 4, 3, 1, 3, 5, 2, 4, 5, 2, 3, 4, 1, LocalDateTime.of(2025, 3, 10, 10, 45)),
-                        new QuestionnaireEntity(patient2, 2, 4, 5, 3, 2, 4, 3, 5, 2, 1, 4, 5, 3, 2, 4, 1, LocalDateTime.of(2025, 3, 17, 10, 45))
+                        new QuestionnaireEntity(patient1,2,5,3,1,1,5,4,2,3,4,1,5,6,2,3,1,2,4,2,LocalDateTime.of(2025, 3, 16, 10, 45)),
+                        new QuestionnaireEntity(patient1, 3, 4, 2, 5, 4, 3, 2, 5, 4, 1, 3, 4, 5, 2, 3, 1, 4, 2, 1, LocalDateTime.of(2025, 3, 23, 10, 45)),
+                        new QuestionnaireEntity(patient1, 4, 3, 5, 2, 4, 4, 1, 5, 3, 2, 4, 5, 3, 1, 5, 2, 5, 5, 4, LocalDateTime.of(2025, 3, 30, 10, 45)),
+                        new QuestionnaireEntity(patient1, 5, 2, 4, 1, 3, 5, 2, 4, 3, 1, 5, 4, 2, 3, 4, 1, 4, 2, 1,LocalDateTime.of(2025, 4, 6, 10, 45)),
+                        new QuestionnaireEntity(patient2, 3, 5, 2, 4, 4, 3, 1, 3, 5, 2, 4, 5, 2, 3, 4, 1, 1, 2, 4, LocalDateTime.of(2025, 3, 10, 10, 45)),
+                        new QuestionnaireEntity(patient2, 2, 4, 5, 3, 2, 4, 3, 5, 2, 1, 4, 5, 3, 2, 4, 1, 2, 1, 5, LocalDateTime.of(2025, 3, 17, 10, 45))
 
                 );
 

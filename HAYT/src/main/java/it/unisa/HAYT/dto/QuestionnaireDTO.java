@@ -23,4 +23,8 @@ public class QuestionnaireDTO {
     private int irritability;
     private int muscleTension;
     private int sleepDisturbances;
+
+    private int impactWorkStudy;
+    private int impactSocial;
+    private int impactLeisure;
 }

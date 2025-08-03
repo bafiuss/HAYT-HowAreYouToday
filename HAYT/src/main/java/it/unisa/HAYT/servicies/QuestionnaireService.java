@@ -40,6 +40,10 @@ public class QuestionnaireService {
         questionnaire.setMuscleTension(questionnaireDTO.getMuscleTension());
         questionnaire.setSleepDisturbances(questionnaireDTO.getSleepDisturbances());
 
+        questionnaire.setImpactLeisure(questionnaireDTO.getImpactLeisure());
+        questionnaire.setImpactSocial(questionnaireDTO.getImpactSocial());
+        questionnaire.setImpactWorkStudy(questionnaireDTO.getImpactWorkStudy());
+
         questionnaire.setPatient(patient);
 
         questionnaire.setCompletedAt(LocalDateTime.now());
