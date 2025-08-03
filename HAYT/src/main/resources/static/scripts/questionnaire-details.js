@@ -23,7 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         difficultyConcentratingAnxiety: "difficultyConcentratingAnxietyBar",
                         irritability: "irritabilityBar",
                         muscleTension: "muscleTensionBar",
-                        sleepDisturbances: "sleepDisturbancesBar"
+                        sleepDisturbances: "sleepDisturbancesBar",
+                        impactWorkStudy: "impactWorkStudyBar",
+                        impactSocial : "impactSocialBar",
+                        impactLeisure : "impactLeisureBar"
                     };
 
                     for (let key in fields) {

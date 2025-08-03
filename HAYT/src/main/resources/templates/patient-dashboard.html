@@ -63,9 +63,12 @@
 
                         <form action="/save-questionnaire" method="post" th:object="${questionnaireDTO}">
                             <div style="padding: 0 1em">
-                                <!-- Depressed Mood -->
+
+                                <!-- DEPRESSION SECTION -->
+                                <h5 class="mt-4">DEPRESSION</h5>
+
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you felt sad, down, or hopeless for most of the day?</p>
+                                    <p>In the past week, how often have you felt sad, empty, or hopeless?</p>
                                     <select class="form-select" th:field="*{depressedMood}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -75,9 +78,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Loss of Interest or Pleasure -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you lost interest or pleasure in activities you usually enjoy?</p>
+                                    <p>In the past week, how often have you lost interest or pleasure in activities that you previously found enjoyable?</p>
                                     <select class="form-select" th:field="*{lossOfInterest}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -87,9 +89,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Changes in Appetite or Weight -->
                                 <div class="mb-3">
-                                    <p>In the past week, have you noticed significant changes in your appetite or weight (without trying to diet)?</p>
+                                    <p>In the past week, how often have you noticed a significant increase or decrease in your appetite?</p>
                                     <select class="form-select" th:field="*{appetiteChanges}">
                                         <option value="1">No changes</option>
                                         <option value="2">Slight decrease in appetite or slight weight loss</option>
@@ -99,9 +100,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Insomnia or Hypersomnia -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you had trouble sleeping or, on the contrary, slept too much?</p>
+                                    <p>In the past week, how often have you had difficulty falling asleep, staying asleep, or waking up too early?</p>
                                     <select class="form-select" th:field="*{insomnia}">
                                         <option value="1">No difficulties</option>
                                         <option value="2">Trouble sleeping for 1-2 nights</option>
@@ -111,19 +111,6 @@
                                     </select>
                                 </div>
 
-                                <!-- Psychomotor Agitation or Retardation -->
-                                <div class="mb-3">
-                                    <p>In the past week, how often have you felt particularly agitated or slowed down in your movements or speech?</p>
-                                    <select class="form-select" th:field="*{psychomotorAgitation}">
-                                        <option value="1">Never</option>
-                                        <option value="2">1-2 days</option>
-                                        <option value="3">3-4 days</option>
-                                        <option value="4">5-6 days</option>
-                                        <option value="5">Every day for most of the time</option>
-                                    </select>
-                                </div>
-
-                                <!-- Fatigue or Loss of Energy -->
                                 <div class="mb-3">
                                     <p>In the past week, how often have you felt tired or lacked energy?</p>
                                     <select class="form-select" th:field="*{fatigue}">
@@ -135,9 +122,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Feelings of Worthlessness or Guilt -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you felt worthless or experienced excessive guilt?</p>
+                                    <p>In the past week, how often have you felt guilt, worthlessness, or been overly critical of yourself?</p>
                                     <select class="form-select" th:field="*{worthlessness}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -147,9 +133,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Difficulty Concentrating -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you had difficulty concentrating or making decisions, even for simple matters?</p>
+                                    <p>In the past week, how often have you found it difficult to concentrate, think, or make decisions?</p>
                                     <select class="form-select" th:field="*{difficultyConcentratingDepression}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -162,9 +147,8 @@
                                 <!-- ANXIETY SECTION -->
                                 <h5 class="mt-4">ANXIETY</h5>
 
-                                <!-- Excessive Worry -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you worried excessively about things that normally wouldn’t cause much concern?</p>
+                                    <p>In the past week, how often have you had excessive and persistent thoughts of worry or anxiety about daily life (e.g., work, relationships, health)?</p>
                                     <select class="form-select" th:field="*{excessiveWorry}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -174,21 +158,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Difficulty Controlling Worry -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you found it difficult to control or stop worrying?</p>
-                                    <select class="form-select" th:field="*{difficultyControllingWorry}">
-                                        <option value="1">Never</option>
-                                        <option value="2">1-2 days</option>
-                                        <option value="3">3-4 days</option>
-                                        <option value="4">5-6 days</option>
-                                        <option value="5">Every day</option>
-                                    </select>
-                                </div>
-
-                                <!-- Restlessness or Feeling Tense -->
-                                <div class="mb-3">
-                                    <p>In the past week, how often have you felt restless or tense?</p>
+                                    <p>In the past week, how often have you felt restless or unable to relax?</p>
                                     <select class="form-select" th:field="*{restlessness}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -198,9 +169,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Easy Fatigue -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you felt easily tired?</p>
+                                    <p>In the past week, how often have you felt tired or exhausted even after small efforts?</p>
                                     <select class="form-select" th:field="*{easyFatigue}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -210,9 +180,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Difficulty Concentrating -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you had difficulty concentrating or keeping your mind focused on one thing for an extended period?</p>
+                                    <p>In the past week, how often have you found it difficult to concentrate or had your mind go blank?</p>
                                     <select class="form-select" th:field="*{difficultyConcentratingAnxiety}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -222,9 +191,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Irritability -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you felt irritable or easily annoyed by small things?</p>
+                                    <p>In the past week, how often have you felt more irritable than usual?</p>
                                     <select class="form-select" th:field="*{irritability}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -234,9 +202,8 @@
                                     </select>
                                 </div>
 
-                                <!-- Muscle Tension -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you noticed muscle tension?</p>
+                                    <p>In the past week, how often have you experienced muscle tension, cramps, or pain without a specific medical cause?</p>
                                     <select class="form-select" th:field="*{muscleTension}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
@@ -246,15 +213,50 @@
                                     </select>
                                 </div>
 
-                                <!-- Sleep Disturbances -->
                                 <div class="mb-3">
-                                    <p>In the past week, how often have you had difficulty sleeping?</p>
+                                    <p>In the past week, how often have you had difficulty sleeping due to persistent worries or anxieties?</p>
                                     <select class="form-select" th:field="*{sleepDisturbances}">
                                         <option value="1">Never</option>
                                         <option value="2">1-2 days</option>
                                         <option value="3">3-4 days</option>
                                         <option value="4">5-6 days</option>
                                         <option value="5">Every day</option>
+                                    </select>
+                                </div>
+
+                                <!-- FUNCTIONAL IMPAIRMENT SECTION -->
+                                <h5 class="mt-4">FUNCTIONAL IMPAIRMENT</h5>
+
+                                <div class="mb-3">
+                                    <p>In the past week, how much have symptoms of anxiety or depression affected your ability to work or study?</p>
+                                    <select class="form-select" th:field="*{impactWorkStudy}">
+                                        <option value="1">Not at all</option>
+                                        <option value="2">A little</option>
+                                        <option value="3">Moderately</option>
+                                        <option value="4">Quite a lot</option>
+                                        <option value="5">Extremely</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <p>In the past week, how much have you struggled to maintain or engage in social interactions (e.g., with friends, family, or others)?</p>
+                                    <select class="form-select" th:field="*{impactSocial}">
+                                        <option value="1">Not at all</option>
+                                        <option value="2">A little</option>
+                                        <option value="3">Moderately</option>
+                                        <option value="4">Quite a lot</option>
+                                        <option value="5">Extremely</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <p>In the past week, how much have you found it difficult to enjoy leisure time or activities you usually like?</p>
+                                    <select class="form-select" th:field="*{impactLeisure}">
+                                        <option value="1">Not at all</option>
+                                        <option value="2">A little</option>
+                                        <option value="3">Moderately</option>
+                                        <option value="4">Quite a lot</option>
+                                        <option value="5">Extremely</option>
                                     </select>
                                 </div>
                             </div>
