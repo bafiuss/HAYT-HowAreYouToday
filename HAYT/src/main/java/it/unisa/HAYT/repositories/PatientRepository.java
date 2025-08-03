@@ -20,8 +20,8 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
     @Query("SELECT Count(*) FROM PatientEntity p WHERE p.psychotherapist.id = :psychotherapistId")
     int numberOfPatientsAssociated(@Param("psychotherapistId") Long psychotherapistId);
 
-    @Query("SELECT p FROM PatientEntity p")
-    List<PatientEntity> findFirstTwoPatients(Pageable pageable);
+    @Query("SELECT p FROM PatientEntity p WHERE p.psychotherapist.id = :psychotherapistId")
+    List<PatientEntity> findFirstTwoPatientsAssociated(@Param("psychotherapistId") Long psychotherapistId, Pageable pageable);
 
     @Query("SELECT p FROM PatientEntity p WHERE p.psychotherapist.id = :psychotherapistId")
     List<PatientEntity> patientList(@Param("psychotherapistId") Long psychotherapistId);

@@ -34,10 +34,10 @@
                         <div class="col-lg-4 mt-4">
                             <div class="card">
                                 <div class="card-header bg-warning text-white">
-                                    <h5><i class="fas fa-calendar"></i> Appointments</h5>
+                                    <h5><i class="fa-solid fa-book"></i> Diary Entries</h5>
                                 </div>
                                 <div class="card-body d-flex align-items-center justify-content-center">
-                                    <span class="display-4 fw-bold" th:text="${scheduledAppointments}"></span>
+                                    <span class="display-4 fw-bold" th:text="${numberOfDiaryEntriesAssociated}"></span>
                                 </div>
                             </div>
                         </div>
@@ -45,10 +45,10 @@
                         <div class="col-lg-4 mt-4">
                             <div class="card">
                                 <div class="card-header bg-primary text-white">
-                                    <h5><i class="fas fa-clipboard-check"></i> Sessions Completed</h5>
+                                    <h5><i class="fas fa-calendar"></i> Upcoming Appointments</h5>
                                 </div>
                                 <div class="card-body d-flex align-items-center justify-content-center">
-                                    <span class="display-4 fw-bold" th:text="${sessionsCompleted}"></span>
+                                    <span class="display-4 fw-bold" th:text="${scheduledAppointments}"></span>
                                 </div>
                             </div>
                         </div>

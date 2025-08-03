@@ -108,8 +108,8 @@ public class UserService implements UserDetailsService {
         return patientRepository.numberOfPatientsAssociated(psychotherapistId);
     }
 
-    public List<PatientEntity> getFirstTwoUsers(){
-        return patientRepository.findFirstTwoPatients(PageRequest.of(0, 2));
+    public List<PatientEntity> getFirstTwoUsers(Long psychotherapistId){
+        return patientRepository.findFirstTwoPatientsAssociated(psychotherapistId, PageRequest.of(0, 2));
     }
 
     public List<PatientEntity> getPatientsAssociated(Long psychotherapistId){

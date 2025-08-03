@@ -64,10 +64,6 @@ public class AppointmentService {
         return dto;
     }
 
-    public int getPastAppointmentsCount() {
-        return appointmentRepository.countPastAppointments(LocalDateTime.now());
-    }
-
     public int getFutureAppointmentsCount(){
         return appointmentRepository.countFutureAppointments(LocalDateTime.now());
     }

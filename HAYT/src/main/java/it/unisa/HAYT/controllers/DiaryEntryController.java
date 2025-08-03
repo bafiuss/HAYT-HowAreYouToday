@@ -3,9 +3,11 @@ package it.unisa.HAYT.controllers;
 import it.unisa.HAYT.dto.DiaryDTO;
 import it.unisa.HAYT.dto.DiaryDTO;
 import it.unisa.HAYT.entities.PatientEntity;
+import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.repositories.DiaryRepository;
 import it.unisa.HAYT.servicies.DiaryService;
+import it.unisa.HAYT.servicies.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,6 @@ public class DiaryEntryController {
 
     @Autowired
     private DiaryService diaryService;
-
 
     @PostMapping
     public ResponseEntity<DiaryEntity> save(@RequestBody DiaryDTO dto, Model model, HttpSession session) {
