@@ -35,6 +35,9 @@ public class DatabasePopulator {
     private DiaryRepository diaryRepository;
 
     @Autowired
+    private TipRepository tipRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
@@ -148,6 +151,151 @@ public class DatabasePopulator {
 
                 diaryRepository.saveAll(diaryEntries);
             }
+
+            if (tipRepository.count() == 0) {
+                List<TipEntity> tips = List.of(
+                        new TipEntity("breathing_exercise", "Box Breathing",
+                                "Sit upright in a quiet space. Inhale slowly through your nose for a count of 4, filling your lungs completely.",
+                                "Hold your breath for a count of 4, keeping your body relaxed and still during the pause.",
+                                "Exhale slowly through your mouth for a count of 4, emptying your lungs fully without straining.",
+                                "Hold your breath again for a count of 4 before beginning the next cycle. Repeat for several rounds.",
+                                "none"),
+
+
+                        new TipEntity("breathing_exercise", "4-7-8 Breathing",
+                                "Sit or lie down comfortably. Inhale deeply through your nose for a count of 4, letting your lungs expand fully.",
+                                "Hold your breath for a count of 7. Keep your body relaxed and your focus on the stillness of the pause.",
+                                "Exhale slowly through your mouth for a count of 8, releasing all the air and tension in your body.",
+                                "Repeat this cycle for 4 full rounds, allowing your mind and body to settle into a relaxed state.",
+                                "none"),
+
+                        new TipEntity("breathing_exercise", "Diaphragmatic Breathing",
+                                "Lie on your back or sit with a straight spine. Place one hand on your chest and the other on your belly.",
+                                "Inhale deeply through your nose, aiming to expand your belly rather than your chest. Feel your lower hand rise.",
+                                "Exhale slowly through your mouth, tightening your abdominal muscles to push the air out fully.",
+                                "Continue this deep belly breathing for 5–10 minutes, focusing on the rise and fall of your abdomen.",
+                                "none"),
+
+
+                        new TipEntity("breathing_exercise", "Alternate Nostril Breathing",
+                                "Sit comfortably with your spine straight. Use your thumb to gently close your right nostril.",
+                                "Inhale deeply through the left nostril, then close it with your ring finger and release your thumb.",
+                                "Exhale through the right nostril, then inhale through it. Close it, release the left nostril, and exhale left.",
+                                "This completes one cycle. Continue alternating for 5–10 cycles, keeping your breath smooth and steady.",
+                                "none"),
+
+
+                        new TipEntity("breathing_exercise", "Pursed-Lip Breathing",
+                                "Sit in a relaxed position. Inhale slowly through your nose for about 2 seconds, filling your lungs gently.",
+                                "Purse your lips as if you’re going to whistle, then exhale slowly and steadily through your mouth for 4 seconds.",
+                                "Focus on making your exhale twice as long as your inhale. This helps release trapped air and reduces breathlessness.",
+                                "Repeat for several minutes, especially during times of stress or shortness of breath.",
+                                "none"),
+
+                        new TipEntity("breathing_exercise", "Resonant Breathing",
+                                "Find a comfortable seated position and close your eyes. Begin breathing slowly and evenly.",
+                                "Inhale through your nose for a count of 5 seconds, focusing on a steady, calm breath.",
+                                "Exhale gently through your nose for a count of 5 seconds, letting go of tension with each out-breath.",
+                                "Repeat this 5-5 pattern continuously for 10 minutes. This helps slow your heart rate and promotes relaxation.",
+                                "none"),
+
+
+                        new TipEntity("mindfulness_meditation", "Mindful Breathing",
+                                "Sit comfortably with your spine straight. Gently close your eyes and bring full attention to your natural breathing rhythm.",
+                                "Notice the sensation of air moving in and out of your nostrils. Feel your chest and abdomen rise and fall with each breath.",
+                                "When your mind wanders, acknowledge it without judgment and gently return your focus to the breath.",
+                                "Practice this for 5–10 minutes daily, aiming to stay present with each inhale and exhale.",
+                                "none"),
+
+
+                        new TipEntity("mindfulness_meditation", "Body Scan Meditation",
+                                "Lie down or sit in a quiet space. Close your eyes and bring attention to your body, starting from the top of your head.",
+                                "Slowly move your awareness down through your body—head, shoulders, arms, torso, legs—observing sensations in each area.",
+                                "If you notice tension or discomfort, observe it without trying to change it. Simply acknowledge its presence.",
+                                "Continue scanning until you've reached your toes. End the practice by gently bringing your awareness back to the room.",
+                                "none"),
+
+
+                        new TipEntity("mindfulness_meditation", "5-4-3-2-1 Grounding Technique",
+                                "Start by identifying 5 things you can see around you. Observe colors, shapes, and textures with full attention.",
+                                "Now find 4 things you can physically feel—your clothes, the chair, your feet on the floor—focus on these sensations.",
+                                "Next, identify 3 things you can hear. Listen to distant and close sounds, without labeling them.",
+                                "Notice 2 things you can smell. If nothing is obvious, gently inhale and see what you detect.",
+                                "Finally, bring attention to 1 thing you can taste, even if it’s just the neutral taste in your mouth."),
+
+
+                        new TipEntity("mindfulness_meditation", "Walking Meditation",
+                                "Choose a quiet space to walk slowly and mindfully. Keep your gaze soft and your steps natural.",
+                                "Pay close attention to each step: how your heel touches the ground, how your weight shifts, and how you lift your foot.",
+                                "Use your breath as an anchor—inhale as you lift your foot, exhale as you place it down.",
+                                "If your mind wanders, gently return to the sensation of walking and breathing.",
+                                "Practice for at least 10 minutes, letting each step bring you into the present moment."),
+
+                        new TipEntity("mindfulness_meditation", "Loving-Kindness Meditation",
+                                "Sit comfortably and close your eyes. Begin by generating kind feelings toward yourself using phrases like 'May I be happy.'",
+                                "Expand those feelings outward—to a loved one, then to someone neutral, and finally to someone you find difficult.",
+                                "Repeat phrases such as 'May you be safe, may you be well,' visualizing each person as you do so.",
+                                "If resistance or discomfort arises, notice it without judgment and gently return to your phrases.",
+                                "End the session by wishing well-being to all living beings, holding a sense of compassion and warmth."),
+
+
+                        new TipEntity("mindfulness_meditation", "Mindful Eating",
+                                "Choose a small piece of food like a raisin or a slice of fruit. Observe it carefully—its texture, color, and shape.",
+                                "Smell the food and notice any reactions in your body. Allow yourself to anticipate the taste without rushing.",
+                                "Place the food in your mouth slowly. Chew it deliberately, paying attention to the flavor, texture, and sensation.",
+                                "Notice the urge to swallow quickly. Pause instead and savor the experience fully before swallowing.",
+                                "Repeat with the next bite, maintaining full awareness throughout the eating process."),
+
+                        new TipEntity("muscle_relaxation", "Progressive Muscle Relaxation",
+                                "Sit or lie down comfortably. Start by focusing on your feet and intentionally tense the muscles tightly for 5 seconds.",
+                                "Slowly release the tension while exhaling, noticing the contrast between tightness and relaxation.",
+                                "Move upward through your body—legs, abdomen, chest, arms, face—tensing each group, then releasing slowly.",
+                                "Maintain awareness of the physical sensations as you relax each part, letting go of any lingering tension.",
+                                "none"),
+
+                        new TipEntity("muscle_relaxation", "Full Body Release",
+                                "Lie flat on your back with arms and legs slightly spread. Close your eyes and take a few deep breaths.",
+                                "Visualize each muscle group releasing tension from head to toe, melting into the surface beneath you.",
+                                "As you exhale, mentally repeat: 'I release all tension.' Feel your body become heavier and more grounded.",
+                                "Stay in this relaxed state for several minutes, then slowly begin to wiggle your fingers and toes.",
+                                "none"),
+
+
+                        new TipEntity("muscle_relaxation", "Facial Muscle Relaxation",
+                                "Sit or lie down comfortably. Begin by raising your eyebrows as high as possible and hold for 5 seconds.",
+                                "Release the tension while exhaling, noticing the softening of your forehead and temples.",
+                                "Tightly squint your eyes and clench your jaw for 5 seconds, then relax those areas completely.",
+                                "Repeat the process once more, focusing on the pleasant sensation of letting go.",
+                                "none"),
+
+
+                        new TipEntity("muscle_relaxation", "Shoulder Tension Release",
+                                "Sit upright or stand. Inhale deeply while raising your shoulders up toward your ears as high as you can.",
+                                "Hold the tension for 5 seconds, keeping your neck and face relaxed as much as possible.",
+                                "Exhale slowly and drop your shoulders down, feeling them loosen and relax with gravity.",
+                                "Repeat this cycle 3–5 times, letting each exhale bring more relaxation into the shoulder area.",
+                                "none"),
+
+                        new TipEntity("muscle_relaxation", "Hand and Forearm Relaxation",
+                                "Extend one arm in front of you and make a tight fist, holding the tension in your hand and forearm for 5 seconds.",
+                                "Release the fist and feel the muscles soften, noting the warmth and relaxation that follows.",
+                                "Repeat with the other hand. Focus entirely on the sensation of letting go with each exhale.",
+                                "This is helpful for releasing tension built up from typing, texting, or daily stress.",
+                                "none"),
+
+                        new TipEntity("muscle_relaxation", "Lower Body Muscle Reset",
+                                "Lie down and bring awareness to your feet and legs. Tense your calves and thighs as hard as you can for 5 seconds.",
+                                "Exhale as you release the tension, noticing how your muscles feel softer and warmer.",
+                                "Repeat the same process once more, focusing on slow breathing and full relaxation with each release.",
+                                "Finish by gently shaking your legs to enhance circulation and reduce any remaining stiffness.",
+                                "none")
+
+
+                        );
+
+                tipRepository.saveAll(tips);
+            }
+
 
 
         }
