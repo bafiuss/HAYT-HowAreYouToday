@@ -11,5 +11,6 @@ import java.util.List;
 public interface TipRepository extends JpaRepository<TipEntity, Long> {
 
     List<TipEntity> findByTypeIgnoreCase(String type);
+    List<TipEntity> findByCognitiveDistortion(String distortionTag);
 
 }

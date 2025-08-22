@@ -16,4 +16,8 @@ public class TipService {
     public List<TipEntity> getTipsByType(String type) {
         return tipRepository.findByTypeIgnoreCase(type);
     }
+
+    public List<TipEntity> suggestByCognitiveDistortion(String cognitiveDistortion){
+        return tipRepository.findByCognitiveDistortion(cognitiveDistortion);
+    }
 }

@@ -32,6 +32,8 @@ public class TipEntity {
     @Column(length = 512)
     private String step5;
 
+    private String cognitiveDistortion;
+
     public TipEntity(String type, String title, String step1, String step2, String step3, String step4, String step5){
         this.type = type;
         this.title = title;

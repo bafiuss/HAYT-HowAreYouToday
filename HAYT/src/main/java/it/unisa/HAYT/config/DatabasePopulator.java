@@ -161,7 +161,6 @@ public class DatabasePopulator {
                                 "Hold your breath again for a count of 4 before beginning the next cycle. Repeat for several rounds.",
                                 "none"),
 
-
                         new TipEntity("breathing_exercise", "4-7-8 Breathing",
                                 "Sit or lie down comfortably. Inhale deeply through your nose for a count of 4, letting your lungs expand fully.",
                                 "Hold your breath for a count of 7. Keep your body relaxed and your focus on the stillness of the pause.",
@@ -176,14 +175,12 @@ public class DatabasePopulator {
                                 "Continue this deep belly breathing for 5–10 minutes, focusing on the rise and fall of your abdomen.",
                                 "none"),
 
-
                         new TipEntity("breathing_exercise", "Alternate Nostril Breathing",
                                 "Sit comfortably with your spine straight. Use your thumb to gently close your right nostril.",
                                 "Inhale deeply through the left nostril, then close it with your ring finger and release your thumb.",
                                 "Exhale through the right nostril, then inhale through it. Close it, release the left nostril, and exhale left.",
                                 "This completes one cycle. Continue alternating for 5–10 cycles, keeping your breath smooth and steady.",
                                 "none"),
-
 
                         new TipEntity("breathing_exercise", "Pursed-Lip Breathing",
                                 "Sit in a relaxed position. Inhale slowly through your nose for about 2 seconds, filling your lungs gently.",
@@ -199,14 +196,12 @@ public class DatabasePopulator {
                                 "Repeat this 5-5 pattern continuously for 10 minutes. This helps slow your heart rate and promotes relaxation.",
                                 "none"),
 
-
                         new TipEntity("mindfulness_meditation", "Mindful Breathing",
                                 "Sit comfortably with your spine straight. Gently close your eyes and bring full attention to your natural breathing rhythm.",
                                 "Notice the sensation of air moving in and out of your nostrils. Feel your chest and abdomen rise and fall with each breath.",
                                 "When your mind wanders, acknowledge it without judgment and gently return your focus to the breath.",
                                 "Practice this for 5–10 minutes daily, aiming to stay present with each inhale and exhale.",
                                 "none"),
-
 
                         new TipEntity("mindfulness_meditation", "Body Scan Meditation",
                                 "Lie down or sit in a quiet space. Close your eyes and bring attention to your body, starting from the top of your head.",
@@ -215,14 +210,12 @@ public class DatabasePopulator {
                                 "Continue scanning until you've reached your toes. End the practice by gently bringing your awareness back to the room.",
                                 "none"),
 
-
                         new TipEntity("mindfulness_meditation", "5-4-3-2-1 Grounding Technique",
                                 "Start by identifying 5 things you can see around you. Observe colors, shapes, and textures with full attention.",
                                 "Now find 4 things you can physically feel—your clothes, the chair, your feet on the floor—focus on these sensations.",
                                 "Next, identify 3 things you can hear. Listen to distant and close sounds, without labeling them.",
                                 "Notice 2 things you can smell. If nothing is obvious, gently inhale and see what you detect.",
                                 "Finally, bring attention to 1 thing you can taste, even if it’s just the neutral taste in your mouth."),
-
 
                         new TipEntity("mindfulness_meditation", "Walking Meditation",
                                 "Choose a quiet space to walk slowly and mindfully. Keep your gaze soft and your steps natural.",
@@ -237,7 +230,6 @@ public class DatabasePopulator {
                                 "Repeat phrases such as 'May you be safe, may you be well,' visualizing each person as you do so.",
                                 "If resistance or discomfort arises, notice it without judgment and gently return to your phrases.",
                                 "End the session by wishing well-being to all living beings, holding a sense of compassion and warmth."),
-
 
                         new TipEntity("mindfulness_meditation", "Mindful Eating",
                                 "Choose a small piece of food like a raisin or a slice of fruit. Observe it carefully—its texture, color, and shape.",
@@ -260,14 +252,12 @@ public class DatabasePopulator {
                                 "Stay in this relaxed state for several minutes, then slowly begin to wiggle your fingers and toes.",
                                 "none"),
 
-
                         new TipEntity("muscle_relaxation", "Facial Muscle Relaxation",
                                 "Sit or lie down comfortably. Begin by raising your eyebrows as high as possible and hold for 5 seconds.",
                                 "Release the tension while exhaling, noticing the softening of your forehead and temples.",
                                 "Tightly squint your eyes and clench your jaw for 5 seconds, then relax those areas completely.",
                                 "Repeat the process once more, focusing on the pleasant sensation of letting go.",
                                 "none"),
-
 
                         new TipEntity("muscle_relaxation", "Shoulder Tension Release",
                                 "Sit upright or stand. Inhale deeply while raising your shoulders up toward your ears as high as you can.",
@@ -291,7 +281,8 @@ public class DatabasePopulator {
                                 "none")
 
 
-                        );
+
+                );
 
                 tipRepository.saveAll(tips);
             }
