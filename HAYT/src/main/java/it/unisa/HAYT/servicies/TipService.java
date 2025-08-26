@@ -17,7 +17,4 @@ public class TipService {
         return tipRepository.findByTypeIgnoreCase(type);
     }
 
-    public List<TipEntity> suggestByCognitiveDistortion(String cognitiveDistortion){
-        return tipRepository.findByCognitiveDistortion(cognitiveDistortion);
-    }
 }
