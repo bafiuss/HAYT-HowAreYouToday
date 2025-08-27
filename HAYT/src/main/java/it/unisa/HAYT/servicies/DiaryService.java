@@ -13,6 +13,7 @@ import it.unisa.HAYT.entities.DiaryEntity.Sentiment;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class DiaryService {
@@ -59,5 +60,6 @@ public class DiaryService {
     public List<DiaryEntity> findByPatientIdOrderByCreatedAtDesc(Long patientId) {
         return diaryEntryRepository.findByPatientIdOrderByCreatedAtDesc(patientId);
     }
+
 }
 

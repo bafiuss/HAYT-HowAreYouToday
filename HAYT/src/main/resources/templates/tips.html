@@ -64,6 +64,15 @@
                                             <h6 class="text" th:text="${tip.step5}"></h6>
                                         </div>
                                     </div>
+                                    <div>
+                                        <form th:if="${randomTipIds.contains(tip.id)} and !${completedTipIds.contains(tip.id)}"
+                                              th:action="@{'/patient-dashboard/tips/complete/' + ${tip.id}}" method="post">
+                                            <button type="submit" class="btn btn-success mt-3"
+                                                    onclick="this.style.display='none'">
+                                                Completa
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -120,6 +129,16 @@
                                             </div>
                                             <p class="step"><span class="text-secondary">STEP 5</span></p>
                                             <h6 class="text" th:text="${tip.step5}"></h6>
+                                        </div>
+
+                                        <div>
+                                            <form th:if="${randomTipIds.contains(tip.id)} and !${completedTipIds.contains(tip.id)}"
+                                                  th:action="@{'/patient-dashboard/tips/complete/' + ${tip.id}}" method="post">
+                                                <button type="submit" class="btn btn-success mt-3"
+                                                        onclick="this.style.display='none'">
+                                                    Completa
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -178,6 +197,16 @@
                                             </div>
                                             <p class="step"><span class="text-secondary">STEP 5</span></p>
                                             <h6 class="text" th:text="${tip.step5}"></h6>
+                                        </div>
+
+                                        <div>
+                                            <form th:if="${randomTipIds.contains(tip.id)} and !${completedTipIds.contains(tip.id)}"
+                                                  th:action="@{'/patient-dashboard/tips/complete/' + ${tip.id}}" method="post">
+                                                <button type="submit" class="btn btn-success mt-3"
+                                                        onclick="this.style.display='none'">
+                                                    Completa
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
