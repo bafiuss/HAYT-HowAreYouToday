@@ -1,22 +1,19 @@
 package it.unisa.HAYT.entities;
 
-import it.unisa.HAYT.entities.PatientEntity;
-import it.unisa.HAYT.entities.TipEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tip_selection")
-public class TipSelectionEntity {
+@Table(name = "tip_favorite")
+public class TipFavoriteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +26,6 @@ public class TipSelectionEntity {
     @ManyToOne
     @JoinColumn(name = "tip_id", nullable = false)
     private TipEntity tip;
-
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    // getters e setters
 }
+
 
