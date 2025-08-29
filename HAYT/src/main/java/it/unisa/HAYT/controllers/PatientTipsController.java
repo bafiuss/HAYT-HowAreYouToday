@@ -1,11 +1,7 @@
 package it.unisa.HAYT.controllers;
 
-import it.unisa.HAYT.entities.PatientEntity;
-import it.unisa.HAYT.entities.TipEntity;
-import it.unisa.HAYT.entities.TipFavoriteEntity;
-import it.unisa.HAYT.entities.TipSuggestedEntity;
-import it.unisa.HAYT.repositories.TipFavoriteRepository;
-import it.unisa.HAYT.repositories.TipSuggestedRepository;
+import it.unisa.HAYT.entities.*;
+import it.unisa.HAYT.servicies.DiaryService;
 import it.unisa.HAYT.servicies.TipService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +20,6 @@ public class PatientTipsController {
     private TipService tipService;
 
 
-
     @GetMapping("/patient-dashboard/tips")
     public String showPatientTipsPage(Model model, HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
@@ -34,6 +29,7 @@ public class PatientTipsController {
         model.addAttribute("mindfulnessTips", tipService.getTipsByType("mindfulness_meditation"));
 
         model.addAttribute("favoriteIds", tipService.getFavoriteTipIds(patient));
+        model.addAttribute("suggestedTip", tipService.getSuggestionIfLastEntryNegative(patient).orElse(null));
 
         model.addAttribute("hideNavLinks", false);
 
@@ -51,6 +47,12 @@ public class PatientTipsController {
     public String removeFavorite(@PathVariable Long id, HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
         tipService.removeFavorite(patient, id);
+        return "redirect:/patient-dashboard/tips";
+    }
+
+    @PostMapping("/patient-dashboard/tips/complete/{id}")
+    public String markTipAsComplete(@PathVariable Long id, HttpSession session) {
+        tipService.markAsComplete(id);
         return "redirect:/patient-dashboard/tips";
     }
 

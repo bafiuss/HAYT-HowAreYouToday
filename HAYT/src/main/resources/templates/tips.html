@@ -64,13 +64,13 @@
                                             <h6 class="text" th:text="${tip.step5}"></h6>
                                         </div>
                                     </div>
-                                    <!-- <div class="mb-2" th:if="${suggestedTip != null and suggestedTip.id == tip.id}">
-                                        <form th:action="@{'/patient-dashboard/tips/complete/' + ${tip.id}}" method="post">
+                                    <div class="mb-2" th:if="${suggestedTip != null and suggestedTip.tip.id == tip.id and !suggestedTip.completed}">
+                                        <form th:action="@{'/patient-dashboard/tips/complete/' + ${suggestedTip.id}}" method="post">
                                             <button type="submit" class="button-24 w-100">
                                                 <i class="fa-solid fa-check"></i> Mark as Complete
                                             </button>
                                         </form>
-                                    </div> -->
+                                    </div>
                                     <div class="mb-2" th:if="${!favoriteIds.contains(tip.id)}">
                                         <form th:action="@{'/patient-dashboard/tips/add-favorite/' + ${tip.id}}" method="post">
                                             <button type="submit" class="button-24 new-favorite w-100">
@@ -143,13 +143,13 @@
                                             <h6 class="text" th:text="${tip.step5}"></h6>
                                         </div>
                                     </div>
-                                    <!-- <div class="mb-2" th:if="${suggestedTip != null and suggestedTip.id == tip.id}">
-                                        <form th:action="@{'/patient-dashboard/tips/complete/' + ${tip.id}}" method="post">
+                                    <div class="mb-2" th:if="${suggestedTip != null and suggestedTip.tip.id == tip.id and !suggestedTip.completed}">
+                                        <form th:action="@{'/patient-dashboard/tips/complete/' + ${suggestedTip.id}}" method="post">
                                             <button type="submit" class="button-24 w-100">
                                                 <i class="fa-solid fa-check"></i> Mark as Complete
                                             </button>
                                         </form>
-                                    </div> -->
+                                    </div>
                                     <div class="mb-2" th:if="${!favoriteIds.contains(tip.id)}">
                                         <form th:action="@{'/patient-dashboard/tips/add-favorite/' + ${tip.id}}" method="post">
                                             <button type="submit" class="button-24 new-favorite w-100">
@@ -222,13 +222,13 @@
                                             <h6 class="text" th:text="${tip.step5}"></h6>
                                         </div>
                                     </div>
-                                    <!-- <div class="mb-2" th:if="${suggestedTip != null and suggestedTip.id == tip.id}">
-                                        <form th:action="@{'/patient-dashboard/tips/complete/' + ${tip.id}}" method="post">
+                                    <div class="mb-2" th:if="${suggestedTip != null and suggestedTip.tip.id == tip.id and !suggestedTip.completed}">
+                                        <form th:action="@{'/patient-dashboard/tips/complete/' + ${suggestedTip.id}}" method="post">
                                             <button type="submit" class="button-24 w-100">
                                                 <i class="fa-solid fa-check"></i> Mark as Complete
                                             </button>
                                         </form>
-                                    </div> -->
+                                    </div>
                                     <div class="mb-2" th:if="${!favoriteIds.contains(tip.id)}">
                                         <form th:action="@{'/patient-dashboard/tips/add-favorite/' + ${tip.id}}" method="post">
                                             <button type="submit" class="button-24 new-favorite w-100">

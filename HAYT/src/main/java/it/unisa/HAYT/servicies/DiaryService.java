@@ -61,5 +61,9 @@ public class DiaryService {
         return diaryEntryRepository.findByPatientIdOrderByCreatedAtDesc(patientId);
     }
 
+    public Optional<DiaryEntity> findLastEntryByPatient(PatientEntity patient) {
+        return Optional.ofNullable(diaryEntryRepository.findTopByPatientOrderByCreatedAtDesc(patient).orElse(null));
+    }
+
 }
 

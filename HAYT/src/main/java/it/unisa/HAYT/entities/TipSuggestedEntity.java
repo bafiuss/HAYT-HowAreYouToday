@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tip_completed")
-public class TipCompletedEntity {
+@Table(name = "tip_suggested")
+public class TipSuggestedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,8 @@ public class TipCompletedEntity {
     @JoinColumn(name = "patient_id", nullable = false)
     private PatientEntity patient;
 
-    private LocalDateTime completedAt = LocalDateTime.now();
+    private boolean completed = false;
+
+    private LocalDateTime completedAt;
 }
 
