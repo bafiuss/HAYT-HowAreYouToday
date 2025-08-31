@@ -2,6 +2,7 @@ package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.dto.QuestionnaireDTO;
 import it.unisa.HAYT.entities.PatientEntity;
+import it.unisa.HAYT.servicies.DiaryService;
 import it.unisa.HAYT.servicies.QuestionnaireService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class PatientDashboardController {
     @Autowired
     private QuestionnaireService questionnaireService;
 
+    @Autowired
+    private DiaryService diaryService;
+
     @GetMapping("/patient-dashboard")
     public String getDashboard(Model model, HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
@@ -24,6 +28,9 @@ public class PatientDashboardController {
         model.addAttribute("countdown", secondsLeft);
         model.addAttribute("hideNavLinks", false);
         model.addAttribute("questionnaireDTO", new QuestionnaireDTO());
+
+        boolean hasNegativeEntry = diaryService.hasLastNegativeEntry(patient);
+        model.addAttribute("hasNegativeEntry", hasNegativeEntry);
 
         return "patient-dashboard";
     }

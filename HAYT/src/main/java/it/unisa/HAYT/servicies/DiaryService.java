@@ -61,6 +61,12 @@ public class DiaryService {
         return diaryEntryRepository.findByPatientIdOrderByCreatedAtDesc(patientId);
     }
 
+    public boolean hasLastNegativeEntry(PatientEntity patient) {
+        return diaryEntryRepository.findTopByPatientOrderByCreatedAtDesc(patient)
+                .map(entry -> entry.getSentiment() == Sentiment.negative)
+                .orElse(false);
+    }
+
     public Optional<DiaryEntity> findLastEntryByPatient(PatientEntity patient) {
         return Optional.ofNullable(diaryEntryRepository.findTopByPatientOrderByCreatedAtDesc(patient).orElse(null));
     }

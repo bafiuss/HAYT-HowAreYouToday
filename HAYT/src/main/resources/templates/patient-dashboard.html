@@ -28,14 +28,7 @@
                             <a href="/patient-dashboard/chat" class="ag-courses-item_link">
                                 <div class="ag-courses-item_bg"></div>
                                 <div class="ag-courses-item_title">Chat 💬</div>
-                                <p class="ag-courses-item_description">Chat with the psychotherapist or book a teleconsultation for updates on the therapy.</p>
-                            </a>
-                        </div>
-                        <div class="ag-courses_item">
-                            <a href="/patient-dashboard/tips" class="ag-courses-item_link">
-                                <div class="ag-courses-item_bg"></div>
-                                <div class="ag-courses-item_title">Exercises 🧘</div>
-                                <p class="ag-courses-item_description">Follow guided exercises to support your therapy and improve your well-being step by step.</p>
+                                <p class="ag-courses-item_description">Chat with your therapist or book a teleconsultation for updates on the therapy.</p>
                             </a>
                         </div>
                         <div class="ag-courses_item">
@@ -44,6 +37,16 @@
                                 <div class="ag-courses-item_title">Questionnaire ❓</div>
                                 <p class="ag-courses-item_description">Fill out the weekly questionnaire.</p>
                                 <strong id="countdown" class="ag-courses-item_description"></strong>
+                            </a>
+                        </div>
+                        <div class="ag-courses_item">
+                            <a href="/patient-dashboard/tips" class="ag-courses-item_link">
+                                <div class="ag-courses-item_bg"></div>
+                                <div class="ag-courses-item_title">Tips 🧘</div>
+                                <p class="ag-courses-item_description">Follow guided exercises to support your therapy and improve your well-being step by step.</p>
+                                <b class="ag-courses-item_description" th:if="${hasNegativeEntry}" style="color: red">
+                                    🚨 There’s a new tip that might help. 🚨
+                                </b>
                             </a>
                         </div>
                     </div>
