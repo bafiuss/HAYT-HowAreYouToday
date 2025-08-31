@@ -15,7 +15,7 @@ public interface QuestionnaireRepository extends JpaRepository<QuestionnaireEnti
     @Query("SELECT q.completedAt FROM QuestionnaireEntity q WHERE q.patient.id = :patientId ORDER BY q.completedAt DESC LIMIT 1")
     LocalDateTime findLastSubmissionDateByPatientId(Long patientId);
 
-    @Query("SELECT q FROM QuestionnaireEntity q WHERE q.patient.id =:patientId")
+    @Query("SELECT q FROM QuestionnaireEntity q WHERE q.patient.id = :patientId ORDER BY q.completedAt DESC")
     List<QuestionnaireEntity> findPatientQuestionnaires(Long patientId);
 
     @Query("SELECT q FROM QuestionnaireEntity q WHERE q.id = :id")

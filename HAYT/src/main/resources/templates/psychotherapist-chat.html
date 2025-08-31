@@ -216,6 +216,9 @@
             <div class="tips-header">
                 <h1 class="title">Suggested Tips</h1>
             </div>
+            <div class="subtitle">
+                <h6>(Done/Suggested)</h6>
+            </div>
             <div class="container-fluid py-2">
                 <div class="row">
                     <div class="col-12 mt-4">
@@ -226,7 +229,7 @@
                                         <div class="card-header pb-0" style="background-color: #A3D9A5; color: rgba(0, 0, 0, 0.52);">
                                             <h6 th:text="${tip.title}"></h6>
                                         </div>
-                                        <div style="background-color: white; font-size: 1.25rem">
+                                        <div class="rounded-bottom border" style="background-color: white; font-size: 1.25rem; padding: 0.75rem">
                                             <span th:text="${completedCounts[tip.id]} ?: 0"></span>/<span th:text="${suggestedCounts[tip.id]} ?: 0"></span>
                                         </div>
                                     </div>
@@ -235,16 +238,16 @@
                                         <div class="card-header pb-0" style="background-color: #FFB085; color: rgba(0, 0, 0, 0.52);">
                                             <h6 th:text="${tip.title}"></h6>
                                         </div>
-                                        <div style="background-color: white; font-size: 1.25rem">
+                                        <div class="rounded-bottom border" style="background-color: white; font-size: 1.25rem; padding: 0.75rem">
                                             <span th:text="${completedCounts[tip.id]} ?: 0"></span>/<span th:text="${suggestedCounts[tip.id]} ?: 0"></span>
                                         </div>
                                     </div>
 
-                                    <div th:each="tip : ${mindfulnessTips}" class="col-xl-3 col-md-6 mb-4">
+                                    <div th:each="tip : ${mindfulnessTips}" class="col-xl-3 col-md-6 mb-4 rounded">
                                         <div class="card-header pb-0" style="background-color: #FFE27A; color: rgba(0, 0, 0, 0.52);">
                                             <h6 th:text="${tip.title}"></h6>
                                         </div>
-                                        <div style="background-color: white; font-size: 1.25rem">
+                                        <div class="rounded-bottom border" style="background-color: white; font-size: 1.25rem; padding: 0.75rem">
                                             <span th:text="${completedCounts[tip.id]} ?: 0"></span>/<span th:text="${suggestedCounts[tip.id]} ?: 0"></span>
                                         </div>
                                     </div>
