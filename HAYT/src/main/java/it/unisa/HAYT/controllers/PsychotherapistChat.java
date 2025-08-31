@@ -2,10 +2,7 @@ package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.entities.*;
 import it.unisa.HAYT.repositories.QuestionnaireRepository;
-import it.unisa.HAYT.servicies.DiaryService;
-import it.unisa.HAYT.servicies.MessageService;
-import it.unisa.HAYT.servicies.QuestionnaireService;
-import it.unisa.HAYT.servicies.UserService;
+import it.unisa.HAYT.servicies.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +29,9 @@ public class PsychotherapistChat {
     @Autowired
     private DiaryService diaryService;
 
+    @Autowired
+    private TipService tipService;
+
     @GetMapping("/psychotherapist-dashboard/patients/patient={id}")
     public String showPsychotherapistChatPage(@PathVariable("id") Long id, Model model, HttpSession session) {
         UserEntity psychotherapist = (PsychotherapistEntity) session.getAttribute("user");
@@ -48,6 +48,13 @@ public class PsychotherapistChat {
         model.addAttribute("diaryEntries", diaryEntries);
         model.addAttribute("patient", patientAssociated);
         model.addAttribute("hideNavLinks",false);
+
+        model.addAttribute("breathingTips", tipService.getTipsByType("breathing_exercise"));
+        model.addAttribute("muscleTips", tipService.getTipsByType("muscle_relaxation"));
+        model.addAttribute("mindfulnessTips", tipService.getTipsByType("mindfulness_meditation"));
+
+        model.addAttribute("completedCounts", tipService.getCompletedCounts(patientAssociated.getId()));
+        model.addAttribute("suggestedCounts", tipService.getSuggestedCounts(patientAssociated.getId()));
 
         return "psychotherapist-chat";
     }

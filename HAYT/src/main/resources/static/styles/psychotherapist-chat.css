@@ -27,6 +27,9 @@
     color: #4F46E5;
     margin-top: 50px;
 }
+.tips-header .title{
+    text-align: center;
+}
 .questionnaires-header .title{
     margin-top: 0;
 }

@@ -1,5 +1,6 @@
 package it.unisa.HAYT.servicies;
 
+import it.unisa.HAYT.dto.TipCountDTO;
 import it.unisa.HAYT.entities.*;
 import it.unisa.HAYT.repositories.TipSuggestedRepository;
 import it.unisa.HAYT.repositories.TipFavoriteRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class TipService {
@@ -30,6 +32,7 @@ public class TipService {
     public List<TipEntity> getTipsByType(String type) {
         return tipRepository.findByTypeIgnoreCase(type);
     }
+
 
     public List<Long> getFavoriteTipIds(PatientEntity patient) {
         return tipFavoriteRepository.findByPatient(patient)
@@ -75,10 +78,6 @@ public class TipService {
         return tipSuggestedRepository.save(suggestion);
     }
 
-    public Optional<TipSuggestedEntity> getLatestSuggestion(PatientEntity patient) {
-        return tipSuggestedRepository.findTopByPatientOrderByIdDesc(patient);
-    }
-
     @Transactional
     public void markAsComplete(Long suggestionId) {
         TipSuggestedEntity suggestion = tipSuggestedRepository.findById(suggestionId)
@@ -89,10 +88,26 @@ public class TipService {
         tipSuggestedRepository.save(suggestion);
     }
 
+    public Optional<TipSuggestedEntity> getLatestSuggestion(PatientEntity patient) {
+        return tipSuggestedRepository.findTopByPatientOrderByIdDesc(patient);
+    }
+
     public Optional<TipSuggestedEntity> getSuggestionIfLastEntryNegative(PatientEntity patient) {
         return diaryService.findLastEntryByPatient(patient)
                 .filter(entry -> entry.getSentiment() == Sentiment.negative)
                 .flatMap(entry -> getLatestSuggestion(patient));
+    }
+
+    public Map<Long, Long> getCompletedCounts(Long patientId) {
+        return tipSuggestedRepository.countCompletedByTipAndPatient(patientId)
+                .stream()
+                .collect(Collectors.toMap(TipCountDTO::getTipId, TipCountDTO::getCount));
+    }
+
+    public Map<Long, Long> getSuggestedCounts(Long patientId) {
+        return tipSuggestedRepository.countSuggestedByTipAndPatient(patientId)
+                .stream()
+                .collect(Collectors.toMap(TipCountDTO::getTipId, TipCountDTO::getCount));
     }
 
 

@@ -10,6 +10,32 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 20 20'%3E%3Cg %3E%3Cpolygon fill='%23F2F2F2' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23F2F2F2' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+.button-24.marked {
+    background: #6bbf8a;
+    border: 1px solid #4b9b6e;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 27px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    min-width: 75px;
+}
+
 .button-24.new-favorite{
         background: #ffc107;
         border: 1px solid #ffc107;
@@ -74,9 +100,20 @@
     color: white;
 }
 
+.button-24.marked:hover{
+    background-color: #4b9b6e !important;
+    border-color: #4b9b6e !important;
+    color: white;
+}
+
 .tips-header{
     text-align: center;
 }
+
+.card-body .mb-2 {
+    margin-top: auto;
+}
+
 
 .title {
     font-size: 2.5em;
