@@ -1,7 +1,7 @@
 package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.entities.*;
-import it.unisa.HAYT.servicies.DiaryService;
+import it.unisa.HAYT.entities.TipEntity.Type;
 import it.unisa.HAYT.servicies.TipService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +24,9 @@ public class PatientTipsController {
     public String showPatientTipsPage(Model model, HttpSession session) {
         PatientEntity patient = (PatientEntity) session.getAttribute("user");
 
-        model.addAttribute("breathingTips", tipService.getTipsByType("breathing_exercise"));
-        model.addAttribute("muscleTips", tipService.getTipsByType("muscle_relaxation"));
-        model.addAttribute("mindfulnessTips", tipService.getTipsByType("mindfulness_meditation"));
+        model.addAttribute("breathingTips", tipService.getTipsByType(Type.valueOf("breathingExercise")));
+        model.addAttribute("muscleTips", tipService.getTipsByType(Type.valueOf("muscleRelaxation")));
+        model.addAttribute("mindfulnessTips", tipService.getTipsByType(Type.valueOf("mindfulnessMeditation")));
 
         model.addAttribute("favoriteIds", tipService.getFavoriteTipIds(patient));
         model.addAttribute("suggestedTip", tipService.getSuggestionIfLastEntryNegative(patient).orElse(null));

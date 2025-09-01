@@ -6,6 +6,7 @@ import it.unisa.HAYT.repositories.TipSuggestedRepository;
 import it.unisa.HAYT.repositories.TipFavoriteRepository;
 import it.unisa.HAYT.repositories.TipRepository;
 import it.unisa.HAYT.entities.DiaryEntity.Sentiment;
+import it.unisa.HAYT.entities.TipEntity.Type;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,8 @@ public class TipService {
     @Autowired
     private DiaryService diaryService;
 
-    public List<TipEntity> getTipsByType(String type) {
-        return tipRepository.findByTypeIgnoreCase(type);
+    public List<TipEntity> getTipsByType(Type type) {
+        return tipRepository.findByType(type);
     }
 
 
@@ -84,7 +85,6 @@ public class TipService {
                 .orElseThrow();
 
         suggestion.setCompleted(true);
-        suggestion.setCompletedAt(LocalDateTime.now());
         tipSuggestedRepository.save(suggestion);
     }
 
@@ -95,7 +95,8 @@ public class TipService {
     public Optional<TipSuggestedEntity> getSuggestionIfLastEntryNegative(PatientEntity patient) {
         return diaryService.findLastEntryByPatient(patient)
                 .filter(entry -> entry.getSentiment() == Sentiment.negative)
-                .flatMap(entry -> getLatestSuggestion(patient));
+                .flatMap(entry -> getLatestSuggestion(patient))
+                .filter(suggestion -> !suggestion.isCompleted());
     }
 
     public Map<Long, Long> getCompletedCounts(Long patientId) {

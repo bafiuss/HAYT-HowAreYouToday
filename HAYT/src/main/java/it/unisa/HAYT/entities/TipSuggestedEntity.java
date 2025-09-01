@@ -30,6 +30,16 @@ public class TipSuggestedEntity {
 
     private boolean completed = false;
 
-    private LocalDateTime completedAt;
+
+
+    public TipSuggestedEntity(TipEntity tip, PatientEntity patient, boolean completed){
+        this.tip = tip;
+        this.patient = patient;
+        this.completed = completed;
+    }
+
+    public boolean isCompleted(){
+        return completed;
+    }
 }
 

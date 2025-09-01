@@ -1,7 +1,7 @@
 package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.entities.*;
-import it.unisa.HAYT.repositories.QuestionnaireRepository;
+import it.unisa.HAYT.entities.TipEntity.Type;
 import it.unisa.HAYT.servicies.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +49,9 @@ public class PsychotherapistChat {
         model.addAttribute("patient", patientAssociated);
         model.addAttribute("hideNavLinks",false);
 
-        model.addAttribute("breathingTips", tipService.getTipsByType("breathing_exercise"));
-        model.addAttribute("muscleTips", tipService.getTipsByType("muscle_relaxation"));
-        model.addAttribute("mindfulnessTips", tipService.getTipsByType("mindfulness_meditation"));
+        model.addAttribute("breathingTips", tipService.getTipsByType(Type.valueOf("breathingExercise")));
+        model.addAttribute("muscleTips", tipService.getTipsByType(Type.valueOf("muscleRelaxation")));
+        model.addAttribute("mindfulnessTips", tipService.getTipsByType(Type.valueOf("mindfulnessMeditation")));
 
         model.addAttribute("completedCounts", tipService.getCompletedCounts(patientAssociated.getId()));
         model.addAttribute("suggestedCounts", tipService.getSuggestedCounts(patientAssociated.getId()));

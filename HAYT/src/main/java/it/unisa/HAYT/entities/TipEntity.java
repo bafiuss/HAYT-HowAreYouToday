@@ -18,7 +18,11 @@ public class TipEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
+    public enum Type{breathingExercise, muscleRelaxation, mindfulnessMeditation }
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
+
     private String title;
 
     @Column(length = 512)
@@ -32,7 +36,7 @@ public class TipEntity {
     @Column(length = 512)
     private String step5;
 
-    public TipEntity(String type, String title, String step1, String step2, String step3, String step4, String step5){
+    public TipEntity(Type type, String title, String step1, String step2, String step3, String step4, String step5){
         this.type = type;
         this.title = title;
         this.step1 = step1;
@@ -40,5 +44,17 @@ public class TipEntity {
         this.step3 = step3;
         this.step4 = step4;
         this.step5 = step5;
+    }
+
+    public boolean isBreathingExercise() {
+        return this.type == Type.breathingExercise;
+    }
+
+    public boolean isMuscleRelaxation() {
+        return this.type == Type.muscleRelaxation;
+    }
+
+    public boolean isMindfulnessMeditation() {
+        return this.type == Type.mindfulnessMeditation;
     }
 }

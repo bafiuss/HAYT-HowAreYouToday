@@ -44,7 +44,7 @@
                                 <div class="ag-courses-item_bg"></div>
                                 <div class="ag-courses-item_title">Tips 🧘</div>
                                 <p class="ag-courses-item_description">Follow guided exercises to support your therapy and improve your well-being step by step.</p>
-                                <b class="ag-courses-item_description" th:if="${hasNegativeEntry}" style="color: red">
+                                <b class="ag-courses-item_description" th:if="${suggestedTip != null and !suggestedTip.completed}" style="color: red">
                                     🚨 There’s a new tip that might help. 🚨
                                 </b>
                             </a>

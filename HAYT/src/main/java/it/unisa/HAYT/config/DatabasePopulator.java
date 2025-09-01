@@ -2,7 +2,7 @@ package it.unisa.HAYT.config;
 
 import it.unisa.HAYT.entities.*;
 import it.unisa.HAYT.repositories.*;
-import it.unisa.HAYT.servicies.AppointmentService;
+import it.unisa.HAYT.entities.TipEntity.Type;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -38,6 +38,9 @@ public class DatabasePopulator {
     private TipRepository tipRepository;
 
     @Autowired
+    private TipSuggestedRepository tipSuggestedRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostConstruct
@@ -56,10 +59,85 @@ public class DatabasePopulator {
             PatientEntity patient2 = new PatientEntity("lucaverdi@gmail.com", "Luca", "Verdi", passwordEncoder.encode("Passw0rd3"), psychotherapist, imagePatient1);
             PatientEntity patient3 = new PatientEntity("giorgiagallo@gmail.com", "Giorgia", "Gallo", passwordEncoder.encode("SafePass5"), psychotherapist, imagePatient3);
 
+            TipEntity tip1 = new TipEntity(Type.breathingExercise, "Box Breathing",
+                            "Sit upright in a quiet space. Inhale slowly through your nose for a count of 4, filling your lungs completely.",
+                            "Hold your breath for a count of 4, keeping your body relaxed and still during the pause.",
+                            "Exhale slowly through your mouth for a count of 4, emptying your lungs fully without straining.",
+                            "Hold your breath again for a count of 4 before beginning the next cycle. Repeat for several rounds.",
+                            "none");
+
+            TipEntity tip2 = new TipEntity(Type.breathingExercise, "4-7-8 Breathing",
+                            "Sit or lie down comfortably. Inhale deeply through your nose for a count of 4, letting your lungs expand fully.",
+                            "Hold your breath for a count of 7. Keep your body relaxed and your focus on the stillness of the pause.",
+                            "Exhale slowly through your mouth for a count of 8, releasing all the air and tension in your body.",
+                            "Repeat this cycle for 4 full rounds, allowing your mind and body to settle into a relaxed state.",
+                            "none");
+
+            TipEntity tip3 = new TipEntity(Type.breathingExercise, "Diaphragmatic Breathing",
+                            "Lie on your back or sit with a straight spine. Place one hand on your chest and the other on your belly.",
+                            "Inhale deeply through your nose, aiming to expand your belly rather than your chest. Feel your lower hand rise.",
+                            "Exhale slowly through your mouth, tightening your abdominal muscles to push the air out fully.",
+                            "Continue this deep belly breathing for 5–10 minutes, focusing on the rise and fall of your abdomen.",
+                            "none");
+
+            TipEntity tip4 = new TipEntity(Type.breathingExercise, "Alternate Nostril Breathing",
+                            "Sit comfortably with your spine straight. Use your thumb to gently close your right nostril.",
+                            "Inhale deeply through the left nostril, then close it with your ring finger and release your thumb.",
+                            "Exhale through the right nostril, then inhale through it. Close it, release the left nostril, and exhale left.",
+                            "This completes one cycle. Continue alternating for 5–10 cycles, keeping your breath smooth and steady.",
+                            "none");
+
+            TipEntity tip5 = new TipEntity(Type.muscleRelaxation, "Progressive Muscle Relaxation",
+                            "Sit or lie down comfortably. Start by focusing on your feet and intentionally tense the muscles tightly for 5 seconds.",
+                            "Slowly release the tension while exhaling, noticing the contrast between tightness and relaxation.",
+                            "Move upward through your body—legs, abdomen, chest, arms, face—tensing each group, then releasing slowly.",
+                            "Maintain awareness of the physical sensations as you relax each part, letting go of any lingering tension.",
+                            "none");
+
+            TipEntity tip6 = new TipEntity(Type.muscleRelaxation, "Facial Muscle Relaxation",
+                            "Sit or lie down comfortably. Begin by raising your eyebrows as high as possible and hold for 5 seconds.",
+                            "Release the tension while exhaling, noticing the softening of your forehead and temples.",
+                            "Tightly squint your eyes and clench your jaw for 5 seconds, then relax those areas completely.",
+                            "Repeat the process once more, focusing on the pleasant sensation of letting go.",
+                            "none");
+
+            TipEntity tip7 = new TipEntity(Type.mindfulnessMeditation, "Body Scan Meditation",
+                            "Lie down comfortably, close your eyes, and settle into the present moment with awareness of your breath.",
+                            "Systematically move your attention through the body—starting from the toes of the left foot, moving up the leg, then the right side, torso, arms, neck, face, and head.",
+                            "With each region, breathe into and out of it, noticing sensations without judgment and letting go as you move on.",
+                            "After scanning the whole body, rest in stillness, then gently move your hands and feet, slowly returning to the room.",
+                            "none");
+
+            TipEntity tip8 = new TipEntity(Type.mindfulnessMeditation, "Walking Meditation",
+                            "Choose a quiet space to walk slowly and mindfully. Keep your gaze soft and your steps natural.",
+                            "Pay close attention to each step: how your heel touches the ground, how your weight shifts, and how you lift your foot.",
+                            "Use your breath as an anchor—inhale as you lift your foot, exhale as you place it down. Remember, you are not trying to get anywhere—just be present with each step.",
+                            "If your mind wanders, gently return to the sensation of walking and breathing.",
+                            "Practice for at least 10 minutes, letting each step bring you into the present moment.");
+
+            TipEntity tip9 = new TipEntity(Type.mindfulnessMeditation, "Sitting Meditation",
+                            "Sit in a comfortable position with your back straight and bring full attention to your breath as it flows in and out.",
+                            "Notice when your mind wanders away from the breath, without judgment or frustration.",
+                            "Each time, gently bring your attention back to the breath, focusing on the rising and falling of the belly.",
+                            "Through this practice, cultivate concentration, patience, stability, and non-judgmental awareness.",
+                            "none");
+
+
+            TipEntity tip10 = new TipEntity(Type.mindfulnessMeditation, "5-4-3-2-1 Grounding Technique",
+                            "Start by identifying 5 things you can see around you. Observe colors, shapes, and textures with full attention.",
+                            "Now find 4 things you can physically feel—your clothes, the chair, your feet on the floor—focus on these sensations.",
+                            "Next, identify 3 things you can hear. Listen to distant and close sounds, without labeling them.",
+                            "Notice 2 things you can smell. If nothing is obvious, gently inhale and see what you detect.",
+                            "Finally, bring attention to 1 thing you can taste, even if it’s just the neutral taste in your mouth.");
+
+
             List<UserEntity> patients = List.of(patient1, patient2, patient3);
+            List<TipEntity> tips = List.of(tip1, tip2, tip3, tip4, tip5, tip6, tip7, tip8, tip9, tip10);
 
             userRepository.save(psychotherapist);
             userRepository.saveAll(patients);
+
+            tipRepository.saveAll(tips);
 
             if(messageRepository.count() == 0){
 
@@ -152,85 +230,55 @@ public class DatabasePopulator {
                 diaryRepository.saveAll(diaryEntries);
             }
 
-            if (tipRepository.count() == 0) {
-                List<TipEntity> tips = List.of(
-                        new TipEntity("breathing_exercise", "Box Breathing",
-                                "Sit upright in a quiet space. Inhale slowly through your nose for a count of 4, filling your lungs completely.",
-                                "Hold your breath for a count of 4, keeping your body relaxed and still during the pause.",
-                                "Exhale slowly through your mouth for a count of 4, emptying your lungs fully without straining.",
-                                "Hold your breath again for a count of 4 before beginning the next cycle. Repeat for several rounds.",
-                                "none"),
 
-                        new TipEntity("breathing_exercise", "4-7-8 Breathing",
-                                "Sit or lie down comfortably. Inhale deeply through your nose for a count of 4, letting your lungs expand fully.",
-                                "Hold your breath for a count of 7. Keep your body relaxed and your focus on the stillness of the pause.",
-                                "Exhale slowly through your mouth for a count of 8, releasing all the air and tension in your body.",
-                                "Repeat this cycle for 4 full rounds, allowing your mind and body to settle into a relaxed state.",
-                                "none"),
+            if (tipSuggestedRepository.count() == 0) {
+                List<TipSuggestedEntity> suggestedTips = List.of(
 
-                        new TipEntity("breathing_exercise", "Diaphragmatic Breathing",
-                                "Lie on your back or sit with a straight spine. Place one hand on your chest and the other on your belly.",
-                                "Inhale deeply through your nose, aiming to expand your belly rather than your chest. Feel your lower hand rise.",
-                                "Exhale slowly through your mouth, tightening your abdominal muscles to push the air out fully.",
-                                "Continue this deep belly breathing for 5–10 minutes, focusing on the rise and fall of your abdomen.",
-                                "none"),
+                        new TipSuggestedEntity(tip1, patient1, false),
+                        new TipSuggestedEntity(tip5, patient1, true),
+                        new TipSuggestedEntity(tip2, patient1, false),
+                        new TipSuggestedEntity(tip3, patient1, true),
+                        new TipSuggestedEntity(tip6, patient1, true),
+                        new TipSuggestedEntity(tip1, patient1, false),
+                        new TipSuggestedEntity(tip7, patient1, false),
+                        new TipSuggestedEntity(tip2, patient1, true),
+                        new TipSuggestedEntity(tip8, patient1, false),
+                        new TipSuggestedEntity(tip9, patient1, false),
+                        new TipSuggestedEntity(tip3, patient1, true),
+                        new TipSuggestedEntity(tip4, patient1, false),
 
-                        new TipEntity("breathing_exercise", "Alternate Nostril Breathing",
-                                "Sit comfortably with your spine straight. Use your thumb to gently close your right nostril.",
-                                "Inhale deeply through the left nostril, then close it with your ring finger and release your thumb.",
-                                "Exhale through the right nostril, then inhale through it. Close it, release the left nostril, and exhale left.",
-                                "This completes one cycle. Continue alternating for 5–10 cycles, keeping your breath smooth and steady.",
-                                "none"),
+                        new TipSuggestedEntity(tip1, patient2, true),
+                        new TipSuggestedEntity(tip2, patient2, false),
+                        new TipSuggestedEntity(tip3, patient2, true),
+                        new TipSuggestedEntity(tip4, patient2, false),
+                        new TipSuggestedEntity(tip5, patient2, true),
+                        new TipSuggestedEntity(tip6, patient2, false),
+                        new TipSuggestedEntity(tip7, patient2, true),
+                        new TipSuggestedEntity(tip8, patient2, false),
+                        new TipSuggestedEntity(tip9, patient2, true),
+                        new TipSuggestedEntity(tip10, patient2, false),
+                        new TipSuggestedEntity(tip2, patient2, true),
+                        new TipSuggestedEntity(tip4, patient2, true),
 
-                        new TipEntity("muscle_relaxation", "Progressive Muscle Relaxation",
-                                "Sit or lie down comfortably. Start by focusing on your feet and intentionally tense the muscles tightly for 5 seconds.",
-                                "Slowly release the tension while exhaling, noticing the contrast between tightness and relaxation.",
-                                "Move upward through your body—legs, abdomen, chest, arms, face—tensing each group, then releasing slowly.",
-                                "Maintain awareness of the physical sensations as you relax each part, letting go of any lingering tension.",
-                                "none"),
-
-                        new TipEntity("muscle_relaxation", "Facial Muscle Relaxation",
-                                "Sit or lie down comfortably. Begin by raising your eyebrows as high as possible and hold for 5 seconds.",
-                                "Release the tension while exhaling, noticing the softening of your forehead and temples.",
-                                "Tightly squint your eyes and clench your jaw for 5 seconds, then relax those areas completely.",
-                                "Repeat the process once more, focusing on the pleasant sensation of letting go.",
-                                "none"),
-
-                        new TipEntity("mindfulness_meditation", "Body Scan Meditation",
-                                "Lie down comfortably, close your eyes, and settle into the present moment with awareness of your breath.",
-                                "Systematically move your attention through the body—starting from the toes of the left foot, moving up the leg, then the right side, torso, arms, neck, face, and head.",
-                                "With each region, breathe into and out of it, noticing sensations without judgment and letting go as you move on.",
-                                "After scanning the whole body, rest in stillness, then gently move your hands and feet, slowly returning to the room.",
-                                "none"),
-
-                        new TipEntity("mindfulness_meditation", "Walking Meditation",
-                                "Choose a quiet space to walk slowly and mindfully. Keep your gaze soft and your steps natural.",
-                                "Pay close attention to each step: how your heel touches the ground, how your weight shifts, and how you lift your foot.",
-                                "Use your breath as an anchor—inhale as you lift your foot, exhale as you place it down. Remember, you are not trying to get anywhere—just be present with each step.",
-                                "If your mind wanders, gently return to the sensation of walking and breathing.",
-                                "Practice for at least 10 minutes, letting each step bring you into the present moment."),
-
-                        new TipEntity("mindfulness_meditation", "Sitting Meditation",
-                                "Sit in a comfortable position with your back straight and bring full attention to your breath as it flows in and out.",
-                                "Notice when your mind wanders away from the breath, without judgment or frustration.",
-                                "Each time, gently bring your attention back to the breath, focusing on the rising and falling of the belly.",
-                                "Through this practice, cultivate concentration, patience, stability, and non-judgmental awareness.",
-                                "none"),
+                        new TipSuggestedEntity(tip1, patient3, false),
+                        new TipSuggestedEntity(tip2, patient3, true),
+                        new TipSuggestedEntity(tip3, patient3, false),
+                        new TipSuggestedEntity(tip4, patient3, true),
+                        new TipSuggestedEntity(tip5, patient3, false),
+                        new TipSuggestedEntity(tip6, patient3, true),
+                        new TipSuggestedEntity(tip7, patient3, false),
+                        new TipSuggestedEntity(tip8, patient3, true),
+                        new TipSuggestedEntity(tip9, patient3, false),
+                        new TipSuggestedEntity(tip10, patient3, true),
+                        new TipSuggestedEntity(tip1, patient3, true),
+                        new TipSuggestedEntity(tip6, patient3, false)
 
 
-                        new TipEntity("mindfulness_meditation", "5-4-3-2-1 Grounding Technique",
-                                "Start by identifying 5 things you can see around you. Observe colors, shapes, and textures with full attention.",
-                                "Now find 4 things you can physically feel—your clothes, the chair, your feet on the floor—focus on these sensations.",
-                                "Next, identify 3 things you can hear. Listen to distant and close sounds, without labeling them.",
-                                "Notice 2 things you can smell. If nothing is obvious, gently inhale and see what you detect.",
-                                "Finally, bring attention to 1 thing you can taste, even if it’s just the neutral taste in your mouth.")
-                );
+                        );
 
-                tipRepository.saveAll(tips);
+                tipSuggestedRepository.saveAll(suggestedTips);
+
             }
-
-
-
         }
 
 
