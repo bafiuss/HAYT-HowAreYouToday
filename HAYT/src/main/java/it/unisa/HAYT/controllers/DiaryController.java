@@ -3,7 +3,6 @@ package it.unisa.HAYT.controllers;
 import it.unisa.HAYT.dto.DiaryDTO;
 import it.unisa.HAYT.entities.DiaryEntity;
 import it.unisa.HAYT.entities.PatientEntity;
-import it.unisa.HAYT.entities.PsychotherapistEntity;
 import it.unisa.HAYT.entities.UserEntity;
 import it.unisa.HAYT.servicies.DiaryService;
 import jakarta.servlet.http.HttpSession;

@@ -4,7 +4,6 @@ import it.unisa.HAYT.dto.QuestionnaireDTO;
 import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.QuestionnaireEntity;
 import it.unisa.HAYT.repositories.QuestionnaireRepository;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

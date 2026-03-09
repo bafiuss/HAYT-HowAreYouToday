@@ -80,42 +80,35 @@ public class DatabasePopulator {
                             "Continue this deep belly breathing for 5–10 minutes, focusing on the rise and fall of your abdomen.",
                             "none");
 
-            TipEntity tip4 = new TipEntity(Type.breathingExercise, "Alternate Nostril Breathing",
-                            "Sit comfortably with your spine straight. Use your thumb to gently close your right nostril.",
-                            "Inhale deeply through the left nostril, then close it with your ring finger and release your thumb.",
-                            "Exhale through the right nostril, then inhale through it. Close it, release the left nostril, and exhale left.",
-                            "This completes one cycle. Continue alternating for 5–10 cycles, keeping your breath smooth and steady.",
-                            "none");
-
-            TipEntity tip5 = new TipEntity(Type.muscleRelaxation, "Progressive Muscle Relaxation",
+            TipEntity tip4 = new TipEntity(Type.muscleRelaxation, "Progressive Muscle Relaxation",
                             "Sit or lie down comfortably. Start by focusing on your feet and intentionally tense the muscles tightly for 5 seconds.",
                             "Slowly release the tension while exhaling, noticing the contrast between tightness and relaxation.",
                             "Move upward through your body—legs, abdomen, chest, arms, face—tensing each group, then releasing slowly.",
                             "Maintain awareness of the physical sensations as you relax each part, letting go of any lingering tension.",
                             "none");
 
-            TipEntity tip6 = new TipEntity(Type.muscleRelaxation, "Facial Muscle Relaxation",
+            TipEntity tip5 = new TipEntity(Type.muscleRelaxation, "Facial Muscle Relaxation",
                             "Sit or lie down comfortably. Begin by raising your eyebrows as high as possible and hold for 5 seconds.",
                             "Release the tension while exhaling, noticing the softening of your forehead and temples.",
                             "Tightly squint your eyes and clench your jaw for 5 seconds, then relax those areas completely.",
                             "Repeat the process once more, focusing on the pleasant sensation of letting go.",
                             "none");
 
-            TipEntity tip7 = new TipEntity(Type.mindfulnessMeditation, "Body Scan Meditation",
+            TipEntity tip6 = new TipEntity(Type.mindfulnessMeditation, "Body Scan Meditation",
                             "Lie down comfortably, close your eyes, and settle into the present moment with awareness of your breath.",
                             "Systematically move your attention through the body—starting from the toes of the left foot, moving up the leg, then the right side, torso, arms, neck, face, and head.",
                             "With each region, breathe into and out of it, noticing sensations without judgment and letting go as you move on.",
                             "After scanning the whole body, rest in stillness, then gently move your hands and feet, slowly returning to the room.",
                             "none");
 
-            TipEntity tip8 = new TipEntity(Type.mindfulnessMeditation, "Walking Meditation",
+            TipEntity tip7 = new TipEntity(Type.mindfulnessMeditation, "Walking Meditation",
                             "Choose a quiet space to walk slowly and mindfully. Keep your gaze soft and your steps natural.",
                             "Pay close attention to each step: how your heel touches the ground, how your weight shifts, and how you lift your foot.",
                             "Use your breath as an anchor—inhale as you lift your foot, exhale as you place it down. Remember, you are not trying to get anywhere—just be present with each step.",
                             "If your mind wanders, gently return to the sensation of walking and breathing.",
                             "Practice for at least 10 minutes, letting each step bring you into the present moment.");
 
-            TipEntity tip9 = new TipEntity(Type.mindfulnessMeditation, "Sitting Meditation",
+            TipEntity tip8 = new TipEntity(Type.mindfulnessMeditation, "Sitting Meditation",
                             "Sit in a comfortable position with your back straight and bring full attention to your breath as it flows in and out.",
                             "Notice when your mind wanders away from the breath, without judgment or frustration.",
                             "Each time, gently bring your attention back to the breath, focusing on the rising and falling of the belly.",
@@ -123,7 +116,7 @@ public class DatabasePopulator {
                             "none");
 
 
-            TipEntity tip10 = new TipEntity(Type.mindfulnessMeditation, "5-4-3-2-1 Grounding Technique",
+            TipEntity tip9 = new TipEntity(Type.mindfulnessMeditation, "5-4-3-2-1 Grounding Technique",
                             "Start by identifying 5 things you can see around you. Observe colors, shapes, and textures with full attention.",
                             "Now find 4 things you can physically feel—your clothes, the chair, your feet on the floor—focus on these sensations.",
                             "Next, identify 3 things you can hear. Listen to distant and close sounds, without labeling them.",
@@ -132,7 +125,7 @@ public class DatabasePopulator {
 
 
             List<UserEntity> patients = List.of(patient1, patient2, patient3);
-            List<TipEntity> tips = List.of(tip1, tip2, tip3, tip4, tip5, tip6, tip7, tip8, tip9, tip10);
+            List<TipEntity> tips = List.of(tip1, tip2, tip3, tip4, tip5, tip6, tip7, tip8, tip9);
 
             userRepository.save(psychotherapist);
             userRepository.saveAll(patients);
@@ -175,7 +168,6 @@ public class DatabasePopulator {
                         new QuestionnaireEntity(patient1, 5, 2, 4, 1, 3, 5, 2, 4, 3, 1, 5, 4, 2, 3, 4, 1, 4, 2, 1,LocalDateTime.of(2025, 4, 6, 10, 45)),
                         new QuestionnaireEntity(patient2, 3, 5, 2, 4, 4, 3, 1, 3, 5, 2, 4, 5, 2, 3, 4, 1, 1, 2, 4, LocalDateTime.of(2025, 3, 10, 10, 45)),
                         new QuestionnaireEntity(patient2, 2, 4, 5, 3, 2, 4, 3, 5, 2, 1, 4, 5, 3, 2, 4, 1, 2, 1, 5, LocalDateTime.of(2025, 3, 17, 10, 45))
-
                 );
 
                 questionnaireRepository.saveAll(questionnaires);
@@ -209,20 +201,20 @@ public class DatabasePopulator {
 
             if(diaryRepository.count() == 0){
                 List<DiaryEntity> diaryEntries = List.of(
-                        new DiaryEntity("Today was overwhelming. I felt like I couldn’t handle anything.", LocalDateTime.of(2025, 7, 5, 10, 0), Mood.grief, Sentiment.negative, "Too Much to Handle", patient1),
+                        new DiaryEntity("Today was overwhelming. I felt like I couldn’t handle anything.", LocalDateTime.of(2025, 7, 5, 10, 0), Mood.sadness, Sentiment.negative, "Too Much to Handle", patient1),
                         new DiaryEntity("I woke up feeling energized and went for a long walk.", LocalDateTime.of(2025, 7, 6, 9, 30), Mood.optimism, Sentiment.positive, "A Productive Morning", patient2),
                         new DiaryEntity("I can’t stop thinking about all the mistakes I’ve made.", LocalDateTime.of(2025, 7, 7, 21, 15), Mood.remorse, Sentiment.negative, "Obsessive Thoughts", patient3),
-                        new DiaryEntity("I’m grateful for the support I received from my therapist today.", LocalDateTime.of(2025, 7, 8, 14, 50), Mood.gratitude, Sentiment.positive, "Support Matters", patient1),
-                        new DiaryEntity("I feel so alone, like no one really understands me.", LocalDateTime.of(2025, 7, 9, 19, 40), Mood.grief, Sentiment.negative, "Crushing Loneliness", patient2),
-                        new DiaryEntity("Today I managed to open up about how I really feel.", LocalDateTime.of(2025, 7, 10, 16, 10), Mood.relief, Sentiment.positive, "Opening Up", patient3),
-                        new DiaryEntity("I don't even know what I'm feeling anymore. Everything’s blurry.", LocalDateTime.of(2025, 7, 11, 12, 25), Mood.confusion, Sentiment.neutral, "Mental Fog", patient1),
+                        new DiaryEntity("I’m grateful for the support I received from my therapist today.", LocalDateTime.of(2025, 7, 8, 14, 50), Mood.love, Sentiment.positive, "Support Matters", patient1),
+                        new DiaryEntity("I feel so alone, like no one really understands me.", LocalDateTime.of(2025, 7, 9, 19, 40), Mood.sadness, Sentiment.negative, "Crushing Loneliness", patient2),
+                        new DiaryEntity("Today I managed to open up about how I really feel.", LocalDateTime.of(2025, 7, 10, 16, 10), Mood.trust, Sentiment.positive, "Opening Up", patient3),
+                        new DiaryEntity("I don't even know what I'm feeling anymore. Everything’s blurry.", LocalDateTime.of(2025, 7, 11, 12, 25), Mood.surprise, Sentiment.neutral, "Mental Fog", patient1),
                         new DiaryEntity("I’m really angry at myself for not sticking to my plans.", LocalDateTime.of(2025, 7, 12, 18, 0), Mood.anger, Sentiment.negative, "Frustrated with Myself", patient2),
-                        new DiaryEntity("The day went by without much thought. It was just okay.", LocalDateTime.of(2025, 7, 13, 15, 45), Mood.neutral, Sentiment.neutral, "Just Another Day", patient3),
+                        new DiaryEntity("The day went by without much thought. It was just okay.", LocalDateTime.of(2025, 7, 13, 15, 45), Mood.anticipation, Sentiment.neutral, "Just Another Day", patient3),
                         new DiaryEntity("I finally felt a spark of happiness while doing something I love.", LocalDateTime.of(2025, 7, 14, 11, 20), Mood.joy, Sentiment.positive, "Joy in Small Things", patient1),
                         new DiaryEntity("The day started off well but ended in deep sadness.", LocalDateTime.of(2025, 7, 15, 17, 35), Mood.sadness, Sentiment.negative, "Emotional Rollercoaster", patient2),
-                        new DiaryEntity("Even though it was hard, I feel like I grew from today’s experience.", LocalDateTime.of(2025, 7, 16, 20, 5), Mood.realization, Sentiment.positive, "Growing Through Struggles", patient3),
-                        new DiaryEntity("My mind is so noisy at night, I can’t seem to quiet it.", LocalDateTime.of(2025, 7, 17, 22, 10), Mood.nervousness, Sentiment.negative, "Noisy Thoughts", patient1),
-                        new DiaryEntity("Despite everything, I felt lucky to have my family today.", LocalDateTime.of(2025, 7, 18, 13, 55), Mood.gratitude, Sentiment.positive, "Thankful for My Family", patient2),
+                        new DiaryEntity("Even though it was hard, I feel like I grew from today’s experience.", LocalDateTime.of(2025, 7, 16, 20, 5), Mood.optimism, Sentiment.positive, "Growing Through Struggles", patient3),
+                        new DiaryEntity("My mind is so noisy at night, I can’t seem to quiet it.", LocalDateTime.of(2025, 7, 17, 22, 10), Mood.fear, Sentiment.negative, "Noisy Thoughts", patient1),
+                        new DiaryEntity("Despite everything, I felt lucky to have my family today.", LocalDateTime.of(2025, 7, 18, 13, 55), Mood.love, Sentiment.positive, "Thankful for My Family", patient2),
                         new DiaryEntity("I cried for no clear reason today. Maybe I needed it.", LocalDateTime.of(2025, 7, 19, 8, 45), Mood.sadness, Sentiment.negative, "Unexplained Tears", patient3)
                 );
 
@@ -256,7 +248,6 @@ public class DatabasePopulator {
                         new TipSuggestedEntity(tip7, patient2, true),
                         new TipSuggestedEntity(tip8, patient2, false),
                         new TipSuggestedEntity(tip9, patient2, true),
-                        new TipSuggestedEntity(tip10, patient2, false),
                         new TipSuggestedEntity(tip2, patient2, true),
                         new TipSuggestedEntity(tip4, patient2, true),
 
@@ -269,10 +260,8 @@ public class DatabasePopulator {
                         new TipSuggestedEntity(tip7, patient3, false),
                         new TipSuggestedEntity(tip8, patient3, true),
                         new TipSuggestedEntity(tip9, patient3, false),
-                        new TipSuggestedEntity(tip10, patient3, true),
                         new TipSuggestedEntity(tip1, patient3, true),
                         new TipSuggestedEntity(tip6, patient3, false)
-
 
                         );
 

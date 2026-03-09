@@ -1,7 +1,5 @@
 package it.unisa.HAYT.entities;
 
-import it.unisa.HAYT.entities.PatientEntity;
-import it.unisa.HAYT.entities.PsychotherapistEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

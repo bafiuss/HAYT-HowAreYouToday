@@ -2,7 +2,6 @@ package it.unisa.HAYT.controllers;
 
 import it.unisa.HAYT.entities.PatientEntity;
 import it.unisa.HAYT.entities.UserEntity;
-import it.unisa.HAYT.repositories.PatientRepository;
 import it.unisa.HAYT.servicies.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

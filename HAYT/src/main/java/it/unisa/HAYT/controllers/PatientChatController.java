@@ -1,22 +1,17 @@
 package it.unisa.HAYT.controllers;
 
-import it.unisa.HAYT.dto.AppointmentDTO;
 import it.unisa.HAYT.dto.MessageDTO;
 import it.unisa.HAYT.entities.*;
-import it.unisa.HAYT.servicies.AppointmentService;
 import it.unisa.HAYT.servicies.MessageService;
 import it.unisa.HAYT.servicies.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

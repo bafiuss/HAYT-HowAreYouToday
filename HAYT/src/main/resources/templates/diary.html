@@ -71,7 +71,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="newPageModalLabel">Diary</h5>
+                            <h5 class="modal-title" id="newPageModalLabel">New Thought</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -83,46 +83,30 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="pageContent" class="form-label">Content</label>
-                                    <textarea class="form-control" id="pageContent" rows="3" th:field="*{content}"></textarea>
+                                    <textarea spellcheck="false" class="form-control" id="pageContent" rows="3" th:field="*{content}"></textarea>
                                     <span id="errorThoughtContent" style="font-size: 15px;"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Today I feel</label>
-                                    <select class="form-select" name="mood" th:field="*{mood}">
-                                        <option value="null"></option>
-                                        <option value="" disabled selected>--- Positive ---</option>
-                                        <option value="admiration">Admiration</option>
-                                        <option value="amusement">Amusement</option>
-                                        <option value="approval">Approval</option>
-                                        <option value="caring">Caring</option>
-                                        <option value="desire">Desire</option>
-                                        <option value="excitement">Excitement</option>
-                                        <option value="gratitude">Gratitude</option>
-                                        <option value="joy">Joy</option>
-                                        <option value="love">Love</option>
-                                        <option value="optimism">Optimism</option>
-                                        <option value="pride">Pride</option>
-                                        <option value="relief">Relief</option>
-                                        <option value="" disabled selected>--- Negative ---</option>
-                                        <option value="anger">Anger</option>
-                                        <option value="annoyance">Annoyance</option>
-                                        <option value="disappointment">Disappointment</option>
-                                        <option value="disapproval">Disapproval</option>
-                                        <option value="disgust">Disgust</option>
-                                        <option value="embarrassment">Embarrassment</option>
-                                        <option value="fear">Fear</option>
-                                        <option value="grief">Grief</option>
-                                        <option value="nervousness">Nervousness</option>
-                                        <option value="remorse">Remorse</option>
-                                        <option value="sadness">Sadness</option>
-                                        <option value="" disabled selected>--- Other ---</option>
-                                        <option value="confusion">Confusion</option>
-                                        <option value="curiosity">Curiosity</option>
-                                        <option value="realization">Realization</option>
-                                        <option value="surprise">Surprise</option>
-                                        <option value="neutral">Neutral</option>
-                                    </select>
-
+                                        <select class="form-select" name="mood" th:field="*{mood}">
+                                            <option value="null"></option>
+                                            <option value="joy">Joy</option>
+                                            <option value="trust">Trust</option>
+                                            <option value="fear">Fear</option>
+                                            <option value="surprise">Surprise</option>
+                                            <option value="sadness">Sadness</option>
+                                            <option value="disgust">Disgust</option>
+                                            <option value="anger">Anger</option>
+                                            <option value="anticipation">Anticipation</option>
+                                            <option value="love">Love</option>
+                                            <option value="submission">Submission</option>
+                                            <option value="awe">Awe</option>
+                                            <option value="disapproval">Disapproval</option>
+                                            <option value="remorse">Remorse</option>
+                                            <option value="contempt">Contempt</option>
+                                            <option value="aggressiveness">Aggressiveness</option>
+                                            <option value="optimism">Optimism</option>
+                                        </select>
                                     <span id="errorThoughtMood" style="font-size: 15px;"></span>
                                 </div>
                             </form>
