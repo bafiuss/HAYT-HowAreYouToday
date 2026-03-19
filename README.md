@@ -36,7 +36,7 @@ Prima di procedere, verificare di avere installato:
 - MySQL (attivo in locale)
 - Conda (consigliato, per utilizzare il file `.yml`)
 
-### 2) Clonare la repository
+### 2) Clone della repository
 
 ```bash
 git clone https://github.com/bafiuss/HAYT-HowAreYouToday.git
@@ -53,7 +53,7 @@ Parametri di default:
 
 È possibile mantenere questi valori oppure modificarli in `src/main/resources/application.properties`.
 
-### 4) Installa i pacchetti Python dal file `.yml`
+### 4) Installazione pacchetti Python dal file `.yml`
 
 Dalla root del progetto:
 
@@ -62,7 +62,7 @@ conda env create -f environment.yml
 conda activate hayt
 ```
 
-### 5) Avvia il servizio Python NLP
+### 5) Avvio del servizio Python NLP
 
 Con l'ambiente Conda attivo:
 
@@ -75,7 +75,7 @@ Il servizio NLP sara disponibile su:
 
 - `http://localhost:5000/analyze`
 
-### 6) Avvia l'applicazione Spring Boot
+### 6) Avvio applicazione Spring Boot
 
 Aprire un nuovo terminale nella root del progetto e avviare il backend.
 
