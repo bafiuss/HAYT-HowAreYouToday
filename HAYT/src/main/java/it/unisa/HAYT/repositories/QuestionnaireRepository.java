@@ -1,0 +1,22 @@
+package it.unisa.HAYT.repositories;
+
+import it.unisa.HAYT.entities.QuestionnaireEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Repository
+public interface QuestionnaireRepository extends JpaRepository<QuestionnaireEntity, Long> {
+    @Query("SELECT q.completedAt FROM QuestionnaireEntity q WHERE q.patient.id = :patientId ORDER BY q.completedAt DESC LIMIT 1")
+    LocalDateTime findLastSubmissionDateByPatientId(Long patientId);
+
+    @Query("SELECT q FROM QuestionnaireEntity q WHERE q.patient.id = :patientId ORDER BY q.completedAt DESC")
+    List<QuestionnaireEntity> findPatientQuestionnaires(Long patientId);
+
+    @Query("SELECT q FROM QuestionnaireEntity q WHERE q.id = :id")
+    QuestionnaireEntity findByIdWithDetails(@Param("id") Long id);
+}

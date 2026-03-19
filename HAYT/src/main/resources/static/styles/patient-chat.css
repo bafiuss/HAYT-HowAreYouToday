@@ -1,0 +1,76 @@
+.content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #F5F5F5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23cccccc' fill-opacity='0.04'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.04'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+}
+.patient-chat-header{
+    text-align: center;
+}
+.title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #4F46E5;
+    margin-top: 30px;
+}
+.icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 20%;
+    object-fit: cover;
+}
+.card {
+    border-radius: 10px;
+    max-width: 100%;
+    overflow: hidden;
+}
+.card-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+.alert{
+    z-index: 2;
+    margin-top: 3%;
+    margin-bottom: 0;
+}
+input:focus, textarea:focus {
+    outline: none !important;
+    border-color: #4b9b6e !important;
+    box-shadow: 0 0 5px rgba(75, 155, 110, 0.5) !important;
+}
+#sendMessageButton{
+    background-color: #4F46E5;
+}
+#sendMessageButton i {
+    color: white !important;
+    transition: color 0s;
+}
+#sendMessageButton:active i {
+    color: white !important;
+}
+#sendMessageButton:hover i{
+    color: rgba(255, 255, 255, 0.66) !important;
+}
+
+@media (max-width: 768px) {
+    .title{
+        font-size: 2.2em;
+    }
+}
+@media (max-width: 600px) {
+    .title{
+        font-size: 2em;
+    }
+}
+@media (max-width: 415px) {
+    .title{
+        font-size: 1.8em;
+    }
+}
+

@@ -1,0 +1,203 @@
+.content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #F5F5F5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 20 20'%3E%3Cg %3E%3Cpolygon fill='%23F2F2F2' points='20 10 10 0 0 0 20 20'/%3E%3Cpolygon fill='%23F2F2F2' points='0 10 0 20 10 20'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.button-24.marked {
+    background: #6bbf8a;
+    border: 1px solid #4b9b6e;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 27px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    min-width: 75px;
+}
+
+.button-24.new-favorite{
+        background: #ffc107;
+        border: 1px solid #ffc107;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 27px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        min-width: 75px;
+}
+
+.button-24.remove-favorite{
+    background: #bf4b4b;
+    border: 1px solid #bf4b4b;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 27px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    min-width: 75px;
+}
+
+.button-24.remove-favorite:hover{
+    background-color: #A54141 !important;
+    border-color: #A54141 !important;
+    color: white;
+}
+
+.button-24.new-favorite:hover{
+    background-color: #da9d0d !important;
+    border-color: #da9d0d !important;
+    color: white;
+}
+
+.button-24.marked:hover{
+    background-color: #4b9b6e !important;
+    border-color: #4b9b6e !important;
+    color: white;
+}
+
+.tips-header{
+    text-align: center;
+}
+
+.card-body .mb-2 {
+    margin-top: auto;
+}
+
+
+.title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #4F46E5;
+    margin-top: 30px;
+}
+
+.tip-title-breathing{
+    background: #A3D9A5;
+    color: rgba(0, 0, 0, 0.52);
+}
+.tip-title-mindfulness{
+    background: #FFE27A;
+    color: rgba(0, 0, 0, 0.52);
+}
+.tip-title-muscle-relaxation{
+    background: #FFB085;
+    color: rgba(0, 0, 0, 0.52);
+}
+
+.timeline {
+    position: relative;
+    margin-left: 20px;
+    border-left: 2px solid #dee2e6;
+    padding-left: 30px;
+}
+
+.timeline-block {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -46px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.timeline-block:last-child::after {
+    content: none;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.step i {
+    margin-right: 10px;
+    color: #4caf50;
+    position: absolute;
+    left: 0;
+    top: 3px;
+}
+
+.tips-container .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 24px;
+    width: 2px;
+    height: calc(100% - 24px);
+    background-color: #ccc;
+}
+
+.text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #212529;
+    margin: 0;
+}
+
+.text-success { color: #198754; }
+.text-danger { color: #dc3545; }
+.text-primary { color: #0d6efd; }
+.text-warning { color: #ffc107; }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Features</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/features.css">
+    </head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+            <div class="content">
+                <div class="features">
+                    <div class="features-header">
+                        <h1 class="title">Features</h1>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="icon">📖</div>
+                            <div>
+                                <h2>Personal Diary</h2>
+                                <p style="text-align: justify">The personal diary allows users to express their thoughts and emotions in a private
+                                    and secure space. Patients can add new thoughts to reflect on their feelings,
+                                    track emotional patterns, and document their mental health journey.
+                                    Users can also revisit past thoughts to gain insights into their progress
+                                    and emotional well-being over time.</p>
+                                <span class="badge">Daily Thoughts</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="icon">🧑‍⚕️</div>
+                            <div>
+                                <h2>Therapist & Appointments</h2>
+                                <p style="text-align: justify">Our platform allows users to connect with professional therapists for personalized support.
+                                    Patients can easily browse available psychotherapists, view their profiles,
+                                    and schedule appointments based on their preferences.</p>
+                                <span class="badge">Guided Support</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="icon">❓</div>
+                            <div>
+                                <h2>Questionnaire</h2>
+                                <p style="text-align: justify">Our platform includes a DSM-5-based questionnaire designed to help users gain insights into their mental health.
+                                    By answering a series of clinically validated questions, patients can assess their emotional and psychological well-being.
+                                    The questionnaire provides an initial screening for potential mental health conditions,
+                                    guiding users toward professional support if needed.</p>
+                                <span class="badge">Screening Tool</span>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="icon">💬</div>
+                            <div>
+                                <h2>Therapist Chat</h2>
+                                <p style="text-align: justify">Our platform offers a secure and confidential chat feature that allows users to communicate directly with professional therapists.
+                                    Whether you need immediate guidance or ongoing support, the chat provides a convenient way to discuss concerns, ask questions,
+                                    and receive expert advice in real time. This feature ensures that users have easy access to professional help whenever they need it,
+                                    fostering a continuous and supportive mental health journey.</p>
+                                <span class="badge">Instant Help</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

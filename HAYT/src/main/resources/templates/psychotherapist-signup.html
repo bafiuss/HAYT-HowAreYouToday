@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Psychotherapist Signup</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/access.css">
+        <script type="text/javascript" src="/scripts/validate.js"></script>
+    </head>
+    <body>
+        <div th:insert="~{fragments/navbar :: navbar}"></div>
+        <div class="content">
+            <div th:if="${failedSignup}" class="alert alert-danger" role="alert">
+                <b> Email address is already used</b>
+            </div>
+            <div th:if="${successSignup}" class="alert alert-success" role="alert">
+                <b> Account created successfully! </b>
+            </div>
+            <div class="access-container">
+                <div class="access-header">
+                    <h1>Hello, Friend!</h1>
+                    <p>Provide your professional information to get started as a therapist, or <a href='/login'>login here</a></p>
+                </div>
+                <form action="/psychotherapist-signup" method="post" id="form" onsubmit="return checkPsychotherapistSignUp(this)" th:object="${psychotherapistSignupDTO}" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <div class="input-content">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" onChange="return validateFirstName()">
+                            <span id="errorFirstName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" onChange="return validateLastName()">
+                            <span id="errorLastName" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Albo Region</label>
+                            <select name="alboRegion" id="alboRegion" th:field="*{alboRegion}" onChange="return validateAlboRegion()">
+                                <option value="none"> </option>
+                                <option value="Abruzzo - 130">Abruzzo - 130</option>
+                                <option value="Basilicata - 170">Basilicata - 170</option>
+                                <option value="Bolzano - P.A. - 041">Bolzano - P.A. - 041</option>
+                                <option value="Calabria - 180">Calabria - 180</option>
+                                <option value="Campania - 150">Campania - 150</option>
+                                <option value="Emilia-Romagna - 080">Emilia-Romagna - 080</option>
+                                <option value="Friuli Venezia Giulia - 060">Friuli Venezia Giulia - 060</option>
+                                <option value="Lazio - 120">Lazio - 120</option>
+                                <option value="Liguria - 070">Liguria - 070</option>
+                                <option value="Lombardia - 030">Lombardia - 030</option>
+                                <option value="Marche - 110">Marche - 110</option>
+                                <option value="Molise - 140">Molise - 140</option>
+                                <option value="Piemonte - 010">Piemonte - 010</option>
+                                <option value="Puglia - 160">Puglia - 160</option>
+                                <option value="Sardegna - 200">Sardegna - 200</option>
+                                <option value="Sicilia - 190">Sicilia - 190</option>
+                                <option value="Toscana - 090">Toscana - 090</option>
+                                <option value="Trento - P.A. - 042">Trento - P.A. - 042</option>
+                                <option value="Umbria - 100">Umbria - 100</option>
+                                <option value="Valle d'Aosta - 020">Valle d'Aosta - 020</option>
+                                <option value="Veneto - 050">Veneto - 050</option>
+                            </select>
+                            <span id="errorAlboRegion" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Profile Image</label>
+                            <input type="file" id="profileImage" name="profileImage" accept="image/*" th:field="*{profileImage}"  onChange="return validateProfileImage()">
+                            <span id="errorProfileImage" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Email</label>
+                            <input type="email" id="email" name="email" th:field="*{email}" onChange="return validateEmail()">
+                            <span id="errorEmail" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Password</label>
+                            <input type="password" id="patient-password" name="patient-password" th:field="*{password}" onChange="return validatePassword()">
+                            <span id="errorPassword" style="font-size: 15px;"></span>
+                        </div>
+                        <div class="input-content">
+                            <label>Confirm Password</label>
+                            <input type="password" id="patient-confirmPassword" name="patient-confirmPassword" th:field="*{confirmPassword}" onChange="return passwordMatching()">
+                            <span id="matchError" style="font-size: 15px;"></span>
+                        </div>
+                    </div>
+                    <div class="access-footer">
+                        <button type="submit" class="access-button" id="submitButton">Signup</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const content = document.querySelector(".content");
+                if (window.location.pathname.includes("psychotherapist-signup")) {
+                    content.style.backgroundImage = "url('/images/authentication/psychotherapist-signup-background.jpg')";
+                } else {
+                    content.style.backgroundImage = "url('/images/authentication/access-background.jpg')";
+                }
+            });
+        </script>
+    </body>
+</html>

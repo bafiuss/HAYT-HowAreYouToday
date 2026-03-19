@@ -1,0 +1,134 @@
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+.day, .day-name {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    min-width: 40px;
+}
+.day-name {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.calendar-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.calendar-grid::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+.calendar-grid::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.past-day {
+    color: white;
+    opacity: 0.5;
+}
+.current-day {
+    border: 2px solid white;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.appointment-day {
+    background-color: rgba(255, 0, 0, 0.3) !important;
+    color: white !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-header{
+    background-color: #607D8B;
+}
+.modal-header .modal-title{
+    color: white;
+}
+.btn-primary {
+    background-color: #6bbf8a !important;
+    color: white !important;
+}
+.btn-secondary {
+    background-color: #6c757d !important;
+    color: white !important;
+}
+/*.btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+}*/
+#saveAppointmentButton{
+    background-color: #6bbf8a;
+    border-color: #4b9b6e;
+}
+#saveAppointmentButton:hover{
+    background-color: #4b9b6e !important;
+}
+#saveAppointmentButton, #closeAppointmentButton, #closeDetailsAppointmentButton {
+    font-size: 16px;
+}
+#closeAppointmentButton:hover{
+    background-color: #5a6268 !important;
+}
+#closeAppointmentButton:hover, #closeDetailsAppointmentButton:hover{
+    background-color: #5a6268 !important;
+}
+
+@media (max-width: 1240px) {
+    .day-name{
+        padding: 11px;
+        font-size: 14px;
+    }
+}
+@media (max-width: 1053px) {
+    .day-name{
+        padding: 9px;
+    }
+}
+@media (max-width: 900px) {
+    .day {
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .day, .day-name {
+        padding: 8.5px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 600px) {
+    .calendar-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+    }
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        min-width: 600px;
+    }
+    .calendar-container::-webkit-scrollbar {
+        height: 8px;
+    }
+    .calendar-container::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+    }
+    .calendar-container::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+}
