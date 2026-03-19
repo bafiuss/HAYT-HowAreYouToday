@@ -1,6 +1,5 @@
 package it.unisa.HAYT.dto;
 
-import it.unisa.HAYT.entities.AppointmentEntity;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;

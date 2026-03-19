@@ -29,8 +29,8 @@ public class DiaryEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    public enum Mood {admiration, amusement, anger, annoyance, approval, caring, confusion, curiosity, desire, disappointment,
-        disapproval, disgust, embarrassment, excitement, fear, gratitude, grief, joy, love, nervousness, optimism, pride, realization, relief, remorse, sadness, surprise, neutral
+    public enum Mood {joy, trust, fear, surprise, sadness, disgust, anger, anticipation,
+                    love, submission, awe, disapproval, remorse, contempt, aggressiveness, optimism,
     }
     public enum Sentiment{negative, neutral, positive}
 

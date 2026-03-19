@@ -27,6 +27,13 @@
     color: #4F46E5;
     margin-top: 50px;
 }
+.subtitle{
+    color: #4F46E5;
+    margin-top: 25px;
+}
+.tips-header .title{
+    text-align: center;
+}
 .questionnaires-header .title{
     margin-top: 0;
 }
